@@ -54,12 +54,13 @@ span.glyphicon{
 
 
 .disqus_thread-comment{
-	position: absolute;
-	bottom: 0;
 	padding-left: 15%;
 	padding-right: 15%;
 	padding-top: 50px;
+}
+.row-comments {
+	position: absolute;
+	bottom: 0;
 	padding: 10px 0;
-
 }
 
