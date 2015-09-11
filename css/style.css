@@ -42,6 +42,7 @@ p {
 	padding-left: 20px;
 	padding-right: 20px;
 	text-align: left;
+	font-size: 120%;
 }
 
 .btn-menu {
@@ -58,5 +59,10 @@ span.glyphicon{
 	bottom: 0;
 	width: 100%;
 	padding-top: 100px;
+}
+
+footer{
+	width: 100%;
+	text-align: center;
 }
 
