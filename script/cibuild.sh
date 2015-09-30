@@ -6,7 +6,7 @@ set -e # halt script on error
 jekyll build
 
 # copy generated site to the blog branch
-cp  -f _site/* ../francesliang.github.io
+cp  -rf _site/* ../francesliang.github.io
 
 # commit and push changes
 cd ../francesliang.github.io
