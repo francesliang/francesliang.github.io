@@ -1,0 +1,9 @@
+name: "XL Blog"
+description: "Xin Liang Blog"
+
+url: "xinliang.co"
+
+permalink: /:title 
+
+
+

@@ -1,0 +1,68 @@
+html {
+	background: transparent;
+	height: 100%;
+}
+
+body {
+	background-color: gray; 
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	height: 100%;
+}
+
+.container-fluid {
+	background: white;
+	min-height: 100%;
+	position: relative;
+}
+
+h2 {
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid;
+	line-height: 0.8em;
+	margin: 10px 0 30px;
+	color: black;
+}
+h2 span {
+	padding:0 10px;
+	background: #fff;
+}
+
+a {
+	color: rgb(51, 51, 51);
+}
+a:hover {
+	color: rgb(51, 51, 51);
+}
+
+p {
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: left;
+	font-size: 120%;
+}
+
+.btn-menu {
+	border: none;
+	background: white;
+}
+span.glyphicon{
+	font-size: 1.8em;
+}
+
+
+
+.row-comments{
+	bottom: 0;
+	width: 100%;
+	padding-top: 100px;
+}
+
+footer{
+	width: 100%;
+	text-align: center;
+}
+
