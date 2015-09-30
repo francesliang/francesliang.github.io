@@ -1,20 +1,14 @@
 language: ruby
-
 rvm:
 - 2.0.0
-
-install:
- gem install jekyll
-
+install: gem install jekyll
 before_script:
- - chmod +x "./script/cibuild.sh"
-
-script: "./script/cibuild.sh"
-
+- chmod +x "./script/cibuild.sh"
+script: ./script/cibuild.sh
 branch:
- only:
- - website-template
-
+  only:
+  - website-template
 env:
- global:
+  global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - secure: wY4VN0P78GIblTu4WJLY+5UYHT0A8WAkVwlwxlzPvbs1OzbdRD/cBhwHhLpy9CXGjLpzOiZjk8iFzMwNxYe7TmrJLLedtx7srTMCU54NpQ6qgHxRquU9YKtfU/iY3Dh5oyAhtjKsrlRTb28Bg7Cabby6r2UmB29fhB1c8AwvbzmXm6vz9DYB1jPWWSUxYhoyDNu2ogNfgrV1lsJoPwnMu14laafkxLDk4MOvON5VaHWj3xiAN1WlFeITH+/N7/oYNdnj2Pw5X2IGIqqgSNVUHXt7po17l0nvmOZTO6vgzQnYAEynpQCvfGgUirIBEVGYTHbAdwO6M0wHyqfgNxzCvJVk0U274GTSN38U9QI32A2injz2odDzt/9Ke9k0QjxeVv1bgisxfbcTQGu9xI2jMzCu4aUihHyubBwexksh0ZHnM3BQdEuDHyhU7zlT2MRueIRWw1dFC3MVhVScTW1rT/kKr/Lk0suDIDnXbBmZMya8WjOhqQcFmh+qgqXcOwjBrThUBEr/pGaDraCv6ghUmAdNEA2ud7Zsb8CJ647peG1ypWPQruskwGu/DqOppDTY0orh/DpkhrSIVKNtbA2dmeMPKYHjU94KquTdRRqAUOmBwQln5RlleUndpaw3kgw7xdGyxVTkdmUbqLCt0XksmUhvl83VErsAOrv24vceNSk=
