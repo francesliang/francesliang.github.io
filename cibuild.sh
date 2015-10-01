@@ -8,11 +8,12 @@ jekyll build
 # cleanup
 rm -rf ../master
 
+#clone `master' branch of the repository using encrypted GH_TOKEN for authentification
+git clone https://${GH_TOKEN}@github.com/francesliang/francesliang.github.io.git ../master
+
 # copy generated site to the blog branch
 cp -R _site/* ../master
 
-#clone `master' branch of the repository using encrypted GH_TOKEN for authentification
-git clone https://${GH_TOKEN}@github.com/francesliang/francesliang.github.io.git ../master
 
 # commit and push changes
 cd ../master
