@@ -6,13 +6,13 @@ set -e # halt script on error
 jekyll build
 
 # copy generated site to the blog branch
-cp  -rf _site/* ../francesliang.github.io
+cp  -rf _site/* ../francesliang.github.io.master
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
 git clone https://${GH_TOKEN}@github.com/francesliang/francesliang.github.io.git ../francesliang.github.io.master
 
 # commit and push changes
-cd ../francesliang.github.io
+cd ../francesliang.github.io.master
 git config user.email "francisliang2010@hotmail.com"
 git config user.name "Xin(Frances) Liang"
 git add -A .
