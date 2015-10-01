@@ -6,10 +6,10 @@ set -e # halt script on error
 jekyll build
 
 # cleanup
-rm -rf master
+rm -rf ../master
 
 # copy generated site to the blog branch
-cp  -R _site/* ../master
+cp -R _site/* ../master
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
 git clone https://${GH_TOKEN}@github.com/francesliang/francesliang.github.io.git ../master
