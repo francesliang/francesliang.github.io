@@ -19,39 +19,45 @@ Once I've decided what type of website I would like to develop and got my custom
 
 First of all, the blog needs to be hosted through a web hosting service, so that the webiste is accessible via the Internet. I use [GitHub Pages](https://pages.github.com/), because it's free and I was going to commit the files for this blog to [my GitHub](https://github.com/francesliang/francesliang.github.io) anyway. If you are not familiar with GitHub then [here](https://github.com/) is their website. 
 
-As the [instructions](https://pages.github.com/) mentioned on GitHub Pages, the followings are the steps to create a site: 
+As the [instructions](https://pages.github.com/) mentioned on GitHub Pages, the followings are the steps to create a site:  
 
-  1. Create a new repository named "*username*.github.io" on your GitHub, where *username* is your username on GitHub.
-  2. Clone the repository to the folder where you want to store your project locally on your computer: 
-	<p>~$ git clone https://github.com/username/username.github.io</p>
-  3. Create an index.html and add other files related to your project in the project folder.
-  4. Add, commit, and push your changes in the project folder to GitHub using the following commands:
-	<p>~$ git add --all</p>
-	<p>~$ git commit -m "Initial commit"</p>
-	<p>~$ git push -u origin master</p>
-  5. Now you have generated your webiste: "*http://username.github.io*".
+1. Create a new repository named "*username*.github.io" on your GitHub, where *username* is your username on GitHub.
+2. Clone the repository to the folder where you want to store your project locally on your computer: 
+```
+~$ git clone https://github.com/username/username.github.io
+```
+3. Create an index.html and add other files related to your project in the project folder.
+4. Add, commit, and push your changes in the project folder to GitHub using the following commands:
+```
+~$ git add --all
+~$ git commit -m "Initial commit"
+~$ git push -u origin master
+```
+5. Now you have generated your webiste: "*http://username.github.io*".
 
 **Customise URLs**
 
 You may notice that the URL of the website you just created is "*http://username.github.io*". In order to use a custom URL, we need to [set up the custom domain with GitHub Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/):
 
-  1. Create a CNAME file that contains the custom domain (the content of the file is: "*yourdomain.com*") to your repository's root directory (in your repository's Pages branch). Then commit and push the file. This is to redirect your GitHub Pages site using your custom domain.
+1. Create a CNAME file that contains the custom domain (the content of the file is: "*yourdomain.com*") to your repository's root directory (in your repository's Pages branch). Then commit and push the file. This is to redirect your GitHub Pages site using your custom domain.  
 
-  2. Configure a custom apex domain (e.g. *yourdomain.com*) -  for the root apex (@) to point to *username.github.io*
-	* With your DNS provider, create A records (in the DNS manager) that point to the following IP address:
-    	* 192.30.252.153
-    	* 192.30.252.154
-		* See the following as an example:
-
-
-	* If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to *username.github.io* instead.
-
-  3. Configure a custom subdomain (e.g. *www.yourdomain.com*) - for www. to point to *username.github.io*
-	* In your DNS manager, create a CNAME record and point it to *username.github.io*. See the following as an example:
+2. Configure a custom apex domain (e.g. *yourdomain.com*) -  for the root apex (@) to point to *username.github.io*
+	* With your DNS provider, create A records (in the DNS manager) that point to the following IP address:  
+    	* 192.30.252.153  
+    	* 192.30.252.154  
+		* See the following as an example:  
 
 
-  4. Check if your name server has been updated using the *dig* command:
- 	<p>~$ dig *yourdomain.com* +nostats +nocomments +nocmd</p>
+	* If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to *username.github.io* instead.  
+
+3. Configure a custom subdomain (e.g. *www.yourdomain.com*) - for www. to point to *username.github.io*
+	* In your DNS manager, create a CNAME record and point it to *username.github.io*. See the following as an example:  
+
+
+4. Check if your name server has been updated using the *dig* command:
+```
+~$ dig *yourdomain.com* +nostats +nocomments +nocmd
+```
 
 
 If the congifuration is successful, you should be able to access to your webiste through both *yourdomain.com* and *www.yourdomian.com*.
