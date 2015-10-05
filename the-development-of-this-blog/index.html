@@ -61,16 +61,16 @@
 
 <ol>
   <li>Create a new repository named “<em>username</em>.github.io” on your GitHub, where <em>username</em> is your username on GitHub.</li>
-  <li>Clone the repository to the folder where you want to store your project locally on your computer: 
+  <li>Clone the repository to the folder where you want to store your project locally on your computer:<br />
 <code>
 ~$ git clone https://github.com/username/username.github.io
 </code></li>
   <li>Create an index.html and add other files related to your project in the project folder.</li>
-  <li>Add, commit, and push your changes in the project folder to GitHub using the following commands:
+  <li>Add, commit, and push your changes in the project folder to GitHub using the following commands:<br />
 <code>
-~$ git add --all
-~$ git commit -m "Initial commit"
-~$ git push -u origin master
+~$ git add --all  
+~$ git commit -m "Initial commit"  
+~$ git push -u origin master  
 </code></li>
   <li>Now you have generated your webiste: “<em>http://username.github.io</em>”.</li>
 </ol>
@@ -85,9 +85,9 @@
   </li>
   <li>Configure a custom apex domain (e.g. <em>yourdomain.com</em>) -  for the root apex (@) to point to <em>username.github.io</em>
     <ul>
-      <li>With your DNS provider, create A records (in the DNS manager) that point to the following IP address:<br />
- 	* 192.30.252.153<br />
- 	* 192.30.252.154
+      <li>With your DNS provider, create A records (in the DNS manager) that point to the following IP address:
+ 	- 192.30.252.153<br />
+ 	- 192.30.252.154
         <ul>
           <li>See the following as an example:</li>
         </ul>
@@ -100,7 +100,7 @@
       <li>In your DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</li>
     </ul>
   </li>
-  <li>Check if your name server has been updated using the <em>dig</em> command:
+  <li>Check if your name server has been updated using the <em>dig</em> command:<br />
 <code>
 ~$ dig *yourdomain.com* +nostats +nocomments +nocmd
 </code></li>
