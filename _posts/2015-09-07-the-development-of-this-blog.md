@@ -73,7 +73,9 @@ You may notice that the URL of the website you just created is "*http://username
 
 4. Check if your name server has been updated using the *dig* command:
 
+	```
 	~$ dig *yourdomain.com* +nostats +nocomments +nocmd
+	```
 
 If the congifuration is successful, you should be able to access to your webiste through both *yourdomain.com* and *www.yourdomian.com*.
 
