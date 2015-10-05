@@ -61,19 +61,24 @@
 
 <ol>
   <li>Create a new repository named “<em>username</em>.github.io” on your GitHub, where <em>username</em> is your username on GitHub.</li>
-  <li>Clone the repository to the folder where you want to store your project locally on your computer:<br />
-<code>
+  <li>Clone the repository to the folder where you want to store your project locally on your computer:</li>
+</ol>
+
+<p><code>
 ~$ git clone https://github.com/username/username.github.io
-</code></li>
-  <li>Create an index.html and add other files related to your project in the project folder.</li>
-  <li>Add, commit, and push your changes in the project folder to GitHub using the following commands:<br />
-<code>
+</code>
+3. Create an index.html and add other files related to your project in the project folder.</p>
+
+<ol>
+  <li>Add, commit, and push your changes in the project folder to GitHub using the following commands:</li>
+</ol>
+
+<p><code>
 ~$ git add --all  
 ~$ git commit -m "Initial commit"  
 ~$ git push -u origin master  
-</code></li>
-  <li>Now you have generated your webiste: “<em>http://username.github.io</em>”.</li>
-</ol>
+</code>
+5. Now you have generated your webiste: “<em>http://username.github.io</em>”.</p>
 
 <p><strong>Customise URLs</strong></p>
 
@@ -83,28 +88,39 @@
   <li>
     <p>Create a CNAME file that contains the custom domain (the content of the file is: “<em>yourdomain.com</em>”) to your repository’s root directory (in your repository’s Pages branch). Then commit and push the file. This is to redirect your GitHub Pages site using your custom domain.</p>
   </li>
-  <li>Configure a custom apex domain (e.g. <em>yourdomain.com</em>) -  for the root apex (@) to point to <em>username.github.io</em>
+  <li>
+    <p>Configure a custom apex domain (e.g. <em>yourdomain.com</em>) -  for the root apex (@) to point to <em>username.github.io</em></p>
+
     <ul>
-      <li>With your DNS provider, create A records (in the DNS manager) that point to the following IP address:
- 	- 192.30.252.153<br />
+      <li>With your DNS provider, create A records (in the DNS manager) that point to the following IP address:</li>
+    </ul>
+
+ 	- 192.30.252.153
+
  	- 192.30.252.154
-        <ul>
-          <li>See the following as an example:</li>
-        </ul>
-      </li>
+
+    <pre><code> - See the following as an example:
+</code></pre>
+
+    <ul>
       <li>If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</li>
     </ul>
   </li>
-  <li>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for www. to point to <em>username.github.io</em>
+  <li>
+    <p>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for www. to point to <em>username.github.io</em></p>
+
     <ul>
       <li>In your DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</li>
     </ul>
   </li>
-  <li>Check if your name server has been updated using the <em>dig</em> command:<br />
-<code>
-~$ dig *yourdomain.com* +nostats +nocomments +nocmd
-</code></li>
+  <li>
+    <p>Check if your name server has been updated using the <em>dig</em> command:</p>
+  </li>
 </ol>
+
+<p><code>
+~$ dig *yourdomain.com* +nostats +nocomments +nocmd
+</code></p>
 
 <p>If the congifuration is successful, you should be able to access to your webiste through both <em>yourdomain.com</em> and <em>www.yourdomian.com</em>.</p>
 
