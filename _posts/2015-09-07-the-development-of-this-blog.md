@@ -28,16 +28,22 @@ As the [instructions](https://pages.github.com/) mentioned on GitHub Pages, the 
 	```
 	~$ git clone https://github.com/username/username.github.io
 	```
-	
+
 3. Create an index.html and add other files related to your project in the project folder.
 
 4. Add, commit, and push your changes in the project folder to GitHub using the following commands:
 
+	```
 	~$ git add --all  
-		
-	~$ git commit -m "Initial commit"  
+	```
+	
+	```	
+	~$ git commit -m "Initial commit" 
+	``` 
 
-	~$ git push -u origin master  
+	```
+	~$ git push -u origin master 
+	``` 
 
 5. Now you have generated your webiste: "*http://username.github.io*".
 
