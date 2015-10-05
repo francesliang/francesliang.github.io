@@ -17,7 +17,7 @@ Once I've decided what type of website I would like to develop and got my custom
 
 **Generate a Site**
 
-First of all, the blog needs to be hosted through a web hosting service, so that the webiste is accessible via the Internet. I use [GitHub Pages](https://pages.github.com/), because it's free and I was going to commit the files for this blog to [my GitHub](https://github.com/francesliang/francesliang.github.io) anyway. If you are not familiar with GitHub then [here](https://github.com/)is their website. 
+First of all, the blog needs to be hosted through a web hosting service, so that the webiste is accessible via the Internet. I use [GitHub Pages](https://pages.github.com/), because it's free and I was going to commit the files for this blog to [my GitHub](https://github.com/francesliang/francesliang.github.io) anyway. If you are not familiar with GitHub then [here](https://github.com/) is their website. 
 
 As the [instructions](https://pages.github.com/) mentioned on GitHub Pages, the followings are the steps to create a site:  
 
@@ -25,8 +25,10 @@ As the [instructions](https://pages.github.com/) mentioned on GitHub Pages, the 
 
 2. Clone the repository to the folder where you want to store your project locally on your computer:
 
+	```
 	~$ git clone https://github.com/username/username.github.io
-
+	```
+	
 3. Create an index.html and add other files related to your project in the project folder.
 
 4. Add, commit, and push your changes in the project folder to GitHub using the following commands:
