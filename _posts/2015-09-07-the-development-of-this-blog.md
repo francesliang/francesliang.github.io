@@ -22,20 +22,23 @@ First of all, the blog needs to be hosted through a web hosting service, so that
 As the [instructions](https://pages.github.com/) mentioned on GitHub Pages, the followings are the steps to create a site:  
 
 1. Create a new repository named "*username*.github.io" on your GitHub, where *username* is your username on GitHub.
-2. Clone the repository to the folder where you want to store your project locally on your computer:  
+
+2. Clone the repository to the folder where you want to store your project locally on your computer:
 
 ```
 ~$ git clone https://github.com/username/username.github.io
 ```
+
 3. Create an index.html and add other files related to your project in the project folder.
 
-4. Add, commit, and push your changes in the project folder to GitHub using the following commands: 
+4. Add, commit, and push your changes in the project folder to GitHub using the following commands:
 
 ```
 ~$ git add --all  
 ~$ git commit -m "Initial commit"  
 ~$ git push -u origin master  
 ```
+
 5. Now you have generated your webiste: "*http://username.github.io*".
 
 **Customise URLs**
