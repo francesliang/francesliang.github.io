@@ -31,6 +31,10 @@ h2 span {
 	background: #fff;
 }
 
+h4 {
+	text-align: left;
+}
+
 a {
 	color: rgb(51, 51, 51);
 }
