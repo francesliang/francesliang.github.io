@@ -55,30 +55,33 @@
 
 <p><strong>Generate a Site</strong></p>
 
-<p>First of all, the blog needs to be hosted through a web hosting service, so that the webiste is accessible via the Internet. I use <a href="https://pages.github.com/">GitHub Pages</a>, because it’s free and I was going to commit the files for this blog to <a href="https://github.com/francesliang/francesliang.github.io">my GitHub</a> anyway. If you are not familiar with GitHub then <a href="https://github.com/">here</a> is their website.</p>
+<p>First of all, the blog needs to be hosted through a web hosting service, so that the webiste is accessible via the Internet. I use <u>[GitHub Pages](https://pages.github.com/)</u>, because it’s free and I was going to commit the files for this blog to <u>[my GitHub](https://github.com/francesliang/francesliang.github.io)</u> anyway. If you are not familiar with GitHub then <u>[here](https://github.com/)</u> is their website.</p>
 
-<p>As the <a href="https://pages.github.com/">instructions</a> mentioned on GitHub Pages, the followings are the steps to create a site:</p>
+<p>As the <u>[instructions](https://pages.github.com/)</u> mentioned on GitHub Pages, the followings are the steps to create a site:</p>
 
 <ol>
   <li>
     <p>Create a new repository named “<em>username</em>.github.io” on your GitHub, where <em>username</em> is your username on GitHub.</p>
   </li>
   <li>
-    <p>Clone the repository to the folder where you want to store your project locally on your computer:<br />
-     <code>
-     ~$ git clone https://github.com/username/username.github.io
-    </code></p>
+    <p>Clone the repository to the folder where you want to store your project locally on your computer:</p>
+
+    <pre><code> ```
+ ~$ git clone https://github.com/username/username.github.io
+ ```
+</code></pre>
   </li>
   <li>
     <p>Create an index.html and add other files related to your project in the project folder.</p>
   </li>
   <li>
-    <p>Add, commit, and push your changes in the project folder to GitHub using the following commands:<br />
-     <code>
-     ~$ git add --all  
-    </code></p>
+    <p>Add, commit, and push your changes in the project folder to GitHub using the following commands:</p>
 
     <pre><code> ```
+ ~$ git add --all  
+ ```
+
+ ```
  ~$ git commit -m "Initial commit"  
  ```
 
@@ -94,7 +97,7 @@
 
 <p><strong>Customise URLs</strong></p>
 
-<p>You may notice that the URL of the website you just created is “<em>http://username.github.io</em>”. In order to use a custom URL, we need to <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/">set up the custom domain with GitHub Pages</a>:</p>
+<p>You may notice that the URL of the website you just created is “<em>http://username.github.io</em>”. In order to use a custom URL, we need to <u>[set up the custom domain with GitHub Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/)</u>:</p>
 
 <ol>
   <li>
@@ -113,10 +116,10 @@
           </li>
           <li>
             <p>192.30.252.154</p>
+
+            <p><img src="" alt="A record" /></p>
           </li>
         </ul>
-
-        <p><img src="" alt="A record" /></p>
       </li>
       <li>
         <p>If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</p>
@@ -127,16 +130,20 @@
     <p>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for www. to point to <em>username.github.io</em></p>
 
     <ul>
-      <li>In your DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</li>
-    </ul>
+      <li>
+        <p>In your DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</p>
 
-    <p><img src="" alt="CNAME record" /></p>
+        <p><img src="" alt="CNAME record" /></p>
+      </li>
+    </ul>
   </li>
   <li>
-    <p>Check if your name server has been updated using the <em>dig</em> command:<br />
-     <code>
-     ~$ dig *yourdomain.com* +nostats +nocomments +nocmd
-    </code></p>
+    <p>Check if your name server has been updated using the <em>dig</em> command:</p>
+
+    <pre><code> ```
+ ~$ dig *yourdomain.com* +nostats +nocomments +nocmd
+ ```
+</code></pre>
   </li>
 </ol>
 
