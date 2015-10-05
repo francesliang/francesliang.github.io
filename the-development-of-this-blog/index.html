@@ -65,9 +65,10 @@
  ~$ git clone https://github.com/username/username.github.io</li>
   <li>Create an index.html and add other files related to your project in the project folder.</li>
   <li>Add, commit, and push your changes in the project folder to GitHub using the following commands:
- ~$ git add –all
- ~$ git commit -m “Initial commit”
- ~$ git push -u origin master</li>
+    <p>~$ git add --all</p>
+    <p>~~$ git commit -m "Initial commit"</p>
+    <p>~~$ git push -u origin master</p>
+  </li>
   <li>Now you have generated your webiste: “<em>http://username.github.io</em>”.</li>
 </ol>
 
@@ -79,36 +80,25 @@
   <li>
     <p>Create a CNAME file that contains the custom domain (the content of the file is: “<em>yourdomain.com</em>”) to your repository’s root directory (in your repository’s Pages branch). Then commit and push the file. This is to redirect your GitHub Pages site using your custom domain.</p>
   </li>
-  <li>
-    <p>Configure a custom apex domain (e.g. <em>yourdomain.com</em>) -  for the root apex (@) to point to <em>username.github.io</em></p>
+  <li>Configure a custom apex domain (e.g. <em>yourdomain.com</em>) -  for the root apex (@) to point to <em>username.github.io</em>
     <ul>
-      <li>With your DNS provider, create A records (in the DNS manager) that point to the following IP address:</li>
-      <li>192.30.252.153</li>
-      <li>192.30.252.154
- See the following as an example:</li>
+      <li>With your DNS provider, create A records (in the DNS manager) that point to the following IP address:
+ 	* 192.30.252.153
+ 	* 192.30.252.154
+        <ul>
+          <li>See the following as an example:</li>
+        </ul>
+      </li>
+      <li>If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</li>
     </ul>
-
-    <p>(img)</p>
   </li>
-</ol>
-
-<ul>
-  <li>If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</li>
-</ul>
-
-<ol>
   <li>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for www. to point to <em>username.github.io</em>
     <ul>
       <li>In your DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</li>
     </ul>
   </li>
-</ol>
-
-<p>(img)</p>
-
-<ol>
   <li>Check if your name server has been updated using the <em>dig</em> command:
- 	~$ dig <em>yourdomain.com</em> +nostats +nocomments +nocmd</li>
+ 	&lt;p&gt;~$ dig <em>yourdomain.com</em> +nostats +nocomments +nocmd&lt;/p&gt;</li>
 </ol>
 
 <p>If the congifuration is successful, you should be able to access to your webiste through both <em>yourdomain.com</em> and <em>www.yourdomian.com</em>.</p>
