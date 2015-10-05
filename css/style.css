@@ -14,7 +14,7 @@ body {
 
 .container-fluid {
 	background: white;
-	height: 100%;
+	min-height: 100%;
 	position: relative;
 }
 
