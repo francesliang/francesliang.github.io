@@ -22,9 +22,10 @@ Once I've decided what type of website I would like to develop and got my custom
 [Continous Integration - Travis](####Continous Integration - Travis)
 
 <br>
-####Blog Hosting - GitHub Pages
-<br>
 
+####Blog Hosting - GitHub Pages
+
+<br>
 **Generate a Site**
 
 First of all, the blog needs to be hosted through a web hosting service, so that the webiste is accessible via the Internet. I use [GitHub Pages](https://pages.github.com/), because it's free and I was going to commit the files for this blog to [my GitHub](https://github.com/francesliang/francesliang.github.io) anyway. If you are not familiar with GitHub then [here](https://github.com/) is their website. 
@@ -71,7 +72,7 @@ You may notice that the URL of the website you just created is "*http://username
 
 		- 192.30.252.154
 
-			![A record]({{site.url}}/content/DNS_A_record.png)
+			![A record](../content/DNS_A_record.png)
 
 	+ If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to *username.github.io* instead.  
 
@@ -79,7 +80,7 @@ You may notice that the URL of the website you just created is "*http://username
 
 	+ In your DNS manager, create a CNAME record and point it to *username.github.io*. See the following as an example:
 
-		![CNAME record]({{site.url}}/content/DNS_config.png)
+		![CNAME record](../content/DNS_config.png)
 
 4. Check if your name server has been updated using the *dig* command:
 
@@ -89,9 +90,8 @@ You may notice that the URL of the website you just created is "*http://username
 
 If the congifuration is successful, you should be able to access to your webiste through both *yourdomain.com* and *www.yourdomian.com*.
 
-<br>
 ####Blog Design - Bootstrap
-<br>
+
 
 
 
