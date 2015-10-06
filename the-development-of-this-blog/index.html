@@ -49,15 +49,23 @@
 
 <p>Once I’ve decided what type of website I would like to develop and got my custom domain name, I can now actually start building my blog. Here are the components of this blog:</p>
 
-<p><a href="####Blog Hosting - GitHub Pages">Blog Hosting - GitHub Pages</a></p>
-
-<p><a href="####Blog Design - Bootstrap">Blog Design - Bootstrap</a></p>
-
-<p><a href="####Blog Comment - Disqus">Blog Comment - Disqus</a></p>
-
-<p><a href="####Static Site Generator - Jekyll">Static Site Generator - Jekyll</a></p>
-
-<p><a href="####Continous Integration - Travis">Continous Integration - Travis</a></p>
+<ul>
+  <li>
+    <p><a href="####Blog Hosting - GitHub Pages">Blog Hosting - GitHub Pages</a></p>
+  </li>
+  <li>
+    <p><a href="####Blog Design - Bootstrap">Blog Design - Bootstrap</a></p>
+  </li>
+  <li>
+    <p><a href="####Blog Comment - Disqus">Blog Comment - Disqus</a></p>
+  </li>
+  <li>
+    <p><a href="####Static Site Generator - Jekyll">Static Site Generator - Jekyll</a></p>
+  </li>
+  <li>
+    <p><a href="####Continous Integration - Travis">Continous Integration - Travis</a></p>
+  </li>
+</ul>
 
 <p><br /></p>
 
@@ -125,10 +133,10 @@
           </li>
           <li>
             <p>192.30.252.154</p>
-
-            <p><img src="../content/DNS_A_record.png" alt="A record" /></p>
           </li>
         </ul>
+
+        <p>-&gt;<img src="../content/DNS_A_record.png" alt="A record" />&lt;-</p>
       </li>
       <li>
         <p>If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</p>
@@ -139,12 +147,10 @@
     <p>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for www. to point to <em>username.github.io</em></p>
 
     <ul>
-      <li>
-        <p>In your DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</p>
-
-        <p><img src="../content/DNS_config.png" alt="CNAME record" /></p>
-      </li>
+      <li>In your DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</li>
     </ul>
+
+    <p>-&gt;<img src="../content/DNS_config.png" alt="CNAME record" />&lt;-</p>
   </li>
   <li>
     <p>Check if your name server has been updated using the <em>dig</em> command:</p>
