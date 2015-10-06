@@ -11,15 +11,15 @@ The other thing that I would like for my blog is a custom URL. I got my domain n
 
 Once I've decided what type of website I would like to develop and got my custom domain name, I can now actually start building my blog. Here are the components of this blog:
 
-[Blog Hosting - GitHub Pages](#Blog Hosting - GitHub Pages)
+[Blog Hosting - GitHub Pages](####Blog Hosting - GitHub Pages)
 
-[Blog Design - Bootstrap](#Blog Design - Bootstrap)
+[Blog Design - Bootstrap](####Blog Design - Bootstrap)
 
-[Blog Comment - Disqus](#Blog Comment - Disqus)
+[Blog Comment - Disqus](####Blog Comment - Disqus)
 
-[Static Site Generator - Jekyll](#Static Site Generator - Jekyll)
+[Static Site Generator - Jekyll](####Static Site Generator - Jekyll)
 
-[Continous Integration - Travis](#Continous Integration - Travis)
+[Continous Integration - Travis](####Continous Integration - Travis)
 
 
 ####Blog Hosting - GitHub Pages
