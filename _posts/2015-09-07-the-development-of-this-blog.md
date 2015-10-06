@@ -23,7 +23,7 @@ Once I've decided what type of website I would like to develop and got my custom
 
 <br>
 
-####Blog Hosting - GitHub Pages
+#### Blog Hosting - GitHub Pages
 
 <br>
 **Generate a Site**
@@ -90,8 +90,11 @@ You may notice that the URL of the website you just created is "*http://username
 
 If the congifuration is successful, you should be able to access to your webiste through both *yourdomain.com* and *www.yourdomian.com*.
 
-####Blog Design - Bootstrap
+<br>
 
+#### Blog Design - Bootstrap
+
+<br>
 
 
 
