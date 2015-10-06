@@ -11,15 +11,15 @@ The other thing that I would like for my blog is a custom URL. I got my domain n
 
 Once I've decided what type of website I would like to develop and got my custom domain name, I can now actually start building my blog. Here are the components of this blog:
 
-[Blog Hosting - GitHub Pages](####Blog Hosting - GitHub Pages)
+* [Blog Hosting - GitHub Pages](####Blog Hosting - GitHub Pages)
 
-[Blog Design - Bootstrap](####Blog Design - Bootstrap)
+* [Blog Design - Bootstrap](####Blog Design - Bootstrap)
 
-[Blog Comment - Disqus](####Blog Comment - Disqus)
+* [Blog Comment - Disqus](####Blog Comment - Disqus)
 
-[Static Site Generator - Jekyll](####Static Site Generator - Jekyll)
+* [Static Site Generator - Jekyll](####Static Site Generator - Jekyll)
 
-[Continous Integration - Travis](####Continous Integration - Travis)
+* [Continous Integration - Travis](####Continous Integration - Travis)
 
 <br>
 
@@ -72,7 +72,7 @@ You may notice that the URL of the website you just created is "*http://username
 
 		- 192.30.252.154
 
-			![A record](../content/DNS_A_record.png)
+		->![A record](../content/DNS_A_record.png)<-
 
 	+ If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to *username.github.io* instead.  
 
@@ -80,7 +80,7 @@ You may notice that the URL of the website you just created is "*http://username
 
 	+ In your DNS manager, create a CNAME record and point it to *username.github.io*. See the following as an example:
 
-		![CNAME record](../content/DNS_config.png)
+	->![CNAME record](../content/DNS_config.png)<-
 
 4. Check if your name server has been updated using the *dig* command:
 
