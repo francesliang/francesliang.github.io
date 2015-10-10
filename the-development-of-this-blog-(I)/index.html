@@ -196,44 +196,34 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p>Boostrap can be downloaded <a href="http://getbootstrap.com/getting-started/#examples"><em>here</em></a> with instructions of how to use the framework. Basically, you just need to put the download folders in the same directory as your <em>index.html</em> file and include the following codes in the header of the HMTL file</p>
 
-<ol>
-  <li>CSS sytle sheet:</li>
-</ol>
+<p>CSS sytle sheet:</p>
 
-<p>```</p>
-<link href="css/bootstrap.min.css" rel="stylesheet" />
+<pre><code>&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;
+</code></pre>
 
-<p>```</p>
+<p>JavaScript plugins and its necessity - jQuery:</p>
 
-<ol>
-  <li>JavaScript plugins and its necessity - jQuery:</li>
-</ol>
+<pre><code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;
+&lt;/script&gt;
 
-<p><code>
-&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;&lt;/script&gt;
-</code></p>
-
-<p><code>
 &lt;script type="text/javascript" src="/js/bootstrap.min.js"&gt;&lt;/script&gt;
-</code></p>
+</code></pre>
 
 <p>You could also include Bootstrap from a CDN (Content Delivery Network) without downloading and hosting Bootstrap yourself. MaxCDN provides CDN support for Bootstrap’s CSS and JavaScript; therefore, you just need to include the following links in your HTML file:</p>
 
-<p>```
-<!-- Latest compiled and minified CSS --></p>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<pre><code>&lt;!-- Latest compiled and minified CSS --&gt;  
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"&gt;
 
-<p>```</p>
 
-<p><code>
-&lt;!-- jQuery library --&gt;
-&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;&lt;/script&gt;
-</code></p>
+&lt;!-- jQuery library --&gt;  
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;
+&lt;/script&gt;
 
-<p><code>
-&lt;!-- Latest compiled JavaScript --&gt;
-&lt;script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"&gt;&lt;/script&gt;
-</code></p>
+
+&lt;!-- Latest compiled JavaScript --&gt;  
+&lt;script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"&gt;
+&lt;/script&gt;
+</code></pre>
 
 <p><strong>Font Awesome</strong></p>
 
@@ -241,10 +231,8 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p>The easiest way to set up Font Awesome is using BootstrapCDN by MaxCDN (see <a href="https://fortawesome.github.io/Font-Awesome/get-started/"><em>here</em></a>). The code to be included in the header of your site’s HTML is as following:</p>
 
-<p>```</p>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-
-<p>```</p>
+<pre><code>&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"&gt;
+</code></pre>
 
 <p><strong>Favicon</strong></p>
 
@@ -252,12 +240,14 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p>To add a favicon to a static HTML page, simply save the <em>favicon.ico</em> file in the root directory of your website, and include the following in the header of the HTML file:</p>
 
-<p>```</p>
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-
-<p>```</p>
+<pre><code>&lt;link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"&gt;
+</code></pre>
 
 <p><strong>Google Fonts</strong></p>
+
+<p>There is another small but important element in the design of a blog - the web fonts. In this blog, I used <a href="https://www.google.com/fonts#ChoosePlace:select"><em>Google Fonts</em></a> because it has a large collection of font families and the fonts are under free software licenses.</p>
+
+<p>To use Google Fonts in your webiste, simply choose the font, add a <em><link /></em> tag referring to the font in the header of your html file and integrate the fonts into your CSS file. <a href="https://www.google.com/fonts#QuickUsePlace:quickUse"><em>Here</em></a> is a completed example from the Google Fonts website.</p>
 
 <p><br /></p>
 
