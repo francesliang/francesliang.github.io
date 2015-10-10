@@ -117,38 +117,32 @@ Since a web page has so many components, such as tables, buttons, and responsive
 
 Boostrap can be downloaded [*here*](http://getbootstrap.com/getting-started/#examples) with instructions of how to use the framework. Basically, you just need to put the download folders in the same directory as your *index.html* file and include the following codes in the header of the HMTL file
 
-1. CSS sytle sheet:
+CSS sytle sheet:
 
-```
-<link href="css/bootstrap.min.css" rel="stylesheet">
-```
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-2. JavaScript plugins and its necessity - jQuery:
+JavaScript plugins and its necessity - jQuery:
 
-```
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-```
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	</script>
 
-```
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-```
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
 You could also include Bootstrap from a CDN (Content Delivery Network) without downloading and hosting Bootstrap yourself. MaxCDN provides CDN support for Bootstrap's CSS and JavaScript; therefore, you just need to include the following links in your HTML file:
 
-```
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-```
+	<!-- Latest compiled and minified CSS -->  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-```
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-```
 
-```
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-```
+	<!-- jQuery library -->  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	</script>
+
+
+	<!-- Latest compiled JavaScript -->  
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+	</script>
+
 
 **Font Awesome**
 
@@ -156,9 +150,7 @@ Another toolkit that is widely used on web pages is [*Font Awesome*](https://for
 
 The easiest way to set up Font Awesome is using BootstrapCDN by MaxCDN (see [*here*](https://fortawesome.github.io/Font-Awesome/get-started/)). The code to be included in the header of your site's HTML is as following:
 
-```
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-```
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
 **Favicon**
@@ -167,13 +159,13 @@ A favicon (Favourite icon, also known as a shortcut icon) is the icon or the sma
 
 To add a favicon to a static HTML page, simply save the *favicon.ico* file in the root directory of your website, and include the following in the header of the HTML file:
 
-```
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-```
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
 **Google Fonts**
 
+There is another small but important element in the design of a blog - the web fonts. In this blog, I used [*Google Fonts*](https://www.google.com/fonts#ChoosePlace:select) because it has a large collection of font families and the fonts are under free software licenses.
 
+To use Google Fonts in your webiste, simply choose the font, add a *<link>* tag referring to the font in the header of your html file and integrate the fonts into your CSS file. [*Here*](https://www.google.com/fonts#QuickUsePlace:quickUse) is a completed example from the Google Fonts website.
 
 
 <br>
