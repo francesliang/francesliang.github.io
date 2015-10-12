@@ -57,7 +57,7 @@
     <p><a href="#blog-design">Blog Design - Bootstrap</a></p>
   </li>
   <li>
-    <p><a href="#blog-comment">Blog Comment - Disqus</a></p>
+    <p><a href="#blog-comment">Blog Comment Hosting Service - Disqus</a></p>
   </li>
   <li>
     <p>Static Site Generator - Jekyll</p>
@@ -137,12 +137,13 @@
             <p>192.30.252.154</p>
           </li>
         </ul>
+      </li>
+    </ul>
 
-        <p><img src="../content/DNS_A_record.png" alt="A record" /></p>
-      </li>
-      <li>
-        <p>If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</p>
-      </li>
+    <p><img src="../content/DNS_A_record.png" alt="A record" /></p>
+
+    <ul>
+      <li>If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</li>
     </ul>
   </li>
   <li>
@@ -245,15 +246,37 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p><strong>Google Fonts</strong></p>
 
-<p>There is another small but important element in the design of a blog - the web fonts. In this blog, I used <a href="https://www.google.com/fonts#ChoosePlace:select"><em>Google Fonts</em></a> because it has a large collection of font families and the fonts are under free software licenses.</p>
+<p>There is another small but important element in the design of a blog - the fonts. In this blog, I used <a href="https://www.google.com/fonts#ChoosePlace:select"><em>Google Fonts</em></a>, which is a free hosted API for web fonts, because it has a large collection of font families, the fonts are under free software licenses and served by reliable Google servers.</p>
 
-<p>To use Google Fonts in your webiste, simply choose the font, add a <em><link /></em> tag referring to the font in the header of your html file and integrate the fonts into your CSS file. <a href="https://www.google.com/fonts#QuickUsePlace:quickUse"><em>Here</em></a> is a completed example from the Google Fonts website.</p>
+<p>To use Google Fonts in your webiste, simply choose the font, add a <em>link</em> tag referring to the font in the header of your html file and integrate the fonts into your CSS file. <a href="https://www.google.com/fonts#QuickUsePlace:quickUse"><em>Here</em></a> is a completed example from the Google Fonts website.</p>
+
+<p><br /></p>
+
+<h4 id="a-nameblog-commentablog-comment-hosting-service---disqus"><a name="blog-comment"></a>Blog Comment Hosting Service - Disqus</h4>
 
 <p><br /></p>
 
-<h4 id="a-nameblog-commentablog-comment---disqus"><a name="blog-comment"></a>Blog Comment - Disqus</h4>
+<p>A blog comment hosting service provides service to host online feedback and comments posted by users to blogs. There are many third-party commenting systems today that work cross-platform regardless of what the programming language or scripts your website is based on. They not only allow users to provide comment feedback but also have spam control, blacklist/whitelist management and enable integration with social media. These base comment systems don’t involve any additions (such as database) to your website and they are usually ready to be used once you set up your site.</p>
 
-<p><br /></p>
+<p>I used <a href="https://publishers.disqus.com/"><em>Disqus</em></a> in this blog for the following reasons:</p>
+
+<ul>
+  <li>
+    <p>Huge user base - it is perhaps the most popular comment system among bloggers and website owners.</p>
+  </li>
+  <li>
+    <p>Simple integration with the website - you could find out more instructions on how to integrate the comment plateform into tyour existed website after you’ve signed up with Disqus.</p>
+  </li>
+  <li>
+    <p>Mobile friendly - the interface swaps in term of the different media so the commenting won’t be affected with different displayed screens.</p>
+  </li>
+  <li>
+    <p>Real-time comment - latest comments are displayed instantly without the need to refresh the web page. Images, links and videos can also be attached to comments for posting.</p>
+  </li>
+  <li>
+    <p>Strong moderation features - the comment authors who create an account with Disqus andleave comments on any website with Disqus, will get email notification whenever the blog post gets a new comment, or someone likes or directly replies to their commments. What’s more, the blog owner has the control to enable comments to be published, hold them all for moderation or allow those with verified emails to be published.</p>
+  </li>
+</ul>
 
 
 	</div>
@@ -267,7 +290,7 @@ Once the website of my blog is up and running, it’s time for the actual design
         <div class="col-md-2"></div>
         <div class="col-md-8 PageNavigation">
           
-            <a href="/welcome" class="prev">
+            <a href="/index.html">
               <span class="glyphicon glyphicon-menu-left pull-left" aria-hidden="true"></span>
             </a>
           
