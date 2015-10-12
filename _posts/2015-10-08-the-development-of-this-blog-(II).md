@@ -3,7 +3,7 @@ layout: post_entry
 title: The Development of This Blog (II)
 ---
 
-
+Following the previous article on "The development of this blog (I)", the second part of the article will discuss the following compnents:
 
 * [Static Site Generator - Jekyll](#static-site-generator)
 

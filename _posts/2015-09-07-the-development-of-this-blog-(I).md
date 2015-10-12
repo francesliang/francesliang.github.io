@@ -15,7 +15,7 @@ Once I've decided what type of website I would like to develop and got my custom
 
 * [Blog Design - Bootstrap](#blog-design)
 
-* [Blog Comment - Disqus](#blog-comment)
+* [Blog Comment Hosting Service - Disqus](#blog-comment)
 
 * Static Site Generator - Jekyll
 
@@ -74,7 +74,7 @@ You may notice that the URL of the website you just created is "*http://username
 
 		- 192.30.252.154
 
-		![A record](../content/DNS_A_record.png)
+	![A record](../content/DNS_A_record.png)  
 
 	+ If your DNS provider supports ALIAS records or ANAME records, then you may choose to create an ALIAS or ANAME record and point it to *username.github.io* instead.  
 
@@ -163,20 +163,29 @@ To add a favicon to a static HTML page, simply save the *favicon.ico* file in th
 
 **Google Fonts**
 
-There is another small but important element in the design of a blog - the web fonts. In this blog, I used [*Google Fonts*](https://www.google.com/fonts#ChoosePlace:select) because it has a large collection of font families and the fonts are under free software licenses.
+There is another small but important element in the design of a blog - the fonts. In this blog, I used [*Google Fonts*](https://www.google.com/fonts#ChoosePlace:select), which is a free hosted API for web fonts, because it has a large collection of font families, the fonts are under free software licenses and served by reliable Google servers.
 
-To use Google Fonts in your webiste, simply choose the font, add a *<link>* tag referring to the font in the header of your html file and integrate the fonts into your CSS file. [*Here*](https://www.google.com/fonts#QuickUsePlace:quickUse) is a completed example from the Google Fonts website.
+To use Google Fonts in your webiste, simply choose the font, add a *link* tag referring to the font in the header of your html file and integrate the fonts into your CSS file. [*Here*](https://www.google.com/fonts#QuickUsePlace:quickUse) is a completed example from the Google Fonts website.
 
 
 <br>
 
-#### <a name="blog-comment"></a>Blog Comment - Disqus
+#### <a name="blog-comment"></a>Blog Comment Hosting Service - Disqus
 
 <br>
 
+A blog comment hosting service provides service to host online feedback and comments posted by users to blogs. There are many third-party commenting systems today that work cross-platform regardless of what the programming language or scripts your website is based on. They not only allow users to provide comment feedback but also have spam control, blacklist/whitelist management and enable integration with social media. These base comment systems don't involve any additions (such as database) to your website and they are usually ready to be used once you set up your site.
 
+I used [*Disqus*](https://publishers.disqus.com/) in this blog for the following reasons:
 
++ Huge user base - it is perhaps the most popular comment system among bloggers and website owners.
 
++ Simple integration with the website - you could find out more instructions on how to integrate the comment plateform into tyour existed website after you've signed up with Disqus.
 
++ Mobile friendly - the interface swaps in term of the different media so the commenting won't be affected with different displayed screens.
+
++ Real-time comment - latest comments are displayed instantly without the need to refresh the web page. Images, links and videos can also be attached to comments for posting.
+
++ Strong moderation features - the comment authors who create an account with Disqus andleave comments on any website with Disqus, will get email notification whenever the blog post gets a new comment, or someone likes or directly replies to their commments. What's more, the blog owner has the control to enable comments to be published, hold them all for moderation or allow those with verified emails to be published.
 
 
