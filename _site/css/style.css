@@ -65,6 +65,14 @@ span.glyphicon{
 	padding-top: 100px;
 }
 
+pre {
+	text-align: left
+}
+
+blockquote{
+	font-size: 100%;
+}
+
 footer{
 	width: 100%;
 	text-align: center;

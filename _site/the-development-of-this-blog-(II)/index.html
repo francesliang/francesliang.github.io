@@ -41,7 +41,7 @@
 	<h1 style="padding-top: 50px">The Development of This Blog (II)</h1>
 	<time>8 October 2015</time>
 	<div style="padding-top: 60px">
-		<p>Following the previous article on “The development of this blog (I)”, the second part of the article will discuss the following compnents:</p>
+		<p>Following the previous article on “The development of this blog (I)”, the second part of the article will discuss the following components:</p>
 
 <ul>
   <li>
@@ -57,6 +57,83 @@
 <h4 id="a-namestatic-site-generatorastatic-site-generator---jekyll"><a name="static-site-generator"></a>Static Site Generator - Jekyll</h4>
 
 <p><br /></p>
+
+<p>At this point, I have a website that includes HTML files for the structure and content, and CSS files for the style and layout. However, each time I want to update an existed post or add a new one, I will have to edit the HTML files or create a new one and copy the structure as well as the layout across respectively, which is not efficient at all. Ideally, I would like to separate the content from the structure and style of the web page, so I will only need to focus on the content when I try to update the blog.</p>
+
+<p>This is why static site generator is useful. It is a software that takes text and templates as input and generates HTML files as output to be displayed on the web browsers. The text is the content that we would like to write in our blog, while the templates are the structure, layout and style etc. that don’t require much changes over the updates of the web pages.</p>
+
+<p><a href="https://www.staticgen.com/"><em>Here</em></a> shows the top open-source static site generator and status of their popularity among users. I chose Jekyll to generate the static web pages for my blog because it is on the top of the list and has a very large user base.</p>
+
+<p><strong>Jekyll</strong></p>
+
+<p>Jekyll is <a href="http://jekyllrb.com/docs/home/"><em>a simple blog-aware static generator</em></a> written in Ruby. Once Jekyll is installed, it can build the website project and output files into a specific destination folder (<em>“_site”</em> by default). Jekyll also comes with a built-in develoment server, where you can preview what the generated site looks like locally.</p>
+
+<p>A basic Jekyll site usually has the following folders and files in the project folder:</p>
+
+<ul>
+  <li>
+    <p>_config.yml - the file that stores configuration settings, including where things are, handling reading, filtering content, plugins, conversion, serving, outputting, and markdown processors etc.</p>
+  </li>
+  <li>
+    <p>_includes - the folder that contains partials that can be reused by layout templates and posts, for example, the footer or the Disqus commenting system.</p>
+  </li>
+  <li>
+    <p>_layouts - the folder that includes the layout templates of posts. The templates are selected by posts with a <a href="http://jekyllrb.com/docs/frontmatter/"><em>YAML Front Matter</em></a> at the start of a file.</p>
+  </li>
+  <li>
+    <p>_posts - this is the folder where the content of the website written a selected markup language (I used <em>Markdown</em> in this blog) sits. The file-names must follow this format: <strong>YEAR-MONTH-DAY-title.MARKUP</strong> while words are separated by hyphens. The <a href="http://jekyllrb.com/docs/permalinks/"><em>permalinks</em></a> can be customised in the file _config.yml or each post, but the date and markup language are determined by the file name. At the start of each post file, a YAML Front Matter should be included to indicate which layout template this post is wrapped by. Here is an example of the YAML Front Matter:</p>
+
+    <pre><code>  ---  
+  layout: post_entry  
+  title: The Development of This Blog (II)  
+  ---  
+</code></pre>
+  </li>
+  <li>
+    <p>index.html - the default file of the web page. With a YAML Front Matter, it can be transformed by Jekyll. Indices of blog posts can be displayed in this file using <a href="https://docs.shopify.com/themes/liquid-documentation/basics"><em>Liquid template language</em></a>.</p>
+  </li>
+  <li>
+    <p>_site - this folder is where the generated site will be after <code>jekyll build</code> putting all the layouts and content together. The files in this folder are those needed to display the website in a browser.</p>
+  </li>
+</ul>
+
+<p>Once the files and folders are in place, we could execute Jekyll to generate the site and deploy the files in folder _site to GitHub or other web hosting service:</p>
+
+<ol>
+  <li>
+    <p>Generate files for the website in the project folder:</p>
+
+    <p><code>
+ ~$ jekyll build
+</code></p>
+  </li>
+  <li>
+    <p>Start a development server locally to see what the site will look like:</p>
+
+    <p><code>
+ ~$ jekyll serve
+</code></p>
+  </li>
+  <li>
+    <p>Deploy files in folder <em>_site</em> to <em>username.github.io</em> once the updates are finished.</p>
+  </li>
+</ol>
+
+<p><strong>Markdown</strong></p>
+
+<p>According to the <a href="https://daringfireball.net/projects/markdown/"><em>Markdown project page</em></a>:</p>
+
+<blockquote>
+  <p>“Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).”</p>
+</blockquote>
+
+<blockquote>
+  <p>“Thus, “Markdown” is two things: (1) a plain text formatting syntax; and (2) a software tool, written in Perl, that converts the plain text formatting to HTML.”</p>
+</blockquote>
+
+<p>Users are able to read the text-content easily through the plain text formatting <a href="https://daringfireball.net/projects/markdown/syntax"><em>syntax</em></a>, rather than trying to find the actual content between a group of HTML tags. Then the software tool can convert the plain text format to structureally valid HTML for displaying the web page.</p>
+
+<p>If you use the text editor <a href="http://www.sublimetext.com/"><em>Sublime</em></a> to edit a Markdown (.md) file, there is also <a href="https://github.com/jonschlinkert/sublime-monokai-extended"><em>Monokai Extended</em></a>, which has additional syntax highlighting for easier editing.</p>
 
 <p><br /></p>
 
