@@ -59,24 +59,23 @@ As the [instructions](https://pages.github.com/) mentioned on GitHub Pages, the 
 
 You may notice that the URL of the website we just created is "*http://username.github.io*". In order to use a custom URL, we need to [set up the custom domain with GitHub Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/):  
 
-1. Create a CNAME file that contains the custom domain (the content of the file is: "*yourdomain.com*") to our repository's root directory (in our repository's Pages branch). Then commit and push the file. This is to redirect our GitHub Pages site using our custom domain.  
+1. Create a ```CNAME``` file that contains the custom domain (the content of the file is: "*yourdomain.com*") to our repository's root directory (in our repository's Pages branch). Then commit and push the file. This is to redirect our GitHub Pages site using our custom domain.  
 
 2. Configure a custom apex domain (e.g. *yourdomain.com*) -  for the root apex (@) to point to *username.github.io*
 
-	+ With our DNS provider, create A records (in the DNS manager) that point to the following IP address:
+	* If our DNS provider supports ALIAS records or ANAME records,  we may choose to create an ALIAS or ANAME record and point it to *username.github.io* instead.
+
+	* Otherwise, with our DNS provider, create A records (in the DNS manager) that point to the following IP address:
 
 		- 192.30.252.153
 
 		- 192.30.252.154
 
-	![A record](../content/DNS_A_record.png)  
+	![A record](../content/DNS_A_record.png)
 
-	+ If our DNS provider supports ALIAS records or ANAME records, then we may choose to create an ALIAS or ANAME record and point it to *username.github.io* instead.
+3. Configure a custom subdomain (e.g. *www.yourdomain.com*) - for `www.` to point to *username.github.io*
 
-3. Configure a custom subdomain (e.g. *www.yourdomain.com*) - for www. to point to *username.github.io*
-
-	+ In our DNS manager, create a CNAME record and point it to *username.github.io*. See the following as an example:
-
+    * In our DNS manager, create a ```CNAME``` record and point it to *username.github.io*. See the following as an example:
 
 	![CNAME record](../content/DNS_config.png)
 
