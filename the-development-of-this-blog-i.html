@@ -113,14 +113,17 @@
 
 <ol>
   <li>
-    <p>Create a CNAME file that contains the custom domain (the content of the file is: “<em>yourdomain.com</em>”) to our repository’s root directory (in our repository’s Pages branch). Then commit and push the file. This is to redirect our GitHub Pages site using our custom domain.</p>
+    <p>Create a <code>CNAME</code> file that contains the custom domain (the content of the file is: “<em>yourdomain.com</em>”) to our repository’s root directory (in our repository’s Pages branch). Then commit and push the file. This is to redirect our GitHub Pages site using our custom domain.</p>
   </li>
   <li>
     <p>Configure a custom apex domain (e.g. <em>yourdomain.com</em>) -  for the root apex (@) to point to <em>username.github.io</em></p>
 
     <ul>
       <li>
-        <p>With our DNS provider, create A records (in the DNS manager) that point to the following IP address:</p>
+        <p>If our DNS provider supports ALIAS records or ANAME records,  we may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</p>
+      </li>
+      <li>
+        <p>Otherwise, with our DNS provider, create A records (in the DNS manager) that point to the following IP address:</p>
 
         <ul>
           <li>
@@ -134,16 +137,12 @@
     </ul>
 
     <p><img src="../content/DNS_A_record.png" alt="A record" /></p>
-
-    <ul>
-      <li>If our DNS provider supports ALIAS records or ANAME records, then we may choose to create an ALIAS or ANAME record and point it to <em>username.github.io</em> instead.</li>
-    </ul>
   </li>
   <li>
-    <p>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for www. to point to <em>username.github.io</em></p>
+    <p>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for <code>www.</code> to point to <em>username.github.io</em></p>
 
     <ul>
-      <li>In our DNS manager, create a CNAME record and point it to <em>username.github.io</em>. See the following as an example:</li>
+      <li>In our DNS manager, create a <code>CNAME</code> record and point it to <em>username.github.io</em>. See the following as an example:</li>
     </ul>
 
     <p><img src="../content/DNS_config.png" alt="CNAME record" /></p>
