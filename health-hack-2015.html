@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset=utf-8 />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Health Hack 2015 |  XL Blog </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="shortcut icon" href="http://xinliang.co/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <nav class="row">
+        <a href="/index.html" role="button" id="homeBtn" class="btn pull-left btn-menu">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </a>
+        <div class="btn-group">
+          <button type="button" id="menuBtn" class="btn btn-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Home</a></li>
+             <li class="divider"></li>
+            <li><a href="/about.html">About</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+          <ul class="content"> 
+	<h1 style="padding-top: 50px">Health Hack 2015</h1>
+	<time>7 November 2015</time>
+	<div style="padding-top: 60px">
+		<p>I participated in the Brisbane Health Hack this year. It was the first time for me to go to a hackathon and a health hack, so I thought it would be a good idea to write down some experience in both the hackathon and the area of medical research.</p>
+
+<p>Health Hack is an open and free event, where medical researchers and medical problem owners come to present their real-world problems for participants to tackle in teams over a weekend. As an open event by Open Knowledge Foundation Australia, the products or solutions coming out from the Health Hack will be released under an open license that allows reuse, commercial use, remixing and redistribution. The topic of this year was <a href="http://www.rivercitylabs.net/event/health-hack/"><em>A data hack for medical research problems</em></a>. The problems were all about how to analyse, visualise and extract information from enormous amounts of medical data. Therefore, they were looking for data analysts, data visualisers, software developers, business analysts etc.</p>
+
+<p>I have been doing data analysis and software development at work. Also, I always have great interest in using technology to solve problems in the health sector. So I thought I could have some fun in the event, plus it was free.</p>
+
+<p><br /></p>
+
+<h4 id="the-challenge">The Challenge</h4>
+
+<p><br /></p>
+
+<p>The challenge that our team was trying to tackle was “Predicting falls from monitoring data”. An age care company provides a Falls Detection System in aged people’s home. The Fall Detector can automatically contact the care centre in the event of an aged person falling at home, so proper actions can be taken to avoid further harm to the patient.</p>
+
+<p>Many of the company’s clients have fall incidents where they couldn’t get back up by themselves or have injured themselves badly. Therefore, they will have to alert the care centre and request for carers to come and help. The main purpose of this system is to provide necessary assistance after the fall event happens. However, it would be even better if the system can predict when a fall incident is highly likely to happen so the care centre can take proper actions before the fall to prevent patients injuring themselves. This is what the problem owner was looking for in this health hack event.</p>
+
+<p><br /></p>
+
+<h4 id="data-and-analysis">Data and Analysis</h4>
+
+<p><br /></p>
+
+<p>To predict any fall events ahead, we need to find some patterns based on the historical data of the incidents. The available data was mainly time stamps of the falls, patient’s unique IDs and pre-existing conditions, and the brief descriptions of the incidents.</p>
+
+<p>Even though the data set was quiet limited - no actual data of clients’ fitness, such as heart rate, blood pressure and step activities around the fall events, which would result in good features for a classification problem in machine learning; some useful information can still be extracted from the existing data.</p>
+
+<p>The team looked at how the number of falls varied with time of day and month of year. This correlation is useful for the carers to know what time during twenty-four hours and when during a year there is a high risk of fall events overall, so more support can be gathered to provide assistances when needed.</p>
+
+<p>Another team member and I were looking for the following points in a Python script to predict a high risk period for each client after a fall event occurred:</p>
+
+<ul>
+  <li>
+    <p>The number of falls for each patient on record</p>
+  </li>
+  <li>
+    <p>The intervals between their falls and its average value</p>
+  </li>
+  <li>
+    <p>The distribution (histogram) of falling intervals (1st-2nd intervals, 2nd-3rd intervals etc.) in the whole data set</p>
+  </li>
+  <li>
+    <p>High risk period of falling for each patient depends on the current number of their falls (a period where 70% patients on record had a fall)</p>
+  </li>
+  <li>
+    <p>The number of pre-existing conditions for each patient on falling record. The probability benchmark of falling risk can be set according to patients’ pre-existing conditions and the study shown <a href="https://www.lifeline.philips.com/content/dam/PLL/images/Blog%20Images/Fall-Risk-Chronic-Conditions-Infographic.jpg"><em>here</em></a>.</p>
+  </li>
+</ul>
+
+<p>The basic analysis discussed above is able to generate a high risk profile of falling events both generally and individually for the care centre to monitor and take appropriate actions if necessary. Further along the path, if the fitness data of the patients are accessible in the future, then a feature vector can be established based on those data and classification algorithm can be implemented to identify potential fall events.</p>
+
+<p><br /></p>
+
+<h4 id="system-prototype">System Prototype</h4>
+
+<p><br /></p>
+
+<p>Apart from the data analysis, the problem owner indicated his interest in a system to automate the data entry and analysis process so the support centre can have a better platform to visualise the current status, risk and prediction of patients’ falling. In order to achieve this, our team has come up a prototype of a dashboard system.</p>
+
+<p>The system will have a database to store all the information of fall events, allow new data of the events to be entered into the database, generate high risk profile of fall events for both individuals and patients as a whole, and further enable prediction of a potential fall for each patient on record. The system will be presented as a form of a web interface and the structure is as following:</p>
+
+<p><img src="../content/system_diagram.png" alt="System diagram" /></p>
+
+<p>The team built the following components of the system:</p>
+
+<ul>
+  <li>
+    <p>MySQL database - hosted on Amazon EC2</p>
+  </li>
+  <li>
+    <p>Python script of data analysis - work as a back-end server to extract and analyse data from and log the results back to the database</p>
+  </li>
+  <li>
+    <p>Web page (Javascript/HTML) - work as the front-end user interface for both data-entry and  displayed-dashboard</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="the-hackathon">The Hackathon</h4>
+
+<p><br /></p>
+
+<p>The hack event was over the weekend, where “hackers” worked in team to tackle their chosen challenge. Any solutions that came out from the weekend, such as prototypes and products, were presented to the judges at the end of the weekend for assessment. There were prizes for the best three team. The first prize was fairly quirky - <em>the winning team will have their gut microbiome sequenced and profiled by Australian Centre for Ecogenomics</em>. Apparently, this was a relatively expensive prize and it would give you an idea of how your personal microbiome correlates with actions you take (such as changing diet).</p>
+
+<p>The hackathon has been quiet intense in a technical level, which is different from a Start-up Weekend that I have been to. It has been a good experience to work with strangers (provided that we didn’t bring a team to the event), collaborate with people having different skill set or even have multiple hats in the team. Even though our team didn’t win, it was still satisfactory that the problem owner did follow up after the event and had intention to bring the project further to practice.</p>
+
+<p>Another thing I picked up from this hackathon is the lack of technology used in health sector and medical research. From the limitation of available data we experienced in our team, to huge space for app development in both clinical administration and management; more sophisticated implementations of technology can be injected to the health sector. This opens my mind for start-up ideas in the health industry.</p>
+
+
+	</div>
+</ul>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      
+
+      <nav class="row" style="padding-top: 50px">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 PageNavigation">
+          
+            <a href="/the-development-of-this-blog-ii" class="prev">
+              <span class="glyphicon glyphicon-menu-left pull-left" aria-hidden="true"></span>
+            </a>
+          
+
+          
+            <a href="/index.html">
+              <span class="glyphicon glyphicon-menu-right pull-right" aria-hidden="true"></span>
+            </a>
+          
+        </div>
+
+          <div class="col-md-2"></div>
+      </nav>
+
+      <div class="row row-comments">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div id="disqus_thread" class="disqus_thread"></div>
+          
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'xl-blog';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
