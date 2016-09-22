@@ -3,7 +3,7 @@ description: "Xin Liang Blog"
 
 url: "xinliang.co"
 
-permalink: /:title 
+permalink: /:title/ 
 
 
 
