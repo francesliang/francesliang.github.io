@@ -9,11 +9,23 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     
     <link rel="shortcut icon" href="http://xinliang.co/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-84548628-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    
   </head>
 
   <body>
@@ -88,8 +100,9 @@
   <li>
     <p>Clone the repository to the folder where we want to store our project locally on our computer:</p>
 
-    <pre><code> ~$ git clone https://github.com/username/username.github.io
+    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ git clone https://github.com/username/username.github.io
 </code></pre>
+    </div>
   </li>
   <li>
     <p>Create an <em>index.html</em> (the default web page) and add other files related to our project in the project folder.</p>
@@ -97,10 +110,11 @@
   <li>
     <p>Add, commit, and push our changes in the project folder to GitHub using the following commands:</p>
 
-    <pre><code> ~$ git add --all  
+    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ git add --all  
  ~$ git commit -m "Initial commit" 
  ~$ git push -u origin master 
 </code></pre>
+    </div>
   </li>
   <li>
     <p>Now we have generated our website: “<em>http://username.github.io</em>”.</p>
@@ -113,7 +127,7 @@
 
 <ol>
   <li>
-    <p>Create a <code>CNAME</code> file that contains the custom domain (the content of the file is: “<em>yourdomain.com</em>”) to our repository’s root directory (in our repository’s Pages branch). Then commit and push the file. This is to redirect our GitHub Pages site using our custom domain.</p>
+    <p>Create a <code class="highlighter-rouge">CNAME</code> file that contains the custom domain (the content of the file is: “<em>yourdomain.com</em>”) to our repository’s root directory (in our repository’s Pages branch). Then commit and push the file. This is to redirect our GitHub Pages site using our custom domain.</p>
   </li>
   <li>
     <p>Configure a custom apex domain (e.g. <em>yourdomain.com</em>) -  for the root apex (@) to point to <em>username.github.io</em></p>
@@ -139,19 +153,20 @@
     <p><img src="../content/DNS_A_record.png" alt="A record" /></p>
   </li>
   <li>
-    <p>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for <code>www.</code> to point to <em>username.github.io</em></p>
+    <p>Configure a custom subdomain (e.g. <em>www.yourdomain.com</em>) - for <code class="highlighter-rouge">www.</code> to point to <em>username.github.io</em></p>
 
     <ul>
-      <li>In our DNS manager, create a <code>CNAME</code> record and point it to <em>username.github.io</em>. See the following as an example:</li>
+      <li>In our DNS manager, create a <code class="highlighter-rouge">CNAME</code> record and point it to <em>username.github.io</em>. See the following as an example:</li>
     </ul>
 
     <p><img src="../content/DNS_config.png" alt="CNAME record" /></p>
   </li>
   <li>
-    <p>Check if the name server has been updated using the <code>dig</code> command:</p>
+    <p>Check if the name server has been updated using the <code class="highlighter-rouge">dig</code> command:</p>
 
-    <pre><code> ~$ dig *yourdomain.com* +nostats +nocomments +nocmd
+    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ dig *yourdomain.com* +nostats +nocomments +nocmd
 </code></pre>
+    </div>
   </li>
 </ol>
 
@@ -186,24 +201,26 @@ Once the website of my blog is up and running, it’s time for the actual design
   </li>
 </ul>
 
-<p>Boostrap can be downloaded <a href="http://getbootstrap.com/getting-started/#examples"><em>here</em></a> with instructions of how to use the framework. Basically, we just need to put the download folders in the same directory as our <code>index.html</code> file and include the following codes in the header of the HMTL file</p>
+<p>Boostrap can be downloaded <a href="http://getbootstrap.com/getting-started/#examples"><em>here</em></a> with instructions of how to use the framework. Basically, we just need to put the download folders in the same directory as our <code class="highlighter-rouge">index.html</code> file and include the following codes in the header of the HMTL file</p>
 
 <p>CSS style sheet:</p>
 
-<pre><code>&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;
 </code></pre>
+</div>
 
 <p>JavaScript plug-ins and its necessity - jQuery:</p>
 
-<pre><code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;
 &lt;/script&gt;
 
 &lt;script type="text/javascript" src="/js/bootstrap.min.js"&gt;&lt;/script&gt;
 </code></pre>
+</div>
 
 <p>We could also include Bootstrap from a CDN (Content Delivery Network) without downloading and hosting Bootstrap ourselves. MaxCDN provides CDN support for Bootstrap’s CSS and JavaScript; therefore, we just need to include the following links in our HTML file:</p>
 
-<pre><code>&lt;!-- Latest compiled and minified CSS --&gt;  
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;!-- Latest compiled and minified CSS --&gt;  
 &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"&gt;
 
 
@@ -216,15 +233,17 @@ Once the website of my blog is up and running, it’s time for the actual design
 &lt;script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"&gt;
 &lt;/script&gt;
 </code></pre>
+</div>
 
 <p><strong>Font Awesome</strong></p>
 
-<p>Another toolkit that is widely used on web pages is <a href="https://fortawesome.github.io/Font-Awesome/"><em>Font Awesome</em></a>. It is a font and icon toolkit based on CSS. Icons such as facebook, twitter, github and email can be added to our website anywhere with the <code>&lt;i&gt;</code>tag (see example <a href="https://fortawesome.github.io/Font-Awesome/examples/"><em>here</em></a>).</p>
+<p>Another toolkit that is widely used on web pages is <a href="https://fortawesome.github.io/Font-Awesome/"><em>Font Awesome</em></a>. It is a font and icon toolkit based on CSS. Icons such as facebook, twitter, github and email can be added to our website anywhere with the <code class="highlighter-rouge">&lt;i&gt;</code>tag (see example <a href="https://fortawesome.github.io/Font-Awesome/examples/"><em>here</em></a>).</p>
 
 <p>The easiest way to set up Font Awesome is using BootstrapCDN by MaxCDN (see <a href="https://fortawesome.github.io/Font-Awesome/get-started/"><em>here</em></a>). The code to be included in the header of our site’s HTML is as following:</p>
 
-<pre><code>&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"&gt;
 </code></pre>
+</div>
 
 <p><strong>Favicon</strong></p>
 
@@ -232,14 +251,15 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p>To add a favicon to a static HTML page, simply save the <em>favicon.ico</em> file in the root directory of our website, and include the following in the header of the HTML file:</p>
 
-<pre><code>&lt;link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"&gt;
 </code></pre>
+</div>
 
 <p><strong>Google Fonts</strong></p>
 
 <p>There is another small but important element in the design of a blog - the fonts. In this blog, I used <a href="https://www.google.com/fonts#ChoosePlace:select"><em>Google Fonts</em></a>, which is a free hosted API for web fonts, because it has a large collection of font families, the fonts are under free software licenses and served by reliable Google servers.</p>
 
-<p>To use Google Fonts in our website, simply choose the font, add a <code>link</code> tag referring to the font in the header of our html file and integrate the fonts into our CSS file. <a href="https://www.google.com/fonts#QuickUsePlace:quickUse"><em>Here</em></a> is a completed example from the Google Fonts website.</p>
+<p>To use Google Fonts in our website, simply choose the font, add a <code class="highlighter-rouge">link</code> tag referring to the font in the header of our html file and integrate the fonts into our CSS file. <a href="https://www.google.com/fonts#QuickUsePlace:quickUse"><em>Here</em></a> is a completed example from the Google Fonts website.</p>
 
 <p><br /></p>
 
@@ -287,7 +307,7 @@ Once the website of my blog is up and running, it’s time for the actual design
           
 
           
-            <a href="/the-development-of-this-blog-(II)" class="next">
+            <a href="/the-development-of-this-blog-(II)/" class="next">
               <span class="glyphicon glyphicon-menu-right pull-right" aria-hidden="true"></span>
             </a>
           
