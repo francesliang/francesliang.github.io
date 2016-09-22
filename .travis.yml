@@ -6,9 +6,11 @@ before_script:
  - chmod +x ./cibuild.sh
 script: ./cibuild.sh
 
-branch:
+branches:
   only:
   - website-template
+  except:
+  - master
 
 env:
   global:
