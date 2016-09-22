@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset=utf-8 />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  The Development of This Blog (II) |  XL Blog </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-84548628-1', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="shortcut icon" href="http://xinliang.co/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <nav class="row">
+        <a href="/index.html" role="button" id="homeBtn" class="btn pull-left btn-menu">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </a>
+        <div class="btn-group">
+          <button type="button" id="menuBtn" class="btn btn-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Home</a></li>
+             <li class="divider"></li>
+            <li><a href="/about.html">About</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+          <ul class="content"> 
+	<h1 style="padding-top: 50px">The Development of This Blog (II)</h1>
+	<time>8 October 2015</time>
+	<div style="padding-top: 60px">
+		<p>Following the previous article on “The development of this blog (I)”, the second part of the article will discuss the following components:</p>
+
+<ul>
+  <li>
+    <p><a href="#static-site-generator">Static Site Generator - Jekyll</a></p>
+  </li>
+  <li>
+    <p><a href="#continuous-integration">Continuous Integration - Travis CI</a></p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="a-namestatic-site-generatorastatic-site-generator---jekyll"><a name="static-site-generator"></a>Static Site Generator - Jekyll</h4>
+
+<p><br /></p>
+
+<p>At this point, I have a website that includes HTML files for the structure and content, and CSS files for the style and layout. However, each time I want to update an existing post or add a new one, I will have to edit the HTML files or create a new one and copy the structure as well as the layout across respectively, which is not efficient at all. Ideally, I would like to separate the content from the structure and style of the web page, so I will only need to focus on the content when I try to update the blog.</p>
+
+<p>This is why static site generator is useful. It is a software that takes text and templates as input and generates HTML files as output to be displayed on the web browsers. The text is the content that we would like to write in our blog, while the templates are the structure, layout and style etc. that don’t require much changes over the updates of the web pages.</p>
+
+<p><a href="https://www.staticgen.com/"><em>Here</em></a> shows the top open-source static site generator and status of their popularity among users. I chose Jekyll to generate the static web pages for my blog because it is on the top of the list and has a very large user base.</p>
+
+<p><strong>Jekyll</strong></p>
+
+<p>Jekyll is <a href="http://jekyllrb.com/docs/home/"><em>a simple blog-aware static generator</em></a> written in Ruby. Once Jekyll is installed, it can build the website project and output files into a specific destination folder (<em>“_site”</em> by default). Jekyll also comes with a built-in development server, where we can preview what the generated site looks like locally.</p>
+
+<p>A basic Jekyll site usually has the following folders and files in the project folder:</p>
+
+<ul>
+  <li>
+    <p>_config.yml - the file that stores configuration settings, including where things are, handling reading, filtering content, plugins, conversion, serving, outputting, and markdown processors etc.</p>
+  </li>
+  <li>
+    <p>_includes - the folder that contains partials that can be reused by layout templates and posts, for example, the footer or the Disqus commenting system.</p>
+  </li>
+  <li>
+    <p>_layouts - the folder that includes the layout templates of posts. The templates are selected by posts with a <a href="http://jekyllrb.com/docs/frontmatter/"><em>YAML Front Matter</em></a> at the start of a file.</p>
+  </li>
+  <li>
+    <p>_posts - this is the folder where the content of the website written a selected markup language (I used <em>Markdown</em> in this blog) sits. The file-names must follow this format: <strong>YEAR-MONTH-DAY-title.MARKUP</strong> while words are separated by hyphens. The <a href="http://jekyllrb.com/docs/permalinks/"><em>permalinks</em></a> can be customised in the file <code class="highlighter-rouge">_config.yml</code> or each post, but the date and markup language are determined by the file name. At the start of each post file, a YAML Front Matter should be included to indicate which layout template this post is wrapped by. Here is an example of the YAML Front Matter:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  ---  
+  layout: post_entry  
+  title: The Development of This Blog (II)  
+  ---  
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>index.html - the default file of the web page. With a YAML Front Matter, it can be transformed by Jekyll. Indices of blog posts can be displayed in this file using <a href="https://docs.shopify.com/themes/liquid-documentation/basics"><em>Liquid template language</em></a>.</p>
+  </li>
+  <li>
+    <p>_site - this folder is where the generated site will be after <code class="highlighter-rouge">jekyll build</code> putting all the layouts and content together. The files in this folder are those needed to display the website in a browser.</p>
+  </li>
+</ul>
+
+<p>Once the files and folders are in place, we could execute Jekyll to generate the site and deploy the files in folder _site to GitHub or other web hosting service:</p>
+
+<ol>
+  <li>
+    <p>Generate files for the website in the project folder:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ jekyll build
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Start a development server locally to see what the site will look like:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ jekyll serve
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Deploy files in folder <em>_site</em> to <em>username.github.io</em> once the updates are finished.</p>
+  </li>
+</ol>
+
+<p><strong>Markdown</strong></p>
+
+<p>According to the <a href="https://daringfireball.net/projects/markdown/"><em>Markdown project page</em></a>:</p>
+
+<blockquote>
+  <p>“Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).”</p>
+</blockquote>
+
+<blockquote>
+  <p>“Thus, “Markdown” is two things: (1) a plain text formatting syntax; and (2) a software tool, written in Perl, that converts the plain text formatting to HTML.”</p>
+</blockquote>
+
+<p>Users are able to read the text-content easily through the plain text formatting <a href="https://daringfireball.net/projects/markdown/syntax"><em>syntax</em></a>, rather than trying to find the actual content between a group of HTML tags. Then the software tool can convert the plain text format to structurally valid HTML for displaying the web page.</p>
+
+<p>If we use the text editor <a href="http://www.sublimetext.com/"><em>Sublime</em></a> to edit a Markdown (.md) file, there is also <a href="https://github.com/jonschlinkert/sublime-monokai-extended"><em>Monokai Extended</em></a>, which has additional syntax highlighting for easier editing.</p>
+
+<p><br /></p>
+
+<h4 id="a-namecontinous-integrationacontinuous-integration---travis-ci"><a name="continous-integration"></a>Continuous Integration - Travis CI</h4>
+
+<p><br /></p>
+
+<p>Up to this point, I have my blog hosted on GitHub and whenever I want to add a new post or edit an existed one, I just need to modify the content files in the <em>_post</em> folder and build it without worrying about the layouts and structures of the post pages. However, the files of the site are generated in <em>_site</em> folder by default using Jekyll, while GitHub hosts the site based on the files in <em>username.github.io</em>. Therefore, I have to build the Jekyll files and copy them to the root directory every time I make a change to the website in the project folder, which can be further automated by Continuous Integration (CI).</p>
+
+<p>Continuous Integration is actually a practice for software development to integrate working copies of all developers’ codes into a shared repository several times a day. It uses a revision control system to track the project’s source code. Each integration is validated by an automated build, including self-testing to detect any errors or confirm successful integrations. <a href="http://martinfowler.com/articles/continuousIntegration.html"><em>Here</em></a> is a very detailed explanation of the concept.</p>
+
+<p>For my blog, my requirements of the tool for continuous integration are simple:</p>
+
+<ul>
+  <li>
+    <p>Open source and free</p>
+  </li>
+  <li>
+    <p>Allow integration with GitHub since that’s where my blog is hosted</p>
+  </li>
+  <li>
+    <p>It’s hosted so I have flexible access via Internet</p>
+  </li>
+</ul>
+
+<p><strong>Travis CI</strong></p>
+
+<p>I chose Travis CI as my continuous integration tool because it has what I need for this blog.</p>
+
+<blockquote>
+  <p>“Travis CI is a free and open-source software, hosted, distributed continuous integration service used to build and test projects hosted at GitHub.””</p>
+</blockquote>
+
+<p>Once we sign in to Travis CI with our GitHub account, we could enable Travis CI for the project repository that we want to build. Then add a configuration file - <code class="highlighter-rouge">.travis.yml</code> to our repository as an instruction on what and how to build for Travis CI. If the setup is correct, Travis CI will trigger a build every time when we commit and push a change to the corresponding repository.</p>
+
+<p>The basic steps of the integration, after we’ve enabled Travis CI in our profile page for our repository, are as following:</p>
+
+<ol>
+  <li>
+    <p>GitHub Branch Set-up</p>
+
+    <p>I have two branches for my blog repository on GitHub:</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">master</code> - for the content of the generated static site (the content in the <em>_site</em> folder)</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">website-template</code> - for the Jekyll configuration and markup sources</p>
+      </li>
+    </ul>
+
+    <p>The purpose is for Travis CI to monitor the <code class="highlighter-rouge">website-template</code> branch. Whenever  a change is committed to the branch, <code class="highlighter-rouge">jekyll build</code> can be run to process the markup sources and generate the site content. Travis CI can then copy the content to the <code class="highlighter-rouge">master</code> branch.</p>
+  </li>
+  <li>
+    <p>Travis CI Configuration</p>
+
+    <p>The configuration settings of Travis CI are stored in the <code class="highlighter-rouge">.travis.yml</code> file, including:</p>
+
+    <ul>
+      <li>
+        <p>The language of the project to be built (in my case, it’s Ruby for Jekyll), and its version number</p>
+
+        <div class="highlighter-rouge"><pre class="highlight"><code>  language: ruby
+
+  rvm:
+  - 2.0.0
+</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>The shell script to be executed as the build process on each commit</p>
+
+        <div class="highlighter-rouge"><pre class="highlight"><code>  script: ./cibuild.sh
+</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>The branch that Travis CI will listen to for new commits</p>
+
+        <div class="highlighter-rouge"><pre class="highlight"><code>  branch:
+      only:
+      - website-template
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>GitHub Token for Travis CI</p>
+
+    <p>Within the build script,  we will need to clone the generated site-content to the <code class="highlighter-rouge">master</code> branch from the Jekyll-built branch. To do so, we can use HTTPS protocol and personal access token for authentication (see <a href="https://gist.github.com/grawity/4392747"><em>here</em></a> for a comparison among difference methods). The idea of a personal access token is to work as our regular password for the access to GitHub. There is a GitHub article on how to create a personal access token - <a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/"><em>Creating an access token for command-line use</em></a>.</p>
+
+    <p>By running the following codes in the directory where the generated site content will be cloned (the <code class="highlighter-rouge">master</code> branch in my case), Travis command line tool can encrypt the token and output it as an environment variable in the <code class="highlighter-rouge">.travis.yml</code> file.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> gem install travis
+ travis encrypt GH_TOKEN=&lt;the generated token&gt; --add env.global
+</code></pre>
+    </div>
+
+    <p>As a result, the following should be seen in the <code class="highlighter-rouge">.travis.yml</code> file:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> env:
+     global:
+     - secure: (encrypted token)
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Travis CI Build Script</p>
+
+    <p>The main tasks in the build script are:</p>
+
+    <ul>
+      <li>
+        <p>Build the site with Jekyll</p>
+      </li>
+      <li>
+        <p>Clean up or remove old files in the old <code class="highlighter-rouge">master</code> branch</p>
+      </li>
+      <li>
+        <p>Clone <code class="highlighter-rouge">master</code> branch using the encrypted GitHub personal access token for authentication</p>
+      </li>
+      <li>
+        <p>Copy generated site content to <code class="highlighter-rouge">master</code> branch</p>
+      </li>
+      <li>
+        <p>Commit and push the changes</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>I found <a href="http://eshepelyuk.github.io/2014/10/28/automate-github-pages-travisci.html"><em>this link</em></a> quiet useful for automating a build of GitHub Page project with Jekyll and Travis CI.</p>
+
+<p><br /></p>
+
+<h4 id="summary">Summary</h4>
+
+<p><br /></p>
+
+<p>Now I’ve built my first personal blog. It should be quite easy to maintain and update with all the components that I integrated into it.</p>
+
+<p>Overall, this blog is built on GitHub Pages to host the website from my GitHub project repository, Bootstrap as the front-end framework, Disqus to host the blog commenting system, Jekyll as the Static Site Generator and Travis CI for the continuous integration.</p>
+
+<p>Further down the track, this blog will be about my activities and projects in tech.</p>
+
+
+	</div>
+</ul>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      
+
+      <nav class="row" style="padding-top: 50px">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 PageNavigation">
+          
+            <a href="/the-development-of-this-blog-(I)" class="prev">
+              <span class="glyphicon glyphicon-menu-left pull-left" aria-hidden="true"></span>
+            </a>
+          
+
+          
+            <a href="/health-hack-2015" class="next">
+              <span class="glyphicon glyphicon-menu-right pull-right" aria-hidden="true"></span>
+            </a>
+          
+        </div>
+
+          <div class="col-md-2"></div>
+      </nav>
+
+      <div class="row row-comments">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div id="disqus_thread" class="disqus_thread"></div>
+          
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'xl-blog';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
