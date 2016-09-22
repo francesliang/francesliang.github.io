@@ -9,6 +9,8 @@ script: ./cibuild.sh
 branch:
   only:
   - website-template
+  except:
+  - master
 
 env:
   global:
