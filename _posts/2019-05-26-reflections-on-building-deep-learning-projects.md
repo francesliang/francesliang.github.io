@@ -3,6 +3,21 @@ layout: post_entry
 title: Reflections on Developing Deep Learning Projects
 ---
 
+### Contents
+
+* [Understand the problem](#Understand the problem)
+* [Build an initial system](#Build an initial system)
+* [Prepare data](#Prepare data)
+    - [Collect data](#Collect data)
+    - [Split data](#Split data)
+    - [Data mis-matching](#Data mis-matching)
+    - [Augment data](#Augment data)
+* [Define evaluation metric](#Define evaluation metric)
+* [Train a network](#Train a network)
+* [Diagnose network](#Diagnose network)
+* [Other techniques](#Other techniques)
+
+
 Although I used Artificial Neural Network in my thesis project for my bachelor of engineering, my journey of deep learning in the real world started about three years ago. The problem I was facing was to detect and segment logos from images with plain background. The deep learning solution I used was [Faster R-CNN](https://arxiv.org/abs/1506.01497). Before the project, I didn't know what [Convolutional Neural Network (CNN)](https://en.wikipedia.org/wiki/Convolutional_neural_network), [ImageNet](http://www.image-net.org/), [VGG16](https://neurohive.io/en/popular-networks/vgg16/) are, and of course I didn't know what [TensorFlow](https://www.tensorflow.org/) does either. I was extremely lucky to have my then colleague, a very competent Computer Vision Postdoc, as my mentor to help me set foot on my deep learning journey, which I'm forever grateful for.
 
 Since then, I have done various deep learning projects, mainly in computer vision area, including image segmentation, image recognition, object detection and classification, speech detection on digits, and pattern recognition. Recently, an online course ["Structuring Machine Learning Projects" by Andrew Ng](https://www.coursera.org/learn/machine-learning-projects) was mentioned to me, so I decided to check it out and see if it resonates what I have been doing these few years.
@@ -49,22 +64,71 @@ I personally would like to set up and run the initial system quickly (which is a
 
 When building a deep learning system, another important aspect is what the course called "Orthogonalization". As hyperparameter tuning is almost inevitable in developing machine learning systems, we want to be able to change / configure one parameter at a time and compare the system performance, which is similar to [A/B testing](https://en.wikipedia.org/wiki/A/B_testing) in software development. Therefore, flexible configuration in the system can significantly increase efficiency in the process of training network.
 
-#### Collect data 
+#### Prepare data 
 
 - train, (train-dev), dev, test sets
 - data augmentation
 
 After setting up the "barebones neural network", it comes to the step that seems to be the most boring, but in fact a very crucial one - data collection and splitting.
 
+##### Collect data 
+
 By far, data is the blood of deep learning. Thus, it is essential to understand:
  1. What data the system needs to work on
  2. How to collect relevant data to power such a deep learning system
  
  It is great if a large amount of training data is available "out-of-the-box". However, that is not the case most of the time, so online images and YouTube videos become the common data sources. 
+ 
+##### Split data 
+ 
+ Once the data collection step has been completed, the following step is to split the data for training, development and testing. 
+ 
+ - Training set - data set that is used to train the neural network
+ - Development set (dev set) - data set that is used to tune the trained neural network based on its accuracy and performance
+ - Test set - data set that is used to evaluate the performance of the trained neural network
+ 
+ As mentioned in the course, there are mainly two different scenarios, depending on the size of the collected data (I would use 100,000 as a cut-off threshold), when it comes to splitting the data:
+ 1. Relative small amount of data collection 
+ 
+ If the size of the collected data is less than 100,000, then a traditional rule-of-thumb for data splitting can be applied: 70% for training and 30% for testing. Inside the 30% test set, data can be further split into 15% for evaluation (development) and 15% for actual testing.
+ 
+ 2. Relative large amount of data collection 
+ 
+ If the size of the collected data is more than 100,000, then a more appropriate rule-of-thumb is 98%
+for training, 1% for development and 1% for testing. Since the size of the data collection is quite large, 1% of data should be sufficient for development or evaluation. Additionally, this allows more data for training data-thirsty neural networks to achieve a better accuracy.
 
+ The above is based on the assumption that the data distribution between training set and dev/test set are the same. That is, the data for training and the data that the network needs to perform prediction on have the same or similar attributes (resolution and quality etc.). It is probably not realistic to expect a neural network trained on high-resolution images to perform classification well on low-resolution and blurry images.
+ 
+ ##### Data mis-matching
+ 
+ If there is a mis-match between the training data and the target data (the actual data that the network will work with in production), then we may want to treat the training, development and test data sets slightly differently.
+ 
+ 1. The development and test data sets should come from the same distribution, and that distribution should be similar to the target data.
+ 
+ 2. The training data may be from a different distribution/source from the target data, but it should also contain a small amount of data that comes from the same distribution as the target data. 
+ 
+ 3. To better understand the neural network performance, it may be worth having another data set called "train-dev", along with the previous training, dev and test sets. The train-dev set contains data that has same distribution as the training set, but different from that of dev/test sets. 
+ 
+ This train-dev set is used for development only, instead of training. The purpose of it is to better understand the network performance and help diagnose the trained neural network, which will be discussed later in the article.
+ 
+##### Augment data 
 
-#### Train a network
+Apart from data collection and splitting, data augmentation is another important step in data preparation for training a neural network. Data augmentation is to generate altered copies of the existing data in the training set.
 
+Personally I think the two main reasons for data augmentation are as following:
+
+1. To generate more training data under the circumstances where lack of training data is a problem
+
+Take image data as an example, augmentation on image data include but is not limited to:
+
+- Add gaussian noise
+- Inverse images
+- Blur images
+- Add random rotation, shifts, shear and flips
+
+2. To generate training data that are close to the target data when there is a data mis-matching issue
+
+For example, if the target data is known to be slightly blurry, a simple and straight-forward way to augment the training data is to artificially make them blurry so that they are similar to the target data.
 
 #### Define evaluation metric
 
@@ -73,7 +137,7 @@ By far, data is the blood of deep learning. Thus, it is essential to understand:
 - benchmark
 
 
-#### Iterate the training
+#### Train a network (Iterate the training)
 
 - human level error (bayes error)
 - bias
@@ -81,7 +145,7 @@ By far, data is the blood of deep learning. Thus, it is essential to understand:
 - data mis-matching
 
 
-#### Network Diagnose
+#### Diagnose network
 
 - network structure / layer (train certain layers, depends on features)
 - learning rate
