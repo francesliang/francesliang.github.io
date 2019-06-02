@@ -1,6 +1,6 @@
 language: ruby
 rvm:
- - 2.0.0
+ - 2.2.5
 install: gem install jekyll
 before_script:
  - chmod +x ./cibuild.sh
