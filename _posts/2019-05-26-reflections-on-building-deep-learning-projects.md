@@ -5,20 +5,20 @@ title: Reflections on Developing Deep Learning Projects
 
 ### Contents
 
-* [Understand the problem](#Understand the problem)
-* [Build an initial system](#Build an initial system)
-* [Prepare data](#Prepare data)
-    - [Collect data](#Collect data)
-    - [Split data](#Split data)
-    - [Data mis-matching](#Data mis-matching)
-    - [Augment data](#Augment data)
-* [Define evaluation metric](#Define evaluation metric)
-* [Train a network](#Train a network)
-    - [Bias](#Bias)
-    - [Variance](#Variance)
-    - [Data mis-matching](#Data mis-matching)
-* [Diagnose network](#Diagnose network)
-* [Other techniques](#Other techniques)
+* [Understand the problem](#understand-the-problem)
+* [Build an initial system](#build-an-initial-system)
+* [Prepare data](#prepare-data)
+    - [Collect data](#collect-data)
+    - [Split data](#split-data)
+    - [Data mis-matching](#data-mismatching)
+    - [Augment data](#augment-data)
+* [Define evaluation metric](#define-evaluation-metric)
+* [Train a network](#train-a-network)
+    - [Bias](#bias)
+    - [Variance](#variance)
+    - [Data mis-matching](#data-mismatching)
+* [Diagnose network](#diagnose-network)
+* [Other techniques](#other-techniques)
 
 
 Although I used Artificial Neural Network in my thesis project for my bachelor of engineering, my journey of deep learning in the real world started about three years ago. The problem I was facing was to detect and segment logos from images with plain background. The deep learning solution I used was [Faster R-CNN](https://arxiv.org/abs/1506.01497). Before the project, I didn't know what [Convolutional Neural Network (CNN)](https://en.wikipedia.org/wiki/Convolutional_neural_network), [ImageNet](http://www.image-net.org/), [VGG16](https://neurohive.io/en/popular-networks/vgg16/) are, and of course I didn't know what [TensorFlow](https://www.tensorflow.org/) does either. I was extremely lucky to have my then colleague, a very competent Computer Vision Postdoc, as my mentor to help me set foot on my deep learning journey, which I'm forever grateful for.
@@ -99,7 +99,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
  The above is based on the assumption that the data distribution between training set and dev/test set are the same. That is, the data for training and the data that the network needs to perform prediction on have the same or similar attributes (resolution and quality etc.). It is probably not realistic to expect a neural network trained on high-resolution images to perform classification well on low-resolution and blurry images.
  
- ##### Data mis-matching
+ ##### Data mismatching
  
  If there is a mis-match between the training data and the target data (the actual data that the network will work with in production), then we may want to treat the training, development and test data sets slightly differently.
  
@@ -210,7 +210,7 @@ The followings are common methods to avoid overfitting:
 - Reduce the complexity of the neural network
 - Neural network architecture / hyper-parameters search
 
-##### Data mis-matching
+##### Data mismatching
 
 
 #### Diagnose network
