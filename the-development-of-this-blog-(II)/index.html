@@ -66,7 +66,7 @@
 
 <p><br /></p>
 
-<h4 id="a-namestatic-site-generatorastatic-site-generator---jekyll"><a name="static-site-generator"></a>Static Site Generator - Jekyll</h4>
+<h4 id="static-site-generator---jekyll"><a name="static-site-generator"></a>Static Site Generator - Jekyll</h4>
 
 <p><br /></p>
 
@@ -95,12 +95,11 @@
   <li>
     <p>_posts - this is the folder where the content of the website written a selected markup language (I used <em>Markdown</em> in this blog) sits. The file-names must follow this format: <strong>YEAR-MONTH-DAY-title.MARKUP</strong> while words are separated by hyphens. The <a href="http://jekyllrb.com/docs/permalinks/"><em>permalinks</em></a> can be customised in the file <code class="highlighter-rouge">_config.yml</code> or each post, but the date and markup language are determined by the file name. At the start of each post file, a YAML Front Matter should be included to indicate which layout template this post is wrapped by. Here is an example of the YAML Front Matter:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  ---  
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ---  
   layout: post_entry  
   title: The Development of This Blog (II)  
   ---  
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>index.html - the default file of the web page. With a YAML Front Matter, it can be transformed by Jekyll. Indices of blog posts can be displayed in this file using <a href="https://docs.shopify.com/themes/liquid-documentation/basics"><em>Liquid template language</em></a>.</p>
@@ -116,16 +115,14 @@
   <li>
     <p>Generate files for the website in the project folder:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ jekyll build
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~$ jekyll build
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Start a development server locally to see what the site will look like:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ jekyll serve
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~$ jekyll serve
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Deploy files in folder <em>_site</em> to <em>username.github.io</em> once the updates are finished.</p>
@@ -150,7 +147,7 @@
 
 <p><br /></p>
 
-<h4 id="a-namecontinous-integrationacontinuous-integration---travis-ci"><a name="continous-integration"></a>Continuous Integration - Travis CI</h4>
+<h4 id="continuous-integration---travis-ci"><a name="continous-integration"></a>Continuous Integration - Travis CI</h4>
 
 <p><br /></p>
 
@@ -210,28 +207,25 @@
       <li>
         <p>The language of the project to be built (in my case, it’s Ruby for Jekyll), and its version number</p>
 
-        <div class="highlighter-rouge"><pre class="highlight"><code>  language: ruby
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  language: ruby
 
   rvm:
   - 2.0.0
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
       <li>
         <p>The shell script to be executed as the build process on each commit</p>
 
-        <div class="highlighter-rouge"><pre class="highlight"><code>  script: ./cibuild.sh
-</code></pre>
-        </div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  script: ./cibuild.sh
+</code></pre></div>        </div>
       </li>
       <li>
         <p>The branch that Travis CI will listen to for new commits</p>
 
-        <div class="highlighter-rouge"><pre class="highlight"><code>  branch:
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  branch:
       only:
       - website-template
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ul>
   </li>
@@ -242,18 +236,16 @@
 
     <p>By running the following codes in the directory where the generated site content will be cloned (the <code class="highlighter-rouge">master</code> branch in my case), Travis command line tool can encrypt the token and output it as an environment variable in the <code class="highlighter-rouge">.travis.yml</code> file.</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> gem install travis
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gem install travis
  travis encrypt GH_TOKEN=&lt;the generated token&gt; --add env.global
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>As a result, the following should be seen in the <code class="highlighter-rouge">.travis.yml</code> file:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> env:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> env:
      global:
      - secure: (encrypted token)
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Travis CI Build Script</p>

@@ -83,7 +83,7 @@
 
 <p><br /></p>
 
-<h4 id="a-nameblog-hostingablog-hosting---github-pages"><a name="blog-hosting"></a>Blog Hosting - GitHub Pages</h4>
+<h4 id="blog-hosting---github-pages"><a name="blog-hosting"></a>Blog Hosting - GitHub Pages</h4>
 
 <p><br /></p>
 
@@ -100,9 +100,8 @@
   <li>
     <p>Clone the repository to the folder where we want to store our project locally on our computer:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ git clone https://github.com/username/username.github.io
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~$ git clone https://github.com/username/username.github.io
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Create an <em>index.html</em> (the default web page) and add other files related to our project in the project folder.</p>
@@ -110,11 +109,10 @@
   <li>
     <p>Add, commit, and push our changes in the project folder to GitHub using the following commands:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ git add --all  
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~$ git add --all  
  ~$ git commit -m "Initial commit" 
  ~$ git push -u origin master 
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Now we have generated our website: “<em>http://username.github.io</em>”.</p>
@@ -164,9 +162,8 @@
   <li>
     <p>Check if the name server has been updated using the <code class="highlighter-rouge">dig</code> command:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> ~$ dig *yourdomain.com* +nostats +nocomments +nocmd
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~$ dig *yourdomain.com* +nostats +nocomments +nocmd
+</code></pre></div>    </div>
   </li>
 </ol>
 
@@ -174,7 +171,7 @@
 
 <p><br /></p>
 
-<h4 id="a-nameblog-designablog-design---bootstrap"><a name="blog-design"></a>Blog Design - Bootstrap</h4>
+<h4 id="blog-design---bootstrap"><a name="blog-design"></a>Blog Design - Bootstrap</h4>
 
 <p><br />
 Once the website of my blog is up and running, it’s time for the actual design of what to write on the bloc and what the blog should look like. Basically, there are two main parts of a website - what we read (content) and what it looks like (style).</p>
@@ -205,22 +202,20 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p>CSS style sheet:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;link href="css/bootstrap.min.css" rel="stylesheet"&gt;
+</code></pre></div></div>
 
 <p>JavaScript plug-ins and its necessity - jQuery:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;
 &lt;/script&gt;
 
 &lt;script type="text/javascript" src="/js/bootstrap.min.js"&gt;&lt;/script&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>We could also include Bootstrap from a CDN (Content Delivery Network) without downloading and hosting Bootstrap ourselves. MaxCDN provides CDN support for Bootstrap’s CSS and JavaScript; therefore, we just need to include the following links in our HTML file:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;!-- Latest compiled and minified CSS --&gt;  
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- Latest compiled and minified CSS --&gt;  
 &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"&gt;
 
 
@@ -232,8 +227,7 @@ Once the website of my blog is up and running, it’s time for the actual design
 &lt;!-- Latest compiled JavaScript --&gt;  
 &lt;script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"&gt;
 &lt;/script&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>Font Awesome</strong></p>
 
@@ -241,9 +235,8 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p>The easiest way to set up Font Awesome is using BootstrapCDN by MaxCDN (see <a href="https://fortawesome.github.io/Font-Awesome/get-started/"><em>here</em></a>). The code to be included in the header of our site’s HTML is as following:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"&gt;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"&gt;
+</code></pre></div></div>
 
 <p><strong>Favicon</strong></p>
 
@@ -251,9 +244,8 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p>To add a favicon to a static HTML page, simply save the <em>favicon.ico</em> file in the root directory of our website, and include the following in the header of the HTML file:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"&gt;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"&gt;
+</code></pre></div></div>
 
 <p><strong>Google Fonts</strong></p>
 
@@ -263,7 +255,7 @@ Once the website of my blog is up and running, it’s time for the actual design
 
 <p><br /></p>
 
-<h4 id="a-nameblog-commentablog-comment-hosting-service---disqus"><a name="blog-comment"></a>Blog Comment Hosting Service - Disqus</h4>
+<h4 id="blog-comment-hosting-service---disqus"><a name="blog-comment"></a>Blog Comment Hosting Service - Disqus</h4>
 
 <p><br /></p>
 

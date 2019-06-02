@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset=utf-8 />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Reflections on Developing Deep Learning Projects |  XL Blog </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="shortcut icon" href="http://xinliang.co/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-84548628-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <nav class="row">
+        <a href="/index.html" role="button" id="homeBtn" class="btn pull-left btn-menu">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </a>
+        <div class="btn-group">
+          <button type="button" id="menuBtn" class="btn btn-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Home</a></li>
+             <li class="divider"></li>
+            <li><a href="/about.html">About</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+          <ul class="content"> 
+	<h1 style="padding-top: 50px">Reflections on Developing Deep Learning Projects</h1>
+	<time>26 May 2019</time>
+	<div style="padding-top: 60px">
+		<h3 id="contents">Contents</h3>
+
+<ul>
+  <li><a href="#understand-the-problem">Understand the problem</a></li>
+  <li><a href="#build-an-initial-system">Build an initial system</a></li>
+  <li><a href="#prepare-data">Prepare data</a>
+    <ul>
+      <li><a href="#collect-data">Collect data</a></li>
+      <li><a href="#split-data">Split data</a></li>
+      <li><a href="#data-mismatching">Data mis-matching</a></li>
+      <li><a href="#augment-data">Augment data</a></li>
+    </ul>
+  </li>
+  <li><a href="#define-evaluation-metric">Define evaluation metric</a></li>
+  <li><a href="#train-a-network">Train a network</a>
+    <ul>
+      <li><a href="#bias">Bias</a></li>
+      <li><a href="#variance">Variance</a></li>
+      <li><a href="#data-mismatching">Data mis-matching</a></li>
+    </ul>
+  </li>
+  <li><a href="#diagnose-network">Diagnose network</a></li>
+  <li><a href="#other-techniques">Other techniques</a></li>
+</ul>
+
+<p>Although I used Artificial Neural Network in my thesis project for my bachelor of engineering, my journey of deep learning in the real world started about three years ago. The problem I was facing was to detect and segment logos from images with plain background. The deep learning solution I used was <a href="https://arxiv.org/abs/1506.01497">Faster R-CNN</a>. Before the project, I didn’t know what <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">Convolutional Neural Network (CNN)</a>, <a href="http://www.image-net.org/">ImageNet</a>, <a href="https://neurohive.io/en/popular-networks/vgg16/">VGG16</a> are, and of course I didn’t know what <a href="https://www.tensorflow.org/">TensorFlow</a> does either. I was extremely lucky to have my then colleague, a very competent Computer Vision Postdoc, as my mentor to help me set foot on my deep learning journey, which I’m forever grateful for.</p>
+
+<p>Since then, I have done various deep learning projects, mainly in computer vision area, including image segmentation, image recognition, object detection and classification, speech detection on digits, and pattern recognition. Recently, an online course <a href="https://www.coursera.org/learn/machine-learning-projects">“Structuring Machine Learning Projects” by Andrew Ng</a> was mentioned to me, so I decided to check it out and see if it resonates what I have been doing these few years.</p>
+
+<p>Even though the difficulty of the course is listed as beginner level, I found it a very good material to consolidate the steps, approaches and techniques of undertaking a deep learning project, even for engineers with deep learning experience. It actually urged me to gather my thoughts on conducting my previous deep learning projects, and consolidate a clear guideline for my future projects.</p>
+
+<h4 id="understand-the-problem">Understand the problem</h4>
+
+<p>When it comes to building a deep learning system, the first thing is to understand the project in hand before getting too deep into the techniques. I would like to ask myself the following questions at the very beginning:</p>
+
+<ol>
+  <li>Do I really need neural network to solve this problem?</li>
+</ol>
+
+<p>Neural Network is a very powerful tool to solve complex problem, but it also requires fair amount of data, resources, time and efforts. Additionally, expertise is required to open the black-box, understand and explain what’s going on inside. If other machine learning techniques can easily solve the problem, then those approaches are definitely preferred over neural network, because they tend to be more straightforward, and require less resources.</p>
+
+<ol>
+  <li>Once I decide to go with neural network, which classes/types of neural network should I use?</li>
+</ol>
+
+<p>Different classes and types of neural networks serve different purposes. 
+For example, Convolutional Neural Network is commonly applied to analyse visual image data (data with hierarchical pattern), while <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">Recurrent Neural Networks (RNN)</a> is more suitable for sequential data with its internal state (memory).</p>
+
+<p>If Convolutional Neural Network is preferred, then the understanding goes deeper to which types of CNNs are the right approach.
+For instance, object categorisation requires classification neural network, whereas object detection requires Region Proposal or similar neural networks.</p>
+
+<ol>
+  <li>Once I decide on the overall techniques, I would see if the problem can be solved with one end-to-end deep learning neural network, or do I need to break it down into multiple stages with different neural networks at each?</li>
+</ol>
+
+<p>As mentioned in the online course, this depends on the complexity of the problem itself and the amount of data available to train the network. Not all problems can be easily translated as “mapping x to y (<code class="highlighter-rouge">x -&gt; y</code>)”, and some of them may have to be ‘x -&gt; u -&gt; v -&gt; w -&gt; y’.</p>
+
+<p>Take my previous project of kangaroo detection/recognition as an example.</p>
+
+<p>An end-to-end deep learning system is the right approach when I just need to detect and classify kangaroos from images of a certain environment. Because a deep learning network is sufficient to handle tasks of object detection and classification. Also, there are plenty of kangaroo images on the Internet available for training such a network.</p>
+
+<p>However, if I want to not only detect the kangaroos in the images, but also recognise their activities, such as moving left or right, and grazing or not, the problem becomes more complicated. It requires much more information for the neural network to analyse and learn than just kangaroo detection/classification. On the other hand, there might not be that easy to collect a large amount of labelled data for each activity.</p>
+
+<p>In this case, a multi-stage system is more appropriate. The first step would be to detect where the kangaroos are in an image, and then crop / extract the object out. The second step would be to detect where the head and tail of the kangaroos are in the cropped image, using a cascaded object-detection neural network. The final step would be to use heuristic methods to decide on the activities of the kangaroos.</p>
+
+<h4 id="build-an-initial-system">Build an initial system</h4>
+
+<p>Once the problem is understood thoroughly, building an initial system would be the next step.</p>
+
+<p>Since there are many open-source implementations and libraries available for most of the commonly-used neural networks, it wouldn’t be too hard to focus on the suitable ones and modify the network structure accordingly if needed.</p>
+
+<p>I personally would like to set up and run the initial system quickly (which is also suggested by Andrew Ng), with minimum configuration and sample data. To me, this is the most efficient way to understand the overall structure of the system, the working mechanism of the network and the required format of the input data. Those are the main areas that I found useful to sophisticate the system in the later steps.</p>
+
+<p>When building a deep learning system, another important aspect is what the course called “Orthogonalization”. As hyperparameter tuning is almost inevitable in developing machine learning systems, we want to be able to change / configure one parameter at a time and compare the system performance, which is similar to <a href="https://en.wikipedia.org/wiki/A/B_testing">A/B testing</a> in software development. Therefore, flexible configuration in the system can significantly increase efficiency in the process of training network.</p>
+
+<h4 id="prepare-data">Prepare data</h4>
+
+<p>After setting up the “barebones neural network”, it comes to the step that seems to be the most boring, but in fact a very crucial one - data collection and splitting.</p>
+
+<h5 id="collect-data">Collect data</h5>
+
+<p>By far, data is the blood of deep learning. Thus, it is essential to understand:</p>
+<ol>
+  <li>What data the system needs to work on</li>
+  <li>How to collect relevant data to power such a deep learning system</li>
+</ol>
+
+<p>It is great if a large amount of training data is available “out-of-the-box”. However, that is not the case most of the time, so online images and YouTube videos become the common data sources.</p>
+
+<h5 id="split-data">Split data</h5>
+
+<p>Once the data collection step has been completed, the following step is to split the data for training, development and testing.</p>
+
+<ul>
+  <li>Training set - data set that is used to train the neural network</li>
+  <li>Development set (dev set) - data set that is used to tune the trained neural network based on its accuracy and performance</li>
+  <li>Test set - data set that is used to evaluate the performance of the trained neural network</li>
+</ul>
+
+<p>As mentioned in the course, there are mainly two different scenarios, depending on the size of the collected data (I would use 100,000 as a cut-off threshold), when it comes to splitting the data:</p>
+<ol>
+  <li>Relative small amount of data collection</li>
+</ol>
+
+<p>If the size of the collected data is less than 100,000, then a traditional rule-of-thumb for data splitting can be applied: 70% for training and 30% for testing. Inside the 30% test set, data can be further split into 15% for evaluation (development) and 15% for actual testing.</p>
+
+<ol>
+  <li>Relative large amount of data collection</li>
+</ol>
+
+<p>If the size of the collected data is more than 100,000, then a more appropriate rule-of-thumb is 98%
+for training, 1% for development and 1% for testing. Since the size of the data collection is quite large, 1% of data should be sufficient for development or evaluation. Additionally, this allows more data for training data-thirsty neural networks to achieve a better accuracy.</p>
+
+<p>The above is based on the assumption that the data distribution between training set and dev/test set are the same. That is, the data for training and the data that the network needs to perform prediction on have the same or similar attributes (resolution and quality etc.). It is probably not realistic to expect a neural network trained on high-resolution images to perform classification well on low-resolution and blurry images.</p>
+
+<p>##### Data mismatching</p>
+
+<p>If there is a mis-match between the training data and the target data (the actual data that the network will work with in production), then we may want to treat the training, development and test data sets slightly differently.</p>
+
+<ol>
+  <li>
+    <p>The development and test data sets should come from the same distribution, and that distribution should be similar to the target data.</p>
+  </li>
+  <li>
+    <p>The training data may be from a different distribution/source from the target data, but it should also contain a small amount of data that comes from the same distribution as the target data.</p>
+  </li>
+  <li>
+    <p>To better understand the neural network performance, it may be worth having another data set called “train-dev”, along with the previous training, dev and test sets. The train-dev set contains data that has same distribution as the training set, but different from that of dev/test sets.</p>
+  </li>
+</ol>
+
+<p>This train-dev set is used for development only, instead of training. The purpose of it is to better understand the network performance and help diagnose the trained neural network, which will be discussed later in the article.</p>
+
+<h5 id="augment-data">Augment data</h5>
+
+<p>Apart from data collection and splitting, data augmentation is another important step in data preparation for training a neural network. Data augmentation is to generate altered copies of the existing data in the training set.</p>
+
+<p>Personally I think the two main reasons for data augmentation are as following:</p>
+
+<ol>
+  <li>To generate more training data under the circumstances where lack of training data is a problem</li>
+</ol>
+
+<p>Take image data as an example, augmentation on image data include but is not limited to:</p>
+
+<ul>
+  <li>Add gaussian noise</li>
+  <li>Inverse images</li>
+  <li>Blur images</li>
+  <li>Add random rotation, shifts, shear and flips</li>
+</ul>
+
+<ol>
+  <li>To generate training data that are close to the target data when there is a data mis-matching issue</li>
+</ol>
+
+<p>For example, if the target data is known to be slightly blurry, a simple and straight-forward way to augment the training data is to artificially make them blurry so that they are similar to the target data.</p>
+
+<h4 id="define-evaluation-metric">Define evaluation metric</h4>
+
+<p>Before getting too deep into iterating the training of a neural network, it’s always a good idea to define an evaluation metric and a benchmarking process. This way, benchmark can be run against the trained network at each iteration, and evaluation metrics can be compared among different versions of trained networks to determine if the performance is getting better or worse.</p>
+
+<p>To evaluate the performance of a trained neural network, I mostly use the following two measures:</p>
+
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/Confusion_matrix">Confusion Matrix</a></li>
+  <li>Accuracy or <a href="https://en.wikipedia.org/wiki/F1_score">F1-score</a></li>
+</ol>
+
+<p>Confusion matrix gives a clear view of the neural network performance across all classes. It not only shows the accuracy of each class, but also shows how each class is mis-classified into other classes. This gives insights on which class(es) to focus on in order to improve the overall accuracy of the neural network.</p>
+
+<p>On the other hand, a single value metric, such as accuracy or F1-score, provides an overall measurement on how well the neural network performs, which is useful and efficient to compare performances across different iterations of trained networks. F1-score is considered to be a balanced measurement, as it takes both <a href="https://en.wikipedia.org/wiki/Precision_and_recall">precision and recall</a> into account. It not only examines if the neural network mis-classify data into incorrect classes (false positive), but also considers if the network is unable to classify data into certain classes (false negative).</p>
+
+<h4 id="train-a-network">Train a network</h4>
+
+<p>When training a neural network, I usually first focus on the indicator of the completion of training - the convergence of loss. Only when the loss of the neural network converges during the training process, can we say the training is completed and the accuracies of both training and valuation can be trusted.</p>
+
+<p>To understand how well the trained neural network is, as mentioned in the course, I would focus on several numbers:</p>
+
+<ul>
+  <li>
+    <p>Human level error (Bayes error)</p>
+
+    <p><a href="https://en.wikipedia.org/wiki/Bayes_error_rate">Bayes error rate</a> is the lowest possible error rate of a classifier. Since human are extremely good at problems with natural perceptions, such as image classification and natural language processing, for those problems, human level error is close to Bayes error; therefore, they can be interchangeable.</p>
+  </li>
+  <li>
+    <p>Training error</p>
+
+    <p>The final error rate of training the neural network.</p>
+  </li>
+  <li>
+    <p>Dev error</p>
+
+    <p>The error rate when applying the trained neural network to the dev data set.</p>
+  </li>
+  <li>
+    <p>Test error</p>
+
+    <p>The error rate when applying the trained neural network to the test data set.</p>
+  </li>
+</ul>
+
+<p>These numbers are good indicators of the general problem of a neural network, such as high bias, high variance or data mis-matching.</p>
+
+<h5 id="bias">Bias</h5>
+
+<p>In short, high <a href="https://en.wikipedia.org/wiki/Bias_of_an_estimator">bias</a> suggests that the neural network is not able to correlate the relations between data features and the corresponding output. This is also interpreted as underfitting.</p>
+
+<p>Take the following as an example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Error type</th>
+      <th style="text-align: center">Error rate</th>
+      <th style="text-align: center">Difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Human level error</td>
+      <td style="text-align: center">0.1%</td>
+      <td style="text-align: center">n/a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Training error</td>
+      <td style="text-align: center">5.1%</td>
+      <td style="text-align: center">5%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Dev error</td>
+      <td style="text-align: center">5.2%</td>
+      <td style="text-align: center">0.1%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Test error</td>
+      <td style="text-align: center">5.5%</td>
+      <td style="text-align: center">0.3%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The difference between training error and human level error is 5%, much larger than that between dev error and training error or that between test error and dev error. This indicates that the training of the neural network is not able to correctly map features in the data to the expected outputs.</p>
+
+<p>To adjust this issue, the followings can be considered:</p>
+
+<ul>
+  <li>Use a larger / more complex neural network</li>
+  <li>Train longer / with better optimisation algorithms (e.g. add momentum, RMS prop, Adam)</li>
+  <li>Neural network architecture / hyper-parameters search</li>
+</ul>
+
+<h5 id="variance">Variance</h5>
+
+<p>In contrast to bias, high <a href="https://en.wikipedia.org/wiki/Variance">variance</a> suggests that the neural network is too sensitive to small changes in the training data; thus, it is not able to provide a generalised model. This is also interpreted as overfitting.</p>
+
+<p>For instance:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Error type</th>
+      <th style="text-align: center">Error rate</th>
+      <th style="text-align: center">Difference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Human level error</td>
+      <td style="text-align: center">0.1%</td>
+      <td style="text-align: center">n/a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Training error</td>
+      <td style="text-align: center">0.3%</td>
+      <td style="text-align: center">0.2%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Dev error</td>
+      <td style="text-align: center">5.3%</td>
+      <td style="text-align: center">5%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Test error</td>
+      <td style="text-align: center">5.5%</td>
+      <td style="text-align: center">0.2%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The difference between training error and human level error is quite small (0.2%); however, the difference between dev error and training error is 5%, which is relative large in comparison. This implies that the training process overfit the training data and is unable to generalise the model to achieve a similar accuracy on the dev data set.</p>
+
+<p>The followings are common methods to avoid overfitting:</p>
+
+<ul>
+  <li>Increase training data set with data augmentation</li>
+  <li>Add regularisation (e.g. L2, dropout)</li>
+  <li>Reduce the complexity of the neural network</li>
+  <li>Neural network architecture / hyper-parameters search</li>
+</ul>
+
+<h5 id="data-mismatching">Data mismatching</h5>
+
+<h4 id="diagnose-network">Diagnose network</h4>
+
+<ul>
+  <li>error analysis</li>
+  <li>network structure / layer (train certain layers, depends on features)</li>
+  <li>learning rate</li>
+  <li>optimiser</li>
+  <li>loss function</li>
+  <li>activation function</li>
+</ul>
+
+<h4 id="other-techniques">Other techniques</h4>
+
+<ul>
+  <li>transfer learning</li>
+  <li>multi-task learning</li>
+</ul>
+
+<h4 id="deployment">Deployment</h4>
+
+	</div>
+</ul>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      
+
+      <nav class="row" style="padding-top: 50px">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 PageNavigation">
+          
+            <a href="/health-hack-2015/" class="prev">
+              <span class="glyphicon glyphicon-menu-left pull-left" aria-hidden="true"></span>
+            </a>
+          
+
+          
+            <a href="/index.html">
+              <span class="glyphicon glyphicon-menu-right pull-right" aria-hidden="true"></span>
+            </a>
+          
+        </div>
+
+          <div class="col-md-2"></div>
+      </nav>
+
+      <div class="row row-comments">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div id="disqus_thread" class="disqus_thread"></div>
+          
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'xl-blog';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
