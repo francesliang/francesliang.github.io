@@ -14,6 +14,9 @@ title: Reflections on Developing Deep Learning Projects
     - [Augment data](#Augment data)
 * [Define evaluation metric](#Define evaluation metric)
 * [Train a network](#Train a network)
+    - [Bias](#Bias)
+    - [Variance](#Variance)
+    - [Data mis-matching](#Data mis-matching)
 * [Diagnose network](#Diagnose network)
 * [Other techniques](#Other techniques)
 
@@ -65,9 +68,6 @@ I personally would like to set up and run the initial system quickly (which is a
 When building a deep learning system, another important aspect is what the course called "Orthogonalization". As hyperparameter tuning is almost inevitable in developing machine learning systems, we want to be able to change / configure one parameter at a time and compare the system performance, which is similar to [A/B testing](https://en.wikipedia.org/wiki/A/B_testing) in software development. Therefore, flexible configuration in the system can significantly increase efficiency in the process of training network.
 
 #### Prepare data 
-
-- train, (train-dev), dev, test sets
-- data augmentation
 
 After setting up the "barebones neural network", it comes to the step that seems to be the most boring, but in fact a very crucial one - data collection and splitting.
 
@@ -132,21 +132,90 @@ For example, if the target data is known to be slightly blurry, a simple and str
 
 #### Define evaluation metric
 
-- single value
+Before getting too deep into iterating the training of a neural network, it's always a good idea to define an evaluation metric and a benchmarking process. This way, benchmark can be run against the trained network at each iteration, and evaluation metrics can be compared among different versions of trained networks to determine if the performance is getting better or worse.
 
-- benchmark
+To evaluate the performance of a trained neural network, I mostly use the following two measures:
 
+1. [Confusion Matrix](https://en.wikipedia.org/wiki/Confusion_matrix)
+2. Accuracy or [F1-score](https://en.wikipedia.org/wiki/F1_score)
 
-#### Train a network (Iterate the training)
+Confusion matrix gives a clear view of the neural network performance across all classes. It not only shows the accuracy of each class, but also shows how each class is mis-classified into other classes. This gives insights on which class(es) to focus on in order to improve the overall accuracy of the neural network.
 
-- human level error (bayes error)
-- bias
-- variance
-- data mis-matching
+On the other hand, a single value metric, such as accuracy or F1-score, provides an overall measurement on how well the neural network performs, which is useful and efficient to compare performances across different iterations of trained networks. F1-score is considered to be a balanced measurement, as it takes both [precision and recall](https://en.wikipedia.org/wiki/Precision_and_recall) into account. It not only examines if the neural network mis-classify data into incorrect classes (false positive), but also considers if the network is unable to classify data into certain classes (false negative).
+
+#### Train a network
+
+When training a neural network, I usually first focus on the indicator of the completion of training - the convergence of loss. Only when the loss of the neural network converges during the training process, can we say the training is completed and the accuracies of both training and valuation can be trusted.
+
+To understand how well the trained neural network is, as mentioned in the course, I would focus on several numbers:
+
+- Human level error (Bayes error)
+
+  [Bayes error rate](https://en.wikipedia.org/wiki/Bayes_error_rate) is the lowest possible error rate of a classifier. Since human are extremely good at problems with natural perceptions, such as image classification and natural language processing, for those problems, human level error is close to Bayes error; therefore, they can be interchangeable.
+  
+- Training error
+
+  The final error rate of training the neural network.
+  
+- Dev error
+
+  The error rate when applying the trained neural network to the dev data set.
+  
+- Test error
+
+  The error rate when applying the trained neural network to the test data set.
+
+These numbers are good indicators of the general problem of a neural network, such as high bias, high variance or data mis-matching.
+
+##### Bias
+
+In short, high [bias](https://en.wikipedia.org/wiki/Bias_of_an_estimator) suggests that the neural network is not able to correlate the relations between data features and the corresponding output. This is also interpreted as underfitting.
+
+Take the following as an example:
+
+| Error type        | Error rate | Difference |
+|:-----------------:|:----------:|:----------:|
+| Human level error | 0.1%       | n/a        | 
+| Training error    | 5.1%       | 5%         |
+| Dev error         | 5.2%       | 0.1%       |
+| Test error        | 5.5%       | 0.3%       |
+
+The difference between training error and human level error is 5%, much larger than that between dev error and training error or that between test error and dev error. This indicates that the training of the neural network is not able to correctly map features in the data to the expected outputs.
+
+To adjust this issue, the followings can be considered:
+
+- Use a larger / more complex neural network
+- Train longer / with better optimisation algorithms (e.g. add momentum, RMS prop, Adam)
+- Neural network architecture / hyper-parameters search
+
+##### Variance
+
+In contrast to bias, high [variance](https://en.wikipedia.org/wiki/Variance) suggests that the neural network is too sensitive to small changes in the training data; thus, it is not able to provide a generalised model. This is also interpreted as overfitting.
+
+For instance:
+
+| Error type        | Error rate | Difference |
+|:-----------------:|:----------:|:----------:|
+| Human level error | 0.1%       | n/a        | 
+| Training error    | 0.3%       | 0.2%       |
+| Dev error         | 5.3%       | 5%         |
+| Test error        | 5.5%       | 0.2%       |
+
+The difference between training error and human level error is quite small (0.2%); however, the difference between dev error and training error is 5%, which is relative large in comparison. This implies that the training process overfit the training data and is unable to generalise the model to achieve a similar accuracy on the dev data set.
+
+The followings are common methods to avoid overfitting:
+
+- Increase training data set with data augmentation
+- Add regularisation (e.g. L2, dropout)
+- Reduce the complexity of the neural network
+- Neural network architecture / hyper-parameters search
+
+##### Data mis-matching
 
 
 #### Diagnose network
 
+- error analysis
 - network structure / layer (train certain layers, depends on features)
 - learning rate
 - optimiser
