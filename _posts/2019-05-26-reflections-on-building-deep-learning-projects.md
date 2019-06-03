@@ -3,7 +3,7 @@ layout: post_entry
 title: Reflections on Developing Deep Learning Projects
 ---
 
-### Contents
+#### Contents
 
 + [Understand the problem](#understand-the-problem)
 
@@ -235,6 +235,7 @@ Take the following as an example:
 
 <br>
 
+{:class="table table-bordered"}
 | Error type        | Error rate | Difference |
 |:-----------------:|:----------:|:----------:|
 | Human level error | 0.1%       | n/a        | 
@@ -266,6 +267,7 @@ For instance:
 
 <br>
 
+{:class="table table-bordered"}
 | Error type           |  Error rate   |  Difference   |
 |:--------------------:|:-------------:|:-------------:|
 | Human level error    | 0.1%          | n/a           | 
@@ -292,6 +294,31 @@ The followings are common methods to avoid overfitting:
 <a name="data-mismatching"></a>**Data mismatching**
 
 <br>
+
+Apart from avoidable bias and variance, there is another possible issue affecting the performance of the neural network - data mismatching between training set and target set, which is more difficult to tackle.
+
+For example:
+
+<br>
+
+{:class="table table-bordered"}
+| Error type           |  Error rate   |  Difference   |
+|:--------------------:|:-------------:|:-------------:|
+| Human level error    | 0.8%          | n/a           | 
+| Training error       | 1%            | 0.2%          |
+| Training-dev error   | 1.5%          | 0.5%          |
+| Dev error            | 9%            | 7.5%          |
+| Test error           | 9.5%          | 0.5%          |
+
+<br>
+
+In the table above, the difference between training error and human level error is 0.2%, while the difference between training-dev error and training error is 0.5%, both of which are relatively small. Therefore, bias and variance don't seem to be a big issue of this neural network. However, the difference between dev error and training-dev error is relative large (7.5%), that indicates there is mismatched data between the training set and the target set.
+
+This is a tricky problem as it is not easy to address it in a systematic way. One way to address the issue is to manually identify the differences between the training and target data. Then we can try to collect or generate training data that is more similar to the target data (dev/test sets). This technique is sometimes referred as artificial data synthesis.
+
+For example, as mentioned in the course, if the target images are mostly foggy images whereas those in the training set are images under clear weather. To make training data more similar to the target ones, we can artificially synthesise new training data by combining the existing images in the training set with some random images of fogs. 
+
+One caveat to keep in mind when undertaking this approach is that synthesised data might cause the trained neural network to overfit data with repetitive noise, such as the fog images in the example mentioned previously.
 
 <br>
 
