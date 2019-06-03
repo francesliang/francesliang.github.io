@@ -6,18 +6,31 @@ title: Reflections on Developing Deep Learning Projects
 ### Contents
 
 + [Understand the problem](#understand-the-problem)
+
 + [Build an initial system](#build-an-initial-system)
+
 + [Prepare data](#prepare-data)
+   
     + [Collect data](#collect-data)
+    
     + [Split data](#split-data)
+    
     + [Data mis-matching](#data-mismatching)
+    
     + [Augment data](#augment-data)
+
 + [Define evaluation metric](#define-evaluation-metric)
+
 + [Train a network](#train-a-network)
+    
     + [Bias](#bias)
+    
     + [Variance](#variance)
+    
     + [Data mis-matching](#data-mismatching)
+
 + [Diagnose network](#diagnose-network)
+
 + [Other techniques](#other-techniques)
 
 
@@ -83,7 +96,7 @@ After setting up the "barebones neural network", it comes to the step that seems
 
 <br>
 
-**Collect data**
+<a name="collect-data"></a>**Collect data**
 
 <br>
 
@@ -97,14 +110,16 @@ It is great if a large amount of training data is available "out-of-the-box". Ho
  
 <br>
 
-**Split data**
+<a name="split-data"></a>**Split data**
 
 <br>
  
 Once the data collection step has been completed, the following step is to split the data for training, development and testing. 
  
 + Training set - data set that is used to train the neural network
+
 + Development set (dev set) - data set that is used to tune the trained neural network based on its accuracy and performance
+
 + Test set - data set that is used to evaluate the performance of the trained neural network
  
 As mentioned in the course, there are mainly two different scenarios, depending on the size of the collected data (I would use 100,000 as a cut-off threshold), when it comes to splitting the data:
@@ -122,7 +137,7 @@ The above is based on the assumption that the data distribution between training
  
 <br>
  
-**Data mismatching**
+<a name="data-mismatching"></a>**Data mismatching**
  
 <br>
  
@@ -138,7 +153,7 @@ This train-dev set is used for development only, instead of training. The purpos
  
 <br>
  
-**Augment data**
+<a name="augment-data"></a>**Augment data**
 
 <br>
 
@@ -151,8 +166,11 @@ Personally I think the two main reasons for data augmentation are as following:
     Take image data as an example, augmentation on image data include but is not limited to:
 
     + Add gaussian noise
+    
     + Inverse images
+   
     + Blur images
+    
     + Add random rotation, shifts, shear and flips
 
 2. To generate training data that are close to the target data when there is a data mis-matching issue
@@ -207,7 +225,7 @@ These numbers are good indicators of the general problem of a neural network, su
 
 <br>
 
-**Bias**
+<a name="bias"></a>**Bias**
 
 <br>
 
@@ -231,12 +249,14 @@ The difference between training error and human level error is 5%, much larger t
 To adjust this issue, the followings can be considered:
 
 + Use a larger / more complex neural network
+
 + Train longer / with better optimisation algorithms (e.g. add momentum, RMS prop, Adam)
+
 + Neural network architecture / hyper-parameters search
 
 <br>
 
-**Variance**
+<a name="variance"></a>**Variance**
 
 <br>
 
@@ -246,12 +266,12 @@ For instance:
 
 <br>
 
-| Error type        | Error rate | Difference |
-|:-----------------:|:----------:|:----------:|
-| Human level error | 0.1%       | n/a        | 
-| Training error    | 0.3%       | 0.2%       |
-| Dev error         | 5.3%       | 5%         |
-| Test error        | 5.5%       | 0.2%       |
+| Error type           |  Error rate   |  Difference   |
+|:--------------------:|:-------------:|:-------------:|
+| Human level error    | 0.1%          | n/a           | 
+| Training error       | 0.3%          | 0.2%          |
+| Dev error            | 5.3%          | 5%            |
+| Test error           | 5.5%          | 0.2%          |
 
 <br>
 
@@ -260,13 +280,16 @@ The difference between training error and human level error is quite small (0.2%
 The followings are common methods to avoid overfitting:
 
 + Increase training data set with data augmentation
+
 + Add regularisation (e.g. L2, dropout)
+
 + Reduce the complexity of the neural network
+
 + Neural network architecture / hyper-parameters search
 
 <br>
 
-**Data mismatching**
+<a name="data-mismatching"></a>**Data mismatching**
 
 <br>
 
@@ -277,10 +300,15 @@ The followings are common methods to avoid overfitting:
 <br>
 
 - error analysis
+
 - network structure / layer (train certain layers, depends on features)
+
 - learning rate
+
 - optimiser
+
 - loss function
+
 - activation function
 
 <br>
@@ -290,6 +318,7 @@ The followings are common methods to avoid overfitting:
 <br>
 
 - transfer learning
+
 - multi-task learning
 
 <br>
