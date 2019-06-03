@@ -56,26 +56,54 @@
 		<h3 id="contents">Contents</h3>
 
 <ul>
-  <li><a href="#understand-the-problem">Understand the problem</a></li>
-  <li><a href="#build-an-initial-system">Build an initial system</a></li>
-  <li><a href="#prepare-data">Prepare data</a>
+  <li>
+    <p><a href="#understand-the-problem">Understand the problem</a></p>
+  </li>
+  <li>
+    <p><a href="#build-an-initial-system">Build an initial system</a></p>
+  </li>
+  <li>
+    <p><a href="#prepare-data">Prepare data</a></p>
+
     <ul>
-      <li><a href="#collect-data">Collect data</a></li>
-      <li><a href="#split-data">Split data</a></li>
-      <li><a href="#data-mismatching">Data mis-matching</a></li>
-      <li><a href="#augment-data">Augment data</a></li>
+      <li>
+        <p><a href="#collect-data">Collect data</a></p>
+      </li>
+      <li>
+        <p><a href="#split-data">Split data</a></p>
+      </li>
+      <li>
+        <p><a href="#data-mismatching">Data mis-matching</a></p>
+      </li>
+      <li>
+        <p><a href="#augment-data">Augment data</a></p>
+      </li>
     </ul>
   </li>
-  <li><a href="#define-evaluation-metric">Define evaluation metric</a></li>
-  <li><a href="#train-a-network">Train a network</a>
+  <li>
+    <p><a href="#define-evaluation-metric">Define evaluation metric</a></p>
+  </li>
+  <li>
+    <p><a href="#train-a-network">Train a network</a></p>
+
     <ul>
-      <li><a href="#bias">Bias</a></li>
-      <li><a href="#variance">Variance</a></li>
-      <li><a href="#data-mismatching">Data mis-matching</a></li>
+      <li>
+        <p><a href="#bias">Bias</a></p>
+      </li>
+      <li>
+        <p><a href="#variance">Variance</a></p>
+      </li>
+      <li>
+        <p><a href="#data-mismatching">Data mis-matching</a></p>
+      </li>
     </ul>
   </li>
-  <li><a href="#diagnose-network">Diagnose network</a></li>
-  <li><a href="#other-techniques">Other techniques</a></li>
+  <li>
+    <p><a href="#diagnose-network">Diagnose network</a></p>
+  </li>
+  <li>
+    <p><a href="#other-techniques">Other techniques</a></p>
+  </li>
 </ul>
 
 <p>Although I used Artificial Neural Network in my thesis project for my bachelor of engineering, my journey of deep learning in the real world started about three years ago. The problem I was facing was to detect and segment logos from images with plain background. The deep learning solution I used was <a href="https://arxiv.org/abs/1506.01497">Faster R-CNN</a>. Before the project, I didn’t know what <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">Convolutional Neural Network (CNN)</a>, <a href="http://www.image-net.org/">ImageNet</a>, <a href="https://neurohive.io/en/popular-networks/vgg16/">VGG16</a> are, and of course I didn’t know what <a href="https://www.tensorflow.org/">TensorFlow</a> does either. I was extremely lucky to have my then colleague, a very competent Computer Vision Postdoc, as my mentor to help me set foot on my deep learning journey, which I’m forever grateful for.</p>
@@ -146,7 +174,7 @@
 
 <p><br /></p>
 
-<p><strong>Collect data</strong></p>
+<p><a name="collect-data"></a><strong>Collect data</strong></p>
 
 <p><br /></p>
 
@@ -165,16 +193,22 @@
 
 <p><br /></p>
 
-<p><strong>Split data</strong></p>
+<p><a name="split-data"></a><strong>Split data</strong></p>
 
 <p><br /></p>
 
 <p>Once the data collection step has been completed, the following step is to split the data for training, development and testing.</p>
 
 <ul>
-  <li>Training set - data set that is used to train the neural network</li>
-  <li>Development set (dev set) - data set that is used to tune the trained neural network based on its accuracy and performance</li>
-  <li>Test set - data set that is used to evaluate the performance of the trained neural network</li>
+  <li>
+    <p>Training set - data set that is used to train the neural network</p>
+  </li>
+  <li>
+    <p>Development set (dev set) - data set that is used to tune the trained neural network based on its accuracy and performance</p>
+  </li>
+  <li>
+    <p>Test set - data set that is used to evaluate the performance of the trained neural network</p>
+  </li>
 </ul>
 
 <p>As mentioned in the course, there are mainly two different scenarios, depending on the size of the collected data (I would use 100,000 as a cut-off threshold), when it comes to splitting the data:</p>
@@ -197,7 +231,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p><strong>Data mismatching</strong></p>
+<p><a name="data-mismatching"></a><strong>Data mismatching</strong></p>
 
 <p><br /></p>
 
@@ -219,7 +253,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p><strong>Augment data</strong></p>
+<p><a name="augment-data"></a><strong>Augment data</strong></p>
 
 <p><br /></p>
 
@@ -234,10 +268,18 @@ for training, 1% for development and 1% for testing. Since the size of the data 
     <p>Take image data as an example, augmentation on image data include but is not limited to:</p>
 
     <ul>
-      <li>Add gaussian noise</li>
-      <li>Inverse images</li>
-      <li>Blur images</li>
-      <li>Add random rotation, shifts, shear and flips</li>
+      <li>
+        <p>Add gaussian noise</p>
+      </li>
+      <li>
+        <p>Inverse images</p>
+      </li>
+      <li>
+        <p>Blur images</p>
+      </li>
+      <li>
+        <p>Add random rotation, shifts, shear and flips</p>
+      </li>
     </ul>
   </li>
   <li>
@@ -307,7 +349,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p><strong>Bias</strong></p>
+<p><a name="bias"></a><strong>Bias</strong></p>
 
 <p><br /></p>
 
@@ -356,14 +398,20 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 <p>To adjust this issue, the followings can be considered:</p>
 
 <ul>
-  <li>Use a larger / more complex neural network</li>
-  <li>Train longer / with better optimisation algorithms (e.g. add momentum, RMS prop, Adam)</li>
-  <li>Neural network architecture / hyper-parameters search</li>
+  <li>
+    <p>Use a larger / more complex neural network</p>
+  </li>
+  <li>
+    <p>Train longer / with better optimisation algorithms (e.g. add momentum, RMS prop, Adam)</p>
+  </li>
+  <li>
+    <p>Neural network architecture / hyper-parameters search</p>
+  </li>
 </ul>
 
 <p><br /></p>
 
-<p><strong>Variance</strong></p>
+<p><a name="variance"></a><strong>Variance</strong></p>
 
 <p><br /></p>
 
@@ -412,15 +460,23 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 <p>The followings are common methods to avoid overfitting:</p>
 
 <ul>
-  <li>Increase training data set with data augmentation</li>
-  <li>Add regularisation (e.g. L2, dropout)</li>
-  <li>Reduce the complexity of the neural network</li>
-  <li>Neural network architecture / hyper-parameters search</li>
+  <li>
+    <p>Increase training data set with data augmentation</p>
+  </li>
+  <li>
+    <p>Add regularisation (e.g. L2, dropout)</p>
+  </li>
+  <li>
+    <p>Reduce the complexity of the neural network</p>
+  </li>
+  <li>
+    <p>Neural network architecture / hyper-parameters search</p>
+  </li>
 </ul>
 
 <p><br /></p>
 
-<p><strong>Data mismatching</strong></p>
+<p><a name="data-mismatching"></a><strong>Data mismatching</strong></p>
 
 <p><br /></p>
 
@@ -431,12 +487,24 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 <p><br /></p>
 
 <ul>
-  <li>error analysis</li>
-  <li>network structure / layer (train certain layers, depends on features)</li>
-  <li>learning rate</li>
-  <li>optimiser</li>
-  <li>loss function</li>
-  <li>activation function</li>
+  <li>
+    <p>error analysis</p>
+  </li>
+  <li>
+    <p>network structure / layer (train certain layers, depends on features)</p>
+  </li>
+  <li>
+    <p>learning rate</p>
+  </li>
+  <li>
+    <p>optimiser</p>
+  </li>
+  <li>
+    <p>loss function</p>
+  </li>
+  <li>
+    <p>activation function</p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -446,8 +514,12 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 <p><br /></p>
 
 <ul>
-  <li>transfer learning</li>
-  <li>multi-task learning</li>
+  <li>
+    <p>transfer learning</p>
+  </li>
+  <li>
+    <p>multi-task learning</p>
+  </li>
 </ul>
 
 <p><br /></p>
