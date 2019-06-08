@@ -31,6 +31,12 @@ title: Reflections on Developing Deep Learning Projects
 
 + [Diagnose network](#diagnose-network)
 
+    + [Error analysis](#error-analysis)
+    
+    + [Network structure](#network-structure)
+    
+    + [Convergence](#convergence)
+
 + [Other techniques](#other-techniques)
 
 
@@ -326,17 +332,57 @@ One caveat to keep in mind when undertaking this approach is that synthesised da
 
 <br>
 
-- error analysis
+In my experience, there was barely a time that a neural network is "ready-to-use" after the first training. The reality is that the performance of the first trained neural network is suboptimal, and diagnosis is required to further understand the issue in order to achieve improvements.
 
-- network structure / layer (train certain layers, depends on features)
+The followings are the areas that I have experienced to be effective in achieving better performance of the neural networks.
 
-- learning rate
+<br>
 
-- optimiser
+<a name="error-analysis"></a>**Error analysis**
 
-- loss function
+<br>
 
-- activation function
+First thing I would look at when diagnosing a trained network is the data. Mislabeled data in dev data set can not only be easily fixed but also affect the performance of the trained network significantly.
+
+One way to do so is to first check if there is mislabeled data in the dev set. If so, then to sample a small amount of mislabeled data and look through them to see how the data is mislabeled. Once the issues among the data is understood, fixes can be applied relatively easily.
+
+There is also a chance that mislabeled data exists in the training set. However, since the size of the training data is much larger than dev set in most cases, it would be a time-consuming task to go through the training set and fix the issue. As long as the mislabeled training data does't happen in a systematic way (i.e. mislabeled data is random and rare), they can be ignored.
+
+<br>
+
+<a name="network-structure"></a>**Network structure**
+
+<br>
+
+If the data is clean and accurate, the other potential factor that has a large impact on the performance is the neural network structure itself. Especially for large complex network, not every layer in the network needs to be trained. 
+
+The "shallow" layers (first `x` layers in the network) are trained to capture low-level features, while the "deeper" layers (last `x` layers) are trained to capture features in higher levels. 
+
++ If the training data set is not huge or the features are fairly common with the open-source data sets, then it may be a good idea to use the open-sourced pre-trained weights, fix the "shallow" layers (disable them in training as `non-trainable`), and only train the "deeper" layers to capture high-level features of the data set ([transfer learning](https://en.wikipedia.org/wiki/Transfer_learning)).
+
++ If the training data set is large (100,000+ data points) or the features are different from the open-source data set, then it is probably worth training the network from a "shallow" layer all the way to the last layer.
+
+<br>
+
+<a name="convergence"></a>**Convergence**
+
+<br>
+
+A strong indicator of how the training process performances is the convergence of the loss (or the accuracy). If the loss of the network is decreasing during the training and gradually converging to a certain value (ideally zero), then the training process is as expected.
+
+However, if the loss doesn't converge, in the case of backpropagation and gradient descent, it could be because local minimums or maximums are hit during the gradient descent process, reducing learning rate can be an effective fix to this problem.
+
+In other cases, modifications of loss function and activation function can be experimented. 
+
+For example, 
+
++ [sigmoid function](https://en.wikipedia.org/wiki/Logistic_function) is commonly used for binary classifiers, 
+
++ [softmax function](https://en.wikipedia.org/wiki/Softmax_function) is commonly used for multi-class classifiers,
+
++ [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))is very popular among deep neural networks, due to its fast speed, sparse activation, and better gradient propagation (fewer [vanishing gradient problems](https://en.wikipedia.org/wiki/Vanishing_gradient_problem).
+
+As for loss functions, for instance, the losses for object detection and recognition are coupled in the loss function in some two-phase convolutional neural networks, which might affect the overall performance. Decoupling them could potentially help to improve the overall accuracy.
 
 <br>
 
@@ -344,12 +390,15 @@ One caveat to keep in mind when undertaking this approach is that synthesised da
 
 <br>
 
-- transfer learning
+[Transfer learning](https://en.wikipedia.org/wiki/Transfer_learning) is very popular among training and development of deep learning neural networks. However, there is another technique that can be useful in certain circumstances, which is [Multi-task learning](https://en.wikipedia.org/wiki/Multi-task_learning).
 
-- multi-task learning
+Essentially, multi-task learning is to solve multiple learning tasks at the same time. By learning several tasks jointly and exploring the commonalities as well as differences among them, it can result in better learning efficiency and prediction accuracy. 
+
+As mentioned in the course, one advantage of using multi-task learning is to compromise the lack of data for a particular class by learning multiple related classes at the same time. A very simple example is that, when training a traffic-light recognition system, statistically speaking, we should have much more image data of green and red lights than that of orange light. By doing the training with data of green, red and orange lights all together, it will achieve a better recognition accuracy overall than by training them separately, due to the lack of data for orange light. 
+
+<br>
+
+#### Conclusion
 
 <br>
 
-#### Deployment
-
-<br>
