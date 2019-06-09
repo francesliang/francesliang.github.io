@@ -39,6 +39,8 @@ title: Reflections on Developing Deep Learning Projects
 
 + [Other techniques](#other-techniques)
 
++ [Conclusion](#conclusion)
+
 
 Although I used Artificial Neural Network in my thesis project for my bachelor of engineering, my journey of deep learning in the real world started about three years ago. The problem I was facing was to detect and segment logos from images with plain background. The deep learning solution I used was [Faster R-CNN](https://arxiv.org/abs/1506.01497). Before the project, I didn't know what [Convolutional Neural Network (CNN)](https://en.wikipedia.org/wiki/Convolutional_neural_network), [ImageNet](http://www.image-net.org/), [VGG16](https://neurohive.io/en/popular-networks/vgg16/) are, and of course I didn't know what [TensorFlow](https://www.tensorflow.org/) does either. I was extremely lucky to have my then colleague, a very competent Computer Vision Postdoc, as my mentor to help me set foot on my deep learning journey, which I'm forever grateful for.
 
@@ -402,3 +404,4 @@ As mentioned in the course, one advantage of using multi-task learning is to com
 
 <br>
 
+Deep learning is a fast growing domain that requires a lot of deep-dives to gain expertise. The techniques mentioned in this article is just a scratch on the surface, but I hope it's helpful to get a deep learning project off the ground. It is a summary of the problems and solutions that I have experienced and I found worth noting for future reference. That being said, I will keep exploring the domain and expanding the knowledge of deep learning.
