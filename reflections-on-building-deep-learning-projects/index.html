@@ -121,11 +121,11 @@
   </li>
 </ul>
 
-<p>Although I used Artificial Neural Network in my thesis project for my bachelor of engineering, my journey of deep learning in the real world started about three years ago. The problem I was facing was to detect and segment logos from images with plain background. The deep learning solution I used was <a href="https://arxiv.org/abs/1506.01497">Faster R-CNN</a>. Before the project, I didn’t know what <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">Convolutional Neural Network (CNN)</a>, <a href="http://www.image-net.org/">ImageNet</a>, <a href="https://neurohive.io/en/popular-networks/vgg16/">VGG16</a> are, and of course I didn’t know what <a href="https://www.tensorflow.org/">TensorFlow</a> does either. I was extremely lucky to have my then colleague, a very competent Computer Vision Postdoc, as my mentor to help me set foot on my deep learning journey, which I’m forever grateful for.</p>
+<p>Although I used Artificial Neural Network in my thesis project for my bachelor of engineering, my journey of deep learning in the real world started about three years ago. The problem I was facing was to detect and segment logos from images with plain background. The deep learning solution I used was <a href="https://arxiv.org/abs/1506.01497"><strong>Faster R-CNN</strong></a>. Before the project, I didn’t know what <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network"><strong>Convolutional Neural Network (CNN)</strong></a>, <a href="http://www.image-net.org/"><strong>ImageNet</strong></a>, <a href="https://neurohive.io/en/popular-networks/vgg16/"><strong>VGG16</strong></a> are, and of course I didn’t know what <a href="https://www.tensorflow.org/"><strong>TensorFlow</strong></a> does either. I was extremely lucky to have my then colleague, a very competent Computer Vision Postdoc, as my mentor to help me set foot on my deep learning journey, which I’m forever grateful for.</p>
 
-<p>Since then, I have done various deep learning projects, mainly in computer vision area, including image segmentation, image recognition, object detection and classification, speech detection on digits, and pattern recognition. Recently, an online course <a href="https://www.coursera.org/learn/machine-learning-projects">“Structuring Machine Learning Projects” by Andrew Ng</a> was mentioned to me, so I decided to check it out and see if it resonates what I have been doing these few years.</p>
+<p>Since then, I have done various deep learning projects, mainly in computer vision area, including image segmentation, image recognition, object detection and classification, speech detection on digits, and pattern recognition. Recently, an online course <a href="https://www.coursera.org/learn/machine-learning-projects"><strong>“Structuring Machine Learning Projects” by Andrew Ng</strong></a> was mentioned to me, so I decided to check it out and see if it resonates with what I have been doing these few years.</p>
 
-<p>Even though the difficulty of the course is listed as beginner level, I found it a very good material to consolidate the steps, approaches and techniques of undertaking a deep learning project, even for engineers with deep learning experience. It actually urged me to gather my thoughts on conducting my previous deep learning projects, and consolidate a clear guideline for my future projects.</p>
+<p>Even though the difficulty of the course is listed as beginner level, I found it a very good material to consolidate the steps, approaches and techniques of undertaking a deep learning project, even for engineers with deep learning experience. It actually urged me to gather my thoughts on my previous deep learning projects, and consolidate a clear guideline for my future projects.</p>
 
 <p><br /></p>
 
@@ -145,7 +145,7 @@
     <p>Once I decide to go with neural network, which classes/types of neural network should I use?</p>
 
     <p>Different classes and types of neural networks serve different purposes. 
- For example, Convolutional Neural Network is commonly applied to analyse visual image data (data with hierarchical pattern), while <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">Recurrent Neural Networks (RNN)</a> is more suitable for sequential data with its internal state (memory).</p>
+ For example, Convolutional Neural Network is commonly applied to analyse visual image data (data with hierarchical pattern), while <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network"><strong>Recurrent Neural Networks (RNN)</strong></a> is more suitable for sequential data with its internal state (memory).</p>
 
     <p>If Convolutional Neural Network is preferred, then the understanding goes deeper to which types of CNNs are the right approach.
  For instance, object categorisation requires classification neural network, whereas object detection requires Region Proposal or similar neural networks.</p>
@@ -177,7 +177,7 @@
 
 <p>I personally would like to set up and run the initial system quickly (which is also suggested by Andrew Ng), with minimum configuration and sample data. To me, this is the most efficient way to understand the overall structure of the system, the working mechanism of the network and the required format of the input data. Those are the main areas that I found useful to sophisticate the system in the later steps.</p>
 
-<p>When building a deep learning system, another important aspect is what the course called “Orthogonalization”. As hyperparameter tuning is almost inevitable in developing machine learning systems, we want to be able to change / configure one parameter at a time and compare the system performance, which is similar to <a href="https://en.wikipedia.org/wiki/A/B_testing">A/B testing</a> in software development. Therefore, flexible configuration in the system can significantly increase efficiency in the process of training network.</p>
+<p>When building a deep learning system, another important aspect is what the course called “Orthogonalization”. As hyperparameter tuning is almost inevitable in developing machine learning systems, we want to be able to change / configure one parameter at a time and compare the system performance, which is similar to <a href="https://en.wikipedia.org/wiki/A/B_testing"><strong>A/B testing</strong></a> in software development. Therefore, flexible configuration in the system can significantly increase efficiency in the process of training network.</p>
 
 <p><br /></p>
 
@@ -185,7 +185,7 @@
 
 <p><br /></p>
 
-<p>After setting up the “barebones neural network”, it comes to the step that seems to be the most boring, but in fact a very crucial one - data collection and splitting.</p>
+<p>After setting up the “barebones neural network”, it comes to the step that seems to be the most boring, but in fact a very crucial one - data preparation.</p>
 
 <p><br /></p>
 
@@ -232,7 +232,7 @@
   <li>
     <p>Relative small amount of data collection</p>
 
-    <p>If the size of the collected data is less than 100,000, then a traditional rule-of-thumb for data splitting can be applied: 70% for training and 30% for testing. Inside the 30% test set, data can be further split into 15% for evaluation (development) and 15% for actual testing.</p>
+    <p>If the size of the collected data is less than 100,000, then a traditional rule-of-thumb for data splitting can be applied: 70% for training and 30% for testing. Inside the 30% test set, data can be further split into 15% for development and 15% for actual testing.</p>
   </li>
   <li>
     <p>Relative large amount of data collection</p>
@@ -260,11 +260,11 @@ for training, 1% for development and 1% for testing. Since the size of the data 
     <p>The training data may be from a different distribution/source from the target data, but it should also contain a small amount of data that comes from the same distribution as the target data.</p>
   </li>
   <li>
-    <p>To better understand the neural network performance, it may be worth having another data set called “train-dev”, along with the previous training, dev and test sets. The train-dev set contains data that has same distribution as the training set, but different from that of dev/test sets.</p>
+    <p>To better understand the neural network performance, it may be worth having another data set called “training-dev” set, along with the previous training, dev and test sets. The training-dev set contains data that has same distribution as the training set, but different from that of dev/test sets.</p>
   </li>
 </ol>
 
-<p>This train-dev set is used for development only, instead of training. The purpose of it is to better understand the network performance and help diagnose the trained neural network, which will be discussed later in the article.</p>
+<p>This training-dev set is used for development only, instead of training. The purpose of it is to better understand the network performance and help diagnose the trained neural network, which will be discussed later in the article.</p>
 
 <p><br /></p>
 
@@ -316,16 +316,16 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <ol>
   <li>
-    <p><a href="https://en.wikipedia.org/wiki/Confusion_matrix">Confusion Matrix</a></p>
+    <p><a href="https://en.wikipedia.org/wiki/Confusion_matrix"><strong>Confusion Matrix</strong></a></p>
   </li>
   <li>
-    <p>Accuracy or <a href="https://en.wikipedia.org/wiki/F1_score">F1-score</a></p>
+    <p>Accuracy or <a href="https://en.wikipedia.org/wiki/F1_score"><strong>F1-score</strong></a></p>
   </li>
 </ol>
 
 <p>Confusion matrix gives a clear view of the neural network performance across all classes. It not only shows the accuracy of each class, but also shows how each class is mis-classified into other classes. This gives insights on which class(es) to focus on in order to improve the overall accuracy of the neural network.</p>
 
-<p>On the other hand, a single value metric, such as accuracy or F1-score, provides an overall measurement on how well the neural network performs, which is useful and efficient to compare performances across different iterations of trained networks. F1-score is considered to be a balanced measurement, as it takes both <a href="https://en.wikipedia.org/wiki/Precision_and_recall">precision and recall</a> into account. It not only examines if the neural network mis-classify data into incorrect classes (false positive), but also considers if the network is unable to classify data into certain classes (false negative).</p>
+<p>On the other hand, a single value metric, such as accuracy or F1-score, provides an overall measurement on how well the neural network performs, which is useful and efficient to compare performances across different iterations of trained networks. F1-score is considered to be a balanced measurement, as it takes both <a href="https://en.wikipedia.org/wiki/Precision_and_recall"><strong>precision and recall</strong></a> into account. It not only examines if the neural network mis-classify data into incorrect classes (false positive), but also considers if the network is unable to classify data into certain classes (false negative).</p>
 
 <p><br /></p>
 
@@ -333,7 +333,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p>When training a neural network, I usually first focus on the indicator of the completion of training - the convergence of loss. Only when the loss of the neural network converges during the training process, can we say the training is completed and the accuracies of both training and valuation can be trusted.</p>
+<p>When training a neural network, I usually first focus on the completion indicator of the training - the convergence of loss. Only when the loss of the neural network converges during the training process, can we say the training is completed and the accuracies of both training and valuation can be trusted.</p>
 
 <p>To understand how well the trained neural network is, as mentioned in the course, I would focus on several numbers:</p>
 
@@ -341,7 +341,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
   <li>
     <p>Human level error (Bayes error)</p>
 
-    <p><a href="https://en.wikipedia.org/wiki/Bayes_error_rate">Bayes error rate</a> is the lowest possible error rate of a classifier. Since human are extremely good at problems with natural perceptions, such as image classification and natural language processing, for those problems, human level error is close to Bayes error; therefore, they can be interchangeable.</p>
+    <p><a href="https://en.wikipedia.org/wiki/Bayes_error_rate"><strong>Bayes error rate</strong></a> is the lowest possible error rate of a classifier. Since human are extremely good at problems with natural perceptions, such as image classification and natural language processing, for those problems, human level error is close to Bayes error; therefore, they can be interchangeable.</p>
   </li>
   <li>
     <p>Training error</p>
@@ -360,7 +360,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
   </li>
 </ul>
 
-<p>These numbers are good indicators of the general problem of a neural network, such as high bias, high variance or data mis-matching.</p>
+<p>These numbers are good indicators of the general problems of a neural network, such as high bias, high variance or data mis-matching.</p>
 
 <p><br /></p>
 
@@ -368,7 +368,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p>In short, high <a href="https://en.wikipedia.org/wiki/Bias_of_an_estimator">bias</a> suggests that the neural network is not able to correlate the relations between data features and the corresponding output. This is also interpreted as underfitting.</p>
+<p>In short, high <a href="https://en.wikipedia.org/wiki/Bias_of_an_estimator"><strong>bias</strong></a> suggests that the neural network is not able to correlate the relations between data features and the corresponding output. This is also interpreted as underfitting.</p>
 
 <p>Take the following as an example:</p>
 
@@ -430,7 +430,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p>In contrast to bias, high <a href="https://en.wikipedia.org/wiki/Variance">variance</a> suggests that the neural network is too sensitive to small changes in the training data; thus, it is not able to provide a generalised model. This is also interpreted as overfitting.</p>
+<p>In contrast to bias, high <a href="https://en.wikipedia.org/wiki/Variance"><strong>variance</strong></a> suggests that the neural network is too sensitive to small changes in the training data; thus, it is not able to provide a generalised model. This is also interpreted as overfitting.</p>
 
 <p>For instance:</p>
 
@@ -470,7 +470,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p>The difference between training error and human level error is quite small (0.2%); however, the difference between dev error and training error is 5%, which is relative large in comparison. This implies that the training process overfit the training data and is unable to generalise the model to achieve a similar accuracy on the dev data set.</p>
+<p>The difference between training error and human level error is quite small (0.2%); however, the difference between dev error and training error is 5%, which is relative large in comparison. This implies that the training process overfits the training data and is unable to generalise the model to achieve a similar accuracy on the dev data set.</p>
 
 <p>The followings are common methods to avoid overfitting:</p>
 
@@ -576,13 +576,13 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p>If the data is clean and accurate, the other potential factor that has a large impact on the performance is the neural network structure itself. Especially for large complex network, not every layer in the network needs to be trained.</p>
+<p>If the data is clean and accurate, the other potential factor that has a large impact on the performance is the neural network structure itself.</p>
 
-<p>The “shallow” layers (first <code class="highlighter-rouge">x</code> layers in the network) are trained to capture low-level features, while the “deeper” layers (last <code class="highlighter-rouge">x</code> layers) are trained to capture features in higher levels.</p>
+<p>Not every layer in the network needs to be trained, especially for large complex network. The “shallow” layers (first <code class="highlighter-rouge">x</code> layers in the network) are trained to capture low-level features, while the “deeper” layers (last <code class="highlighter-rouge">x</code> layers) are trained to capture features in higher levels.</p>
 
 <ul>
   <li>
-    <p>If the training data set is not huge or the features are fairly common with the open-source data sets, then it may be a good idea to use the open-sourced pre-trained weights, fix the “shallow” layers (disable them in training as <code class="highlighter-rouge">non-trainable</code>), and only train the “deeper” layers to capture high-level features of the data set (<a href="https://en.wikipedia.org/wiki/Transfer_learning">transfer learning</a>).</p>
+    <p>If the training data set is not huge or the features are fairly common with the open-source data sets, then it may be a good idea to use the open-sourced pre-trained weights, fix the “shallow” layers (disable them in training as <code class="highlighter-rouge">non-trainable</code>), and only train the “deeper” layers to capture high-level features of the data set (<a href="https://en.wikipedia.org/wiki/Transfer_learning"><strong>transfer learning</strong></a>).</p>
   </li>
   <li>
     <p>If the training data set is large (100,000+ data points) or the features are different from the open-source data set, then it is probably worth training the network from a “shallow” layer all the way to the last layer.</p>
@@ -595,9 +595,9 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p>A strong indicator of how the training process performances is the convergence of the loss (or the accuracy). If the loss of the network is decreasing during the training and gradually converging to a certain value (ideally zero), then the training process is as expected.</p>
+<p>A strong indicator of how the training process performances is the convergence of the loss (or the accuracy). If the loss of the network is decreasing during the training and gradually converging to a certain value (ideally zero), then the training process is as expected. However, if the loss doesn’t converge, further diagnosis is needed to achieve a successful training process.</p>
 
-<p>However, if the loss doesn’t converge, in the case of backpropagation and gradient descent, it could be because local minimums or maximums are hit during the gradient descent process, reducing learning rate can be an effective fix to this problem.</p>
+<p>In the case of backpropagation and gradient descent, it could be because local minimums or maximums are hit during the gradient descent process, reducing learning rate can be an effective fix to this problem.</p>
 
 <p>In other cases, modifications of loss function and activation function can be experimented.</p>
 
@@ -605,17 +605,17 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <ul>
   <li>
-    <p><a href="https://en.wikipedia.org/wiki/Logistic_function">sigmoid function</a> is commonly used for binary classifiers,</p>
+    <p><a href="https://en.wikipedia.org/wiki/Logistic_function"><strong>sigmoid function</strong></a> is commonly used for binary classifiers,</p>
   </li>
   <li>
-    <p><a href="https://en.wikipedia.org/wiki/Softmax_function">softmax function</a> is commonly used for multi-class classifiers,</p>
+    <p><a href="https://en.wikipedia.org/wiki/Softmax_function"><strong>softmax function</strong></a> is commonly used for multi-class classifiers,</p>
   </li>
   <li>
-    <p><a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLU</a>is very popular among deep neural networks, due to its fast speed, sparse activation, and better gradient propagation (fewer <a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient problems</a>.</p>
+    <p><a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)"><strong>ReLU</strong></a> is very popular among deep neural networks, due to its fast speed, sparse activation, and better gradient propagation (fewer <a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem"><strong>vanishing gradient problems</strong></a>.</p>
   </li>
 </ul>
 
-<p>As for loss functions, for instance, the losses for object detection and recognition are coupled in the loss function in some two-phase convolutional neural networks, which might affect the overall performance. Decoupling them could potentially help to improve the overall accuracy.</p>
+<p>As for loss functions, they can be adjusted accordingly in different scenarios. For instance, the losses for object detection and recognition are coupled in the loss function in some two-phase convolutional neural networks, which might affect the overall performance. Decoupling them could potentially help to improve the overall accuracy.</p>
 
 <p><br /></p>
 
@@ -623,7 +623,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p><a href="https://en.wikipedia.org/wiki/Transfer_learning">Transfer learning</a> is very popular among training and development of deep learning neural networks. However, there is another technique that can be useful in certain circumstances, which is <a href="https://en.wikipedia.org/wiki/Multi-task_learning">Multi-task learning</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Transfer_learning"><strong>Transfer learning</strong></a> is very popular among training and development of deep learning neural networks. However, there is another technique that can be useful in certain circumstances, which is <a href="https://en.wikipedia.org/wiki/Multi-task_learning"><strong>Multi-task learning</strong></a>.</p>
 
 <p>Essentially, multi-task learning is to solve multiple learning tasks at the same time. By learning several tasks jointly and exploring the commonalities as well as differences among them, it can result in better learning efficiency and prediction accuracy.</p>
 
@@ -635,7 +635,7 @@ for training, 1% for development and 1% for testing. Since the size of the data 
 
 <p><br /></p>
 
-<p>Deep learning is a fast growing domain that requires a lot of deep-dives to gain expertise. The techniques mentioned in this article is just a scratch on the surface, but I hope it’s helpful to get a deep learning project off the ground. It is a summary of the problems and solutions that I have experienced and I found worth noting for future reference. That being said, I will keep exploring the domain and expanding the knowledge of deep learning.</p>
+<p>Deep learning is a fast growing domain that requires a lot of deep-dives to gain expertise. The techniques mentioned in this article are just a scratch on the surface, but I hope it’s helpful to get a deep learning project off the ground. It is a summary of the problems and solutions that I have experienced and I found worth noting for future reference. That being said, I will keep exploring the domain and expanding the knowledge of deep learning.</p>
 
 	</div>
 </ul>
