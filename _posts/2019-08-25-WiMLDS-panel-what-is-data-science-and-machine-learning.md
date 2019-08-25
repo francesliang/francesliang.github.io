@@ -99,7 +99,11 @@ The learning curve of solving a practical problem might be much more steep compa
 
     Testing often gets neglected in many machine learning projects, because of rapid iterations of model training. However, that should be the exact reason why testing needs to be in place. Test suit makes sure that the machine learning system works as expected using updated models. With the consideration of evaluation metrics in the test suit, performance/accuracy of updated models can also be assured.
 
+<br>
+
 #### Q: As someone just starting out I want to showcase my skills what is the best way to showcase that to potential employers/collaborators?
+
+<br>
 
 Build something and write a blog post or make a demo video about it. 
 
