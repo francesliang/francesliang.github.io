@@ -3,16 +3,6 @@ layout: post_entry
 title: Building Machine Learning Pipelines
 ---
 
-#### Contents
-
-+ [Directed Acyclic Graph](#directed-acyclic-graph)
-
-+ [Task-aware Pipeline](#task-aware-pipeline)
-
-+ [Task and Data-aware Pipeline](#task-and-data-aware-pipeline)
-
-+ [Conclusions](#conclusions)
-
 
 Machine learning projects usually involves the following three main components:
 
