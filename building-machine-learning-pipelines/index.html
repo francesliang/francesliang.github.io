@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset=utf-8 />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>  Building Machine Learning Pipelines |  XL Blog </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <link rel="shortcut icon" href="http://xinliang.co/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-84548628-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <nav class="row">
+        <a href="/index.html" role="button" id="homeBtn" class="btn pull-left btn-menu">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </a>
+        <div class="btn-group">
+          <button type="button" id="menuBtn" class="btn btn-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Home</a></li>
+             <li class="divider"></li>
+            <li><a href="/about.html">About</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+          <ul class="content"> 
+	<h1 style="padding-top: 50px">Building Machine Learning Pipelines</h1>
+	<time>27 December 2019</time>
+	<div style="padding-top: 60px">
+		<h4 id="contents">Contents</h4>
+
+<ul>
+  <li>
+    <p><a href="#directed-acyclic-graph">Directed Acyclic Graph (DAG)</a></p>
+  </li>
+  <li>
+    <p><a href="#task-aware-pipeline">Task-aware Pipeline</a></p>
+
+    <ul>
+      <li><a href="#consecution">Consecution</a></li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="#task-and-data-aware-pipeline">Task and Data-aware Pipeline</a></p>
+
+    <ul>
+      <li><a href="#tensorflow-extended">Tensorflow Extended</a></li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="#conclusions">Conclusions</a></p>
+  </li>
+</ul>
+
+<p>Machine learning projects usually involves the following three main components:</p>
+
+<ul>
+  <li>
+    <p>a dataset for machines to learn and find patterns from</p>
+  </li>
+  <li>
+    <p>algorithms written as codes to instruct machines to learn and identify patterns</p>
+  </li>
+  <li>
+    <p>model files as a result of the above two to identify patterns or do predictions on future data input</p>
+  </li>
+</ul>
+
+<p><img src="../content/machine-learning-pipelines/whats-involved-in-ml.png" alt="Machine learning diagram" /></p>
+
+<p>Even though these three components don’t seem to be overly complicated, there are many moving pieces underneath each component;</p>
+
+<p>Before the algorithms can be run on the dataset, the data has to go through:</p>
+
+<ul>
+  <li>
+    <p>Data import</p>
+  </li>
+  <li>
+    <p>Data cleansing</p>
+  </li>
+  <li>
+    <p>Data formatting</p>
+  </li>
+  <li>
+    <p>Definition of data schema</p>
+  </li>
+  <li>
+    <p>Data processing</p>
+  </li>
+</ul>
+
+<p>Once the data has been processed, it reaches the stage of model development, which includes:</p>
+
+<ul>
+  <li>
+    <p>Iterative model training</p>
+  </li>
+  <li>
+    <p>Model evaluations</p>
+  </li>
+  <li>
+    <p>Model validation</p>
+  </li>
+</ul>
+
+<p>Then a fully-developed model will go through the followings to be useful at pattern identification on future input data:</p>
+
+<ul>
+  <li>
+    <p>Model inference</p>
+  </li>
+  <li>
+    <p>Model deployment</p>
+  </li>
+</ul>
+
+<p>Before we have a structured pipeline for machine learning projects, the pieces required as mentioned above are like a set of puzzle pieces scattered all over the place:</p>
+
+<p><img src="../content/machine-learning-pipelines/initial-pipeline-puzzles.png" alt="Initial pipeline puzzles" /></p>
+
+<p>It would be nice if a structure is in place to put all the puzzle pieces together in a particular order, so that we don’t need to repeat the arrangement during the iterative model development process, instead the structure can be set-up and re-used quickly, like this:</p>
+
+<p><img src="../content/machine-learning-pipelines/arranged-pipeline-puzzles.png" alt="Arranged pipeline puzzles" /></p>
+
+<p>This is why a pipeline is necessary for machine learning projects, so that the infrastucture of the development process is reproducible and we don’t have to repeat ourselves.</p>
+
+<p>A pipeline consists of a chain of processing elements, arranged in a particular order so that the output of each element is the input of the next. Therefore, data or information can flow through the pipeline from one end to the other. The structure of such a pipeline is called Directed Acyclic Graph (DAG).</p>
+
+<p><br /></p>
+
+<h4 id="directed-acyclic-graph">Directed Acyclic Graph</h4>
+
+<p><br /></p>
+
+<p>A directed acyclic graph is</p>
+
+<blockquote>
+  <p>a finite directed graph with no directed cycles, It consists of finitely many vertices and edges (also called arcs), with each edge directed from one vertex to another, such that there is no way to start at any vertex v and follow a consistently-directed sequence of edges that eventually loops back to v again.</p>
+</blockquote>
+
+<p>Essentially, a directed acyclic graph is:</p>
+
+<ul>
+  <li>a graph - a structure consisting of nodes that are connected to each other with edges</li>
+</ul>
+
+<p><img src="../content/machine-learning-pipelines/graph.png" alt="Graph" /></p>
+
+<ul>
+  <li>directed - the connections between the nodes, i.e edges, have a direction, so that going from node A to B is not the same as going from node B to A</li>
+</ul>
+
+<p><img src="../content/machine-learning-pipelines/directed.png" alt="Directed" /></p>
+
+<ul>
+  <li>acyclic - non-circular, moving from node to node by following the edges, you will never encounter the same node for the second time</li>
+</ul>
+
+<p><img src="../content/machine-learning-pipelines/acyclic.png" alt="Acyclic" /></p>
+
+<p>A Directed Acyclic Graph (DAG) is similar to a tree data structure, they both:</p>
+
+<ul>
+  <li>
+    <p>are a graph</p>
+  </li>
+  <li>
+    <p>have a root node</p>
+  </li>
+  <li>
+    <p>are connected and directed</p>
+  </li>
+  <li>
+    <p>have no circle</p>
+  </li>
+</ul>
+
+<p>The difference between these two structure is that:</p>
+
+<p><img src="../content/machine-learning-pipelines/tree-and-dag.png" alt="Tree and DAG" /></p>
+
+<ul>
+  <li>
+    <p>Each node in a tree can only have one parent node; therefore, only one path between two nodes in a tree</p>
+  </li>
+  <li>
+    <p>Each node in a DAG can one or more than one parent nodes; therefore, there is one or more paths between two nodes in a DAG</p>
+  </li>
+</ul>
+
+<p>Directed Acyclic Graph is the foundation of pipeline structure. In the context of machine learning pipelines, a Directed Acyclic Graph is a collection of all the tasks to be run, organised in a way that reflects their relationships and dependencies. Due to the nature of pipeline functionality, there are two main types of pipelines in machine learning projects:</p>
+
+<ol>
+  <li>
+    <p>Task-aware pipeline</p>
+  </li>
+  <li>
+    <p>Task and data-aware pipeline</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<h4 id="task-aware-pipeline">Task-aware Pipeline</h4>
+
+<p><br /></p>
+
+<p>A task-aware pipeline is to kick off the next stage of the pipeline, by simply starting the next component as soon as the previous component finishes, the data flow is mainly in memory. It is suitable for smaller-scale projects with a light-weight setup and a relatively short execution cycle.</p>
+
+<p>Take one of my projects as an example. The project is to develop an application for text recognition. At the beginning, a lightweight pipeline is desired to be implemented in the application using existing Optical Character Recognition (OCR) services. The flow of the tasks are as following:</p>
+
+<p><img src="../content/machine-learning-pipelines/task-aware-application.png" alt="Task-aware application" /></p>
+
+<p>Text data in PDF format comes in, gets sent to existing OCR service; specific features, such as date, number etc, are extracted from the recognised text, and then the extracted information is output to desired destinations. It is relatively straight-forward.</p>
+
+<p>The end goal is to deploy the application as a serverless function within a serverless architecture, with no database involved to store any metadata; data comes in, goes through the collection of defined tasks in a defined order and the results are output to defined destinations.</p>
+
+<p>Here is an example of a sample pipeline:</p>
+
+<p><img src="../content/machine-learning-pipelines/sample-pipeline.png" alt="Sample pipeline" /></p>
+
+<p>A log node to indicate the start of a pipeline; import node to import data from data storage; process node to process imported data, in my case, sending image data to existing OCR services for text recognition; multiple feature nodes to extract target features, such as date and numbers; output node to send results of the pipeline to desire destinations, such as downstream services or data storage.</p>
+
+<p>In Python, such a pipeline can be written as the following:</p>
+
+<p><img src="../content/machine-learning-pipelines/no-pipeline.png" alt="No pipeline" /></p>
+
+<p>All the necessary functions are defined under a <code class="highlighter-rouge">Pipeline</code> class, task functions are manually called and their outputs are passed down through the pipeline by users.</p>
+
+<p>Although this serves the purpose of having a structured pipeline in place for the application, the task definitions are unclear, not that organised and readable. The definition of the pipeline structure is not that readable and clear either. Since all the functionality lives under one big class and is tangled together, it can be difficult for multiple people in a team to work on the same pipeline application.</p>
+
+<p>One way to improve such a pipeline structure is to utilise existing pipeline framework libraries. Pipeline abstraction framework helps to make codes tidy and modular.</p>
+
+<p><br /></p>
+
+<p><a name="consecution"></a><strong>Consecution</strong></p>
+
+<p><br /></p>
+
+<p>There are many existing framework libraries available to build task-aware pipelines. What I ended up using for this particular application is a Python library called <a href="https://github.com/robdmc/consecution"><code class="highlighter-rouge">consecution</code></a>. <code class="highlighter-rouge">consecution</code> has an easy-to-use and lightweight pipeline abstraction. It provides a system for wiring together simple processing nodes to form a Directed Acyclic Graph, which is fed with a python iterable. It is built using synchronous, single-threaded execution strategies designed to run efficiently on a single core. Additionally, it is implemented purely in Python, which is convenient for me when I try to deploy it as a serverless function, since the application is also written in Python.</p>
+
+<p>To create a pipeline with <code class="highlighter-rouge">consecution</code> library:</p>
+
+<p><img src="../content/machine-learning-pipelines/create-pipeline.png" alt="Create pipeline" /></p>
+
+<p>A global state is defined to hole useful information through all the nodes in the pipeline; a <code class="highlighter-rouge">Pipeline</code> object is instantiated with defined nodes arranged in a desired order.</p>
+
+<p>The definitions of each node in the pipeline are:</p>
+
+<p><img src="../content/machine-learning-pipelines/pipeline-code.png" alt="Pipeline code" /></p>
+
+<p>In <code class="highlighter-rouge">consecution</code>, each task is captured as a <code class="highlighter-rouge">Node</code> class with a mandatory <code class="highlighter-rouge">process()</code> function. The <code class="highlighter-rouge">process()</code> function is where the task of a node is defined. The <code class="highlighter-rouge">Node</code> class also comes with a <code class="highlighter-rouge">push()</code> function for passing task output to the next node. Output from upstream task node is the input of the downstream task node. This is implemented in the library by default, as an interface contract between nodes in the pipeline.</p>
+
+<p>With a pipeline abstraction framework, the definitions of both pipeline tasks and structure are very clear, readable and self-contained. It also has a clear boundary of modularity, which is helpful when multiple people are working on the same pipeline. As long as the format of inputs and outputs are agreed upon, the actual implementation and development of each task (node) can be distributed among the team and worked on separately.</p>
+
+<p>Task-aware pipeline is useful when applications are lightweight and at a smaller-scale. However, if the application requires complex machine learning algorithms and model training with large datasets, task-aware pipeline may not be the right tool anymore.</p>
+
+<p><br /></p>
+
+<h4 id="task-and-data-aware-pipeline">Task and Data-aware Pipeline</h4>
+
+<p><br /></p>
+
+<p>Later on in my project example mentioned above, I have to collect my own data and train my own model to get better performance on feature extractions:</p>
+
+<p><img src="../content/machine-learning-pipelines/task-data-aware-application.png" alt="Task and data-aware application" /></p>
+
+<p>Besides, the trained model will be deployed in production environment.</p>
+
+<p>When it comes to model training and productionising a machine learning pipeline, the followings are some factors need to consider:</p>
+
+<ul>
+  <li>
+    <p>Monitoring - to monitor the pipeline running, and get quick notice of its completion or where it fails if it does</p>
+  </li>
+  <li>
+    <p>Validation - to make sure the new model used in the application provides the same or better performance than the previous version</p>
+  </li>
+  <li>
+    <p>Continuity - to pick up where it fails and resume the pipeline from the last point of failure easily</p>
+  </li>
+  <li>
+    <p>Reproducibility - be able to easily run the pipeline multiple times, set it up and run in different locations (servers)</p>
+  </li>
+  <li>
+    <p>Traceability - to understand what the output of each task in the pipeline looks like, make sure the task outputs are as expected, and be easy to debug when it fails</p>
+  </li>
+  <li>
+    <p>Scalability - potentially to run the pipeline with huge dataset without compromising too much speed, such as running it on a GPU or other resources</p>
+  </li>
+  <li>
+    <p>Modularity - to keep the pipeline modular with clear task definitions</p>
+  </li>
+  <li>
+    <p>Consistency - to make sure the model in training and inference are consistent</p>
+  </li>
+</ul>
+
+<p>At this stage, a task and data-aware pipeline is needed, to store all the artifacts from every component over many executions of the pipeline. It is much more powerful and almost a requirement for any sizable machine learning production system.</p>
+
+<p>A task and data-aware pipeline can be traced easily if something goes wrong at a certain point; can be resumed from the last point of failure; helps to validate the updated model by comparing it with the previous trained model; increases the visibility of the execution progress, because you can see the output of each task.</p>
+
+<p><br /></p>
+
+<p><a name="tensorflow-extended"></a><strong>TensorFlow Extended</strong></p>
+
+<p><br /></p>
+
+<p>With all the factors mentioned above considered, I decided to give <code class="highlighter-rouge">TensorFlow Extended</code> a go.</p>
+
+<p><code class="highlighter-rouge">TensorFlow Extended</code> (TFX) is a framework library that implements a task and data-aware pipeline architecture and pre-defines a sequence of components that implement a machine learning pipeline, which includes modeling, training, serving inference and managing deployments. It typically includes the following components:</p>
+
+<p><img src="../content/machine-learning-pipelines/tensorflow-extended.png" alt="TensorFlow Extended" /></p>
+
+<ul>
+  <li>
+    <p>ExampleGen - the initial input component of a pipeline that ingests and optionally splits the input dataset</p>
+  </li>
+  <li>
+    <p>StatisticsGen - calculates statistics for the dataset</p>
+  </li>
+  <li>
+    <p>SchemaGen - examines the statistics and creates a data schema</p>
+  </li>
+  <li>
+    <p>ExampleValidator - looks for anomalies and missing values in the dataset</p>
+  </li>
+  <li>
+    <p>Transform - performs feature engineering on the dataset</p>
+  </li>
+  <li>
+    <p>Trainer - trains the model</p>
+  </li>
+  <li>
+    <p>Evaluator - performs deep analysis of the training results</p>
+  </li>
+  <li>
+    <p>ModelValidator - helps you validate your exported models, ensuring that they are “good enough” to be pushed to production</p>
+  </li>
+  <li>
+    <p>Pusher - deploys the model on a serving infrastructure</p>
+  </li>
+</ul>
+
+<p>In <code class="highlighter-rouge">TensorFlow Extended</code>, each component has three sub-components, driver, executor and publisher:</p>
+
+<p><img src="../content/machine-learning-pipelines/tfx-component.png" alt="TFX Component" /></p>
+
+<ul>
+  <li>
+    <p>Driver - to query metadata, produced by an earlier component, from the metadata store and supply it to the executor</p>
+  </li>
+  <li>
+    <p>Executor - where users define task functionality for each component</p>
+  </li>
+  <li>
+    <p>Publisher - to take the results of the executor and store them in the metadata store to be used by a later component in the pipeline</p>
+  </li>
+</ul>
+
+<p>The metadata store, a database by default, provides data provenance to keep track of data and status at each pipeline run; therefore, allows the pipeline to resume from last failing step without the need to re-run the entire pipeline at each failure.</p>
+
+<p>As the data moves through the pipeline, components will read metadata produced by an earlier component from the metadata store, execute the defined task, and write metadata that will probably be used by a later component in the pipeline to the metadata store.</p>
+
+<p>To put all the components together in a machine learning pipeline, define the sequence of components that make up the pipeline, and manage their execution, an orchestrator is necessary. An orchestrator provides a management interface that can be used to trigger tasks and monitor components. <code class="highlighter-rouge">TensorFlow Extended</code> provides a few options as its orchestrator, <code class="highlighter-rouge">Airflow</code>, <code class="highlighter-rouge">Beam</code> and <code class="highlighter-rouge">Kubeflow</code>.</p>
+
+<p><code class="highlighter-rouge">Airflow</code> is the orchestrator of components to form my <code class="highlighter-rouge">TensorFlow Extended</code> pipeline. It connects components together in the defined order via the concept of Directed Acyclic Graph, implements the interfaces between components, and provides:</p>
+
+<ul>
+  <li>
+    <p>Monitoring of the pipeline running to see if each component succeeds or fails</p>
+  </li>
+  <li>
+    <p>Continuity feature to resume pipeline from last stop point</p>
+  </li>
+  <li>
+    <p>Reproducibility to trigger the pipeline multiple times</p>
+  </li>
+</ul>
+
+<p>The following is my TFX pipeline running on <code class="highlighter-rouge">Airflow</code>:</p>
+
+<p><img src="../content/machine-learning-pipelines/airflow.png" alt="Airflow" /></p>
+
+<p><br /></p>
+
+<p><em>ImportExampleGen</em></p>
+
+<p><br /></p>
+
+<p><code class="highlighter-rouge">ImportExampleGen</code> component reads in data from various supported sources and types, splits it into training and evaluation datasets, and formats the data into <code class="highlighter-rouge">tf.examples</code>. It currently <code class="highlighter-rouge">csv</code> or <code class="highlighter-rouge">tfrecord</code> (with <code class="highlighter-rouge">tf.example</code> data format) as data source formats.</p>
+
+<p>The following is an example on how to construct the feature of image data for handwritten digit recognition into <code class="highlighter-rouge">tfrecord</code>:</p>
+
+<p><img src="../content/machine-learning-pipelines/feature-data-format.png" alt="Feature data format" /></p>
+
+<p><img src="../content/machine-learning-pipelines/feature-util-functions.png" alt="Feature util functions" /></p>
+
+<p>The selected features of the image data are: image height, image width, image depth, class label of image data and raw image array.</p>
+
+<p><br /></p>
+
+<p><em>SchemaGen</em></p>
+
+<p><br /></p>
+
+<p>Based on the features stored in <code class="highlighter-rouge">tfrecord</code> for each data point and the statistics of the data which were generated by <code class="highlighter-rouge">StatisticsGen</code> (another component in TFX pipeline), <code class="highlighter-rouge">SchemaGen</code> component tries to infer the basic properties of the features:</p>
+
+<p><img src="../content/machine-learning-pipelines/feature-schema.png" alt="Feature schema" /></p>
+
+<p>It includes:</p>
+
+<ul>
+  <li>
+    <p>feature name</p>
+  </li>
+  <li>
+    <p>data types of feature values</p>
+  </li>
+  <li>
+    <p>data dimensions(<code class="highlighter-rouge">10</code> for ten single digits in “label” and <code class="highlighter-rouge">784</code> for <code class="highlighter-rouge">28 (image height) x 28 (image width)</code> in “image_raw”)</p>
+  </li>
+</ul>
+
+<p>Other downstream tasks in the pipeline will refer to this data schema for features in the dataset.</p>
+
+<p><br /></p>
+
+<p><em>Transform</em></p>
+
+<p><br /></p>
+
+<p>Once the raw data has been imported, the data format and schema have been defined, the next step in the pipeline is to pre-process the data, which is performed in the <code class="highlighter-rouge">Transform</code> component in a TFX pipeline.</p>
+
+<p><code class="highlighter-rouge">Transform</code> component will make a full pass over the data, one full epoch, and create <code class="highlighter-rouge">tf</code> Operations (Ops) to apply the defined pre-processing operations (nodes to perform computations on/with tensors) to the data.</p>
+
+<p>In this example, I apply normalisation to the image data before model training:</p>
+
+<p><img src="../content/machine-learning-pipelines/preprocessing-fn.png" alt="Preprocessing Fn" /></p>
+
+<p><code class="highlighter-rouge">Transform</code> will then output a TensorFlow graph with those (constants and) ops. That graph is hermetic, which means it contains all of the information needed to apply those transformations, and will form the input stage for the model. These transformations will be applied consistently between training and serving, which eliminates training/serving skew.</p>
+
+<p><br /></p>
+
+<p><em>Trainer</em></p>
+
+<p><br /></p>
+
+<p>After the data has been transformed with the pre-processing step, the pipeline reaches the input stage to model training, along with the data schema.</p>
+
+<p>Models are built and trained in the <code class="highlighter-rouge">Trainer</code> component. TFX mainly supports <code class="highlighter-rouge">tf.estimator</code> as the model framework. Conveniently, there is also a <code class="highlighter-rouge">model_to_estimator</code> function to convert a <code class="highlighter-rouge">Keras</code> model to a <code class="highlighter-rouge">tf.estimator</code>. Since <code class="highlighter-rouge">Keras</code> framework is very popular in machine learning model development, it is useful to have an option to develop complex models using a familiar framework library and convert them to objects that are supported by <code class="highlighter-rouge">TensorFlow Extended</code> as the last simple step.</p>
+
+<p>One thing to note is that, it would be better to use <code class="highlighter-rouge">tf.keras</code> for building models if <code class="highlighter-rouge">Keras</code> is preferred, otherwise, the conversion may not work too well in my experience.</p>
+
+<p>Here is the function to build an estimator, I used the Convolutional Neural Network for MNIST as an example:</p>
+
+<p><img src="../content/machine-learning-pipelines/build-estimator.png" alt="Build Estimator" /></p>
+
+<p>When training is completed, <code class="highlighter-rouge">Trainer</code> will save two different <code class="highlighter-rouge">SavedModel</code> files. One is a <code class="highlighter-rouge">SavedModel</code> file that will be ready to be deployed to production, and the other is an <code class="highlighter-rouge">EvalSavedModel</code> file that will be used for analysing the performance of the trained model.</p>
+
+<p><code class="highlighter-rouge">SavedModel</code> essentially is the TensorFlow graph for both training and inference. While <code class="highlighter-rouge">EvalSavedModel</code> is the “evaluation graph”, a special <code class="highlighter-rouge">SavedModel</code> that contains additional information (such as labels of the data, along with feature schema and input placeholder tensors) that allows <code class="highlighter-rouge">TensorFlow Model Analysis</code> framework to compute the same evaluation metrics defined in the model.</p>
+
+<p><br /></p>
+
+<p><em>ModelValidator</em></p>
+
+<p><br /></p>
+
+<p>Once a model is trained, there is a very important step in TFX pipeline template, <code class="highlighter-rouge">ModelValidator</code>, to validate the new model before deploying it to production.</p>
+
+<p>Essentially, <code class="highlighter-rouge">ModelValidator</code> evaluates both models on a dataset and computes their performance on metrics (for example, AUC, loss etc.). It checks if the performance of the newly-trained model is the same as or better than that of the baseline model (previously-trained model with the best accuracy), according to the criteria users define. If it’s the same or better at shooting the right target, than the model will get pushed to <code class="highlighter-rouge">Pusher</code> component and be deployment-ready. Otherwise, too bad, it doesn’t make it to the finish line and won’t get pushed to the next component in the pipeline.</p>
+
+<p><img src="../content/machine-learning-pipelines/model-validator.png" alt="Model Validator" /></p>
+
+<p>The <code class="highlighter-rouge">SavedModel</code> file, that gets pushed to <code class="highlighter-rouge">Pusher</code> and is ready for deployment, contains all the information needed to perform both pre-processing (transformation) and inference, so no pre-processing or inference code is needed to run the model in serving.</p>
+
+<p><br /></p>
+
+<p><em>Take-away</em></p>
+
+<p><br /></p>
+
+<p>This is an overview of the <code class="highlighter-rouge">TensorFlow Extended</code> pipeline framework. Its modularity and standardised machine learning components  provide a team-friendly template to work on machine learning projects. By default, an unspoken agreement or contract is established among the team; therefore, tasks can be distributed easily and worked on independently.</p>
+
+<p>In my opinion, TFX has a pretty well-defined pipeline template with all the necessary steps considered. It also take into account some important and necessary but sometimes neglected steps in the pipeline. For example, we often hear people saying that updated models improve predictions in some areas but perform worse in the others. Step like <code class="highlighter-rouge">ModelValidator</code> can help to eliminate such a setback.</p>
+
+<p><code class="highlighter-rouge">TensorFlow Extended</code> also uses generic machine learning terminologies, which are useful for new comers to learn how a machine learning project is conducted in practice.</p>
+
+<p><br /></p>
+
+<h4 id="conclusions">Conclusions</h4>
+
+<p><br /></p>
+
+<p>Task-aware and task-data-aware pipelines are useful in different use cases of machine learning projects. If a lightweight and straightforward framework is preferred to get the project setup and run quickly, then library like <code class="highlighter-rouge">consecution</code> could be a preferable choice.</p>
+
+<p>On the other hand, if models need to be trained with complex neural networks and large datasets, with productionising the models as a goal, then a more comprehensive framework such as <code class="highlighter-rouge">TenworFlow Extended</code> might be more suitable.</p>
+
+<p>NOTES:</p>
+
+<ul>
+  <li>
+    <p>The link to the talk with the same topic I gave in DevFest 2019 Melbourne is <a href="https://www.youtube.com/watch?v=32hRmUQaBt4">here</a>.</p>
+  </li>
+  <li>
+    <p>The code snippets can be found in <a href="https://github.com/francesliang/ml-pipelines">this</a> <code class="highlighter-rouge">github</code> repository.</p>
+  </li>
+  <li>
+    <p>A practical implementation of <code class="highlighter-rouge">TensorFlow Extended</code> can be found in <a href="https://github.com/francesliang/biobert-pipeline">this</a> <code class="highlighter-rouge">github</code> repository.</p>
+  </li>
+</ul>
+
+	</div>
+</ul>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      
+
+      <nav class="row" style="padding-top: 50px">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 PageNavigation">
+          
+            <a href="/WiMLDS-panel-what-is-data-science-and-machine-learning/" class="prev">
+              <span class="glyphicon glyphicon-menu-left pull-left" aria-hidden="true"></span>
+            </a>
+          
+
+          
+            <a href="/index.html">
+              <span class="glyphicon glyphicon-menu-right pull-right" aria-hidden="true"></span>
+            </a>
+          
+        </div>
+
+          <div class="col-md-2"></div>
+      </nav>
+
+      <div class="row row-comments">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div id="disqus_thread" class="disqus_thread"></div>
+          
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'xl-blog';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
