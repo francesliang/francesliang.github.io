@@ -61,17 +61,9 @@
   </li>
   <li>
     <p><a href="#task-aware-pipeline">Task-aware Pipeline</a></p>
-
-    <ul>
-      <li><a href="#consecution">Consecution</a></li>
-    </ul>
   </li>
   <li>
     <p><a href="#task-and-data-aware-pipeline">Task and Data-aware Pipeline</a></p>
-
-    <ul>
-      <li><a href="#tensorflow-extended">TensorFlow Extended</a></li>
-    </ul>
   </li>
   <li>
     <p><a href="#conclusions">Conclusions</a></p>
@@ -180,34 +172,34 @@
 <p>Essentially, a directed acyclic graph is:</p>
 
 <ul>
-  <li>a graph - a structure consisting of nodes that are connected to each other with edges</li>
+  <li>
+    <p>a graph - a structure consisting of nodes that are connected to each other with edges</p>
+
+    <p><br /></p>
+
+    <p><img src="../content/machine-learning-pipelines/graph.png" alt="Graph" /></p>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p>directed - the connections between the nodes, i.e edges, have a direction, so that going from node A to B is not the same as going from node B to A</p>
+
+    <p><br /></p>
+
+    <p><img src="../content/machine-learning-pipelines/directed.png" alt="Directed" /></p>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p>acyclic - non-circular, moving from node to node by following the edges, you will never encounter the same node for the second time</p>
+
+    <p><br /></p>
+
+    <p><img src="../content/machine-learning-pipelines/acyclic.png" alt="Acyclic" /></p>
+
+    <p><br /></p>
+  </li>
 </ul>
-
-<p><br /></p>
-
-<p><img src="../content/machine-learning-pipelines/graph.png" alt="Graph" /></p>
-
-<p><br /></p>
-
-<ul>
-  <li>directed - the connections between the nodes, i.e edges, have a direction, so that going from node A to B is not the same as going from node B to A</li>
-</ul>
-
-<p><br /></p>
-
-<p><img src="../content/machine-learning-pipelines/directed.png" alt="Directed" /></p>
-
-<p><br /></p>
-
-<ul>
-  <li>acyclic - non-circular, moving from node to node by following the edges, you will never encounter the same node for the second time</li>
-</ul>
-
-<p><br /></p>
-
-<p><img src="../content/machine-learning-pipelines/acyclic.png" alt="Acyclic" /></p>
-
-<p><br /></p>
 
 <p>A Directed Acyclic Graph (DAG) is similar to a tree data structure, they both:</p>
 
