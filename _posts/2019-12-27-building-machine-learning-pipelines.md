@@ -9,11 +9,7 @@ title: Building Machine Learning Pipelines
 
 + [Task-aware Pipeline](#task-aware-pipeline)
 
-    + [Consecution](#consecution)
-
 + [Task and Data-aware Pipeline](#task-and-data-aware-pipeline)
-
-    + [TensorFlow Extended](#tensorflow-extended)
 
 + [Conclusions](#conclusions)
 
@@ -98,27 +94,27 @@ Essentially, a directed acyclic graph is:
 
 * a graph - a structure consisting of nodes that are connected to each other with edges
 
-<br>
-
-![Graph](../content/machine-learning-pipelines/graph.png)
+    <br>
     
-<br>
+    ![Graph](../content/machine-learning-pipelines/graph.png)
+        
+    <br>
 
 * directed - the connections between the nodes, i.e edges, have a direction, so that going from node A to B is not the same as going from node B to A
 
-<br>
-
-![Directed](../content/machine-learning-pipelines/directed.png)
+    <br>
     
-<br>
+    ![Directed](../content/machine-learning-pipelines/directed.png)
+        
+    <br>
 
 * acyclic - non-circular, moving from node to node by following the edges, you will never encounter the same node for the second time 
 
-<br>
-
-![Acyclic](../content/machine-learning-pipelines/acyclic.png)
-
-<br>
+    <br>
+    
+    ![Acyclic](../content/machine-learning-pipelines/acyclic.png)
+    
+    <br>
 
 
 A Directed Acyclic Graph (DAG) is similar to a tree data structure, they both:
