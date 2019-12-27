@@ -57,7 +57,7 @@
 
 <ul>
   <li>
-    <p><a href="#directed-acyclic-graph">Directed Acyclic Graph (DAG)</a></p>
+    <p><a href="#directed-acyclic-graph">Directed Acyclic Graph</a></p>
   </li>
   <li>
     <p><a href="#task-aware-pipeline">Task-aware Pipeline</a></p>
@@ -70,7 +70,7 @@
     <p><a href="#task-and-data-aware-pipeline">Task and Data-aware Pipeline</a></p>
 
     <ul>
-      <li><a href="#tensorflow-extended">Tensorflow Extended</a></li>
+      <li><a href="#tensorflow-extended">TensorFlow Extended</a></li>
     </ul>
   </li>
   <li>
@@ -92,7 +92,11 @@
   </li>
 </ul>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/whats-involved-in-ml.png" alt="Machine learning diagram" /></p>
+
+<p><br /></p>
 
 <p>Even though these three components don’t seem to be overly complicated, there are many moving pieces underneath each component;</p>
 
@@ -123,14 +127,14 @@
     <p>Iterative model training</p>
   </li>
   <li>
-    <p>Model evaluations</p>
+    <p>Model evaluation</p>
   </li>
   <li>
     <p>Model validation</p>
   </li>
 </ul>
 
-<p>Then a fully-developed model will go through the followings to be useful at pattern identification on future input data:</p>
+<p>Then a fully-developed model will go through the followings before it can be useful at pattern identification on future input data in the real world:</p>
 
 <ul>
   <li>
@@ -141,15 +145,23 @@
   </li>
 </ul>
 
-<p>Before we have a structured pipeline for machine learning projects, the pieces required as mentioned above are like a set of puzzle pieces scattered all over the place:</p>
+<p>Without a structured pipeline for machine learning projects, the pieces required as mentioned above are like a set of puzzle pieces scattered all over the place:</p>
+
+<p><br /></p>
 
 <p><img src="../content/machine-learning-pipelines/initial-pipeline-puzzles.png" alt="Initial pipeline puzzles" /></p>
 
-<p>It would be nice if a structure is in place to put all the puzzle pieces together in a particular order, so that we don’t need to repeat the arrangement during the iterative model development process, instead the structure can be set-up and re-used quickly, like this:</p>
+<p><br /></p>
+
+<p>It would be nice if a structure is in place to put all the puzzle pieces together in a particular order, so that we don’t need to repeat the arrangement process during iterative model development, instead the structure can be set-up and re-used quickly, like this:</p>
+
+<p><br /></p>
 
 <p><img src="../content/machine-learning-pipelines/arranged-pipeline-puzzles.png" alt="Arranged pipeline puzzles" /></p>
 
-<p>This is why a pipeline is necessary for machine learning projects, so that the infrastucture of the development process is reproducible and we don’t have to repeat ourselves.</p>
+<p><br /></p>
+
+<p>This is why a pipeline is necessary for machine learning projects, so that the infrastructure of the development process is reproducible and we don’t have to repeat ourselves.</p>
 
 <p>A pipeline consists of a chain of processing elements, arranged in a particular order so that the output of each element is the input of the next. Therefore, data or information can flow through the pipeline from one end to the other. The structure of such a pipeline is called Directed Acyclic Graph (DAG).</p>
 
@@ -171,19 +183,31 @@
   <li>a graph - a structure consisting of nodes that are connected to each other with edges</li>
 </ul>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/graph.png" alt="Graph" /></p>
+
+<p><br /></p>
 
 <ul>
   <li>directed - the connections between the nodes, i.e edges, have a direction, so that going from node A to B is not the same as going from node B to A</li>
 </ul>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/directed.png" alt="Directed" /></p>
+
+<p><br /></p>
 
 <ul>
   <li>acyclic - non-circular, moving from node to node by following the edges, you will never encounter the same node for the second time</li>
 </ul>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/acyclic.png" alt="Acyclic" /></p>
+
+<p><br /></p>
 
 <p>A Directed Acyclic Graph (DAG) is similar to a tree data structure, they both:</p>
 
@@ -204,7 +228,11 @@
 
 <p>The difference between these two structure is that:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/tree-and-dag.png" alt="Tree and DAG" /></p>
+
+<p><br /></p>
 
 <ul>
   <li>
@@ -236,7 +264,11 @@
 
 <p>Take one of my projects as an example. The project is to develop an application for text recognition. At the beginning, a lightweight pipeline is desired to be implemented in the application using existing Optical Character Recognition (OCR) services. The flow of the tasks are as following:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/task-aware-application.png" alt="Task-aware application" /></p>
+
+<p><br /></p>
 
 <p>Text data in PDF format comes in, gets sent to existing OCR service; specific features, such as date, number etc, are extracted from the recognised text, and then the extracted information is output to desired destinations. It is relatively straight-forward.</p>
 
@@ -244,13 +276,21 @@
 
 <p>Here is an example of a sample pipeline:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/sample-pipeline.png" alt="Sample pipeline" /></p>
+
+<p><br /></p>
 
 <p>A log node to indicate the start of a pipeline; import node to import data from data storage; process node to process imported data, in my case, sending image data to existing OCR services for text recognition; multiple feature nodes to extract target features, such as date and numbers; output node to send results of the pipeline to desire destinations, such as downstream services or data storage.</p>
 
 <p>In Python, such a pipeline can be written as the following:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/no-pipeline.png" alt="No pipeline" /></p>
+
+<p><br /></p>
 
 <p>All the necessary functions are defined under a <code class="highlighter-rouge">Pipeline</code> class, task functions are manually called and their outputs are passed down through the pipeline by users.</p>
 
@@ -268,13 +308,21 @@
 
 <p>To create a pipeline with <code class="highlighter-rouge">consecution</code> library:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/create-pipeline.png" alt="Create pipeline" /></p>
+
+<p><br /></p>
 
 <p>A global state is defined to hole useful information through all the nodes in the pipeline; a <code class="highlighter-rouge">Pipeline</code> object is instantiated with defined nodes arranged in a desired order.</p>
 
 <p>The definitions of each node in the pipeline are:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/pipeline-code.png" alt="Pipeline code" /></p>
+
+<p><br /></p>
 
 <p>In <code class="highlighter-rouge">consecution</code>, each task is captured as a <code class="highlighter-rouge">Node</code> class with a mandatory <code class="highlighter-rouge">process()</code> function. The <code class="highlighter-rouge">process()</code> function is where the task of a node is defined. The <code class="highlighter-rouge">Node</code> class also comes with a <code class="highlighter-rouge">push()</code> function for passing task output to the next node. Output from upstream task node is the input of the downstream task node. This is implemented in the library by default, as an interface contract between nodes in the pipeline.</p>
 
@@ -290,7 +338,11 @@
 
 <p>Later on in my project example mentioned above, I have to collect my own data and train my own model to get better performance on feature extractions:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/task-data-aware-application.png" alt="Task and data-aware application" /></p>
+
+<p><br /></p>
 
 <p>Besides, the trained model will be deployed in production environment.</p>
 
@@ -337,7 +389,11 @@
 
 <p><code class="highlighter-rouge">TensorFlow Extended</code> (TFX) is a framework library that implements a task and data-aware pipeline architecture and pre-defines a sequence of components that implement a machine learning pipeline, which includes modeling, training, serving inference and managing deployments. It typically includes the following components:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/tensorflow-extended.png" alt="TensorFlow Extended" /></p>
+
+<p><br /></p>
 
 <ul>
   <li>
@@ -371,7 +427,11 @@
 
 <p>In <code class="highlighter-rouge">TensorFlow Extended</code>, each component has three sub-components, driver, executor and publisher:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/tfx-component.png" alt="TFX Component" /></p>
+
+<p><br /></p>
 
 <ul>
   <li>
@@ -407,7 +467,11 @@
 
 <p>The following is my TFX pipeline running on <code class="highlighter-rouge">Airflow</code>:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/airflow.png" alt="Airflow" /></p>
+
+<p><br /></p>
 
 <p><br /></p>
 
@@ -419,9 +483,17 @@
 
 <p>The following is an example on how to construct the feature of image data for handwritten digit recognition into <code class="highlighter-rouge">tfrecord</code>:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/feature-data-format.png" alt="Feature data format" /></p>
 
+<p><br /></p>
+
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/feature-util-functions.png" alt="Feature util functions" /></p>
+
+<p><br /></p>
 
 <p>The selected features of the image data are: image height, image width, image depth, class label of image data and raw image array.</p>
 
@@ -433,7 +505,11 @@
 
 <p>Based on the features stored in <code class="highlighter-rouge">tfrecord</code> for each data point and the statistics of the data which were generated by <code class="highlighter-rouge">StatisticsGen</code> (another component in TFX pipeline), <code class="highlighter-rouge">SchemaGen</code> component tries to infer the basic properties of the features:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/feature-schema.png" alt="Feature schema" /></p>
+
+<p><br /></p>
 
 <p>It includes:</p>
 
@@ -463,7 +539,11 @@
 
 <p>In this example, I apply normalisation to the image data before model training:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/preprocessing-fn.png" alt="Preprocessing Fn" /></p>
+
+<p><br /></p>
 
 <p><code class="highlighter-rouge">Transform</code> will then output a TensorFlow graph with those (constants and) ops. That graph is hermetic, which means it contains all of the information needed to apply those transformations, and will form the input stage for the model. These transformations will be applied consistently between training and serving, which eliminates training/serving skew.</p>
 
@@ -481,7 +561,11 @@
 
 <p>Here is the function to build an estimator, I used the Convolutional Neural Network for MNIST as an example:</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/build-estimator.png" alt="Build Estimator" /></p>
+
+<p><br /></p>
 
 <p>When training is completed, <code class="highlighter-rouge">Trainer</code> will save two different <code class="highlighter-rouge">SavedModel</code> files. One is a <code class="highlighter-rouge">SavedModel</code> file that will be ready to be deployed to production, and the other is an <code class="highlighter-rouge">EvalSavedModel</code> file that will be used for analysing the performance of the trained model.</p>
 
@@ -497,7 +581,11 @@
 
 <p>Essentially, <code class="highlighter-rouge">ModelValidator</code> evaluates both models on a dataset and computes their performance on metrics (for example, AUC, loss etc.). It checks if the performance of the newly-trained model is the same as or better than that of the baseline model (previously-trained model with the best accuracy), according to the criteria users define. If it’s the same or better at shooting the right target, than the model will get pushed to <code class="highlighter-rouge">Pusher</code> component and be deployment-ready. Otherwise, too bad, it doesn’t make it to the finish line and won’t get pushed to the next component in the pipeline.</p>
 
+<p><br /></p>
+
 <p><img src="../content/machine-learning-pipelines/model-validator.png" alt="Model Validator" /></p>
+
+<p><br /></p>
 
 <p>The <code class="highlighter-rouge">SavedModel</code> file, that gets pushed to <code class="highlighter-rouge">Pusher</code> and is ready for deployment, contains all the information needed to perform both pre-processing (transformation) and inference, so no pre-processing or inference code is needed to run the model in serving.</p>
 
