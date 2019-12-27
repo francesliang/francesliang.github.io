@@ -375,7 +375,7 @@ It includes:
 
 * data types of feature values 
 
-* data dimensions(`10` for ten single digits in "label" and `784` for `28 (image height) x 28 (image width)` in "image_raw")
+* data dimensions (`10` for ten single digits in "label" and `784` for `28 (image height) x 28 (image width)` in "image_raw")
 
 
 Other downstream tasks in the pipeline will refer to this data schema for features in the dataset.
