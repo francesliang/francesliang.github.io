@@ -19,7 +19,7 @@ Machine learning projects usually involves the following three main components:
 <br>
 
 
-Even though these three components don't seem to be overly complicated, there are many moving pieces underneath each component;
+Even though these three components don't seem to be overly complicated, there are many moving pieces underneath each component.
 
 Before the algorithms can be run on the dataset, the data has to go through:
 
@@ -473,13 +473,15 @@ Task-aware and task-data-aware pipelines are useful in different use cases of ma
 On the other hand, if models need to be trained with complex neural networks and large datasets, with productionising the models as a goal, then a more comprehensive framework such as `TenworFlow Extended` might be more suitable.
 
 
+<br>
+<br>
 
+#### NOTES:
 
+<br>
 
-NOTES: 
+* The link to the talk with the same topic I gave in DevFest 2019 Melbourne is [*here*](https://www.youtube.com/watch?v=32hRmUQaBt4).
 
-* The link to the talk with the same topic I gave in DevFest 2019 Melbourne is [here](https://www.youtube.com/watch?v=32hRmUQaBt4).
+* The code snippets can be found in [*this*](https://github.com/francesliang/ml-pipelines) GitHub repository.
 
-* The code snippets can be found in [this](https://github.com/francesliang/ml-pipelines) `github` repository.
-
-* A practical implementation of `TensorFlow Extended` can be found in [this](https://github.com/francesliang/biobert-pipeline) `github` repository.
+* A practical implementation of `TensorFlow Extended` can be found in [*this*](https://github.com/francesliang/biobert-pipeline) GitHub repository.
